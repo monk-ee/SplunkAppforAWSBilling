@@ -2,13 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2e4d57ce-b8ba-42d4-976b-5f8da8e86863" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/fetch_detailed_report.py" afterPath="$PROJECT_DIR$/bin/fetch_detailed_report.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/process_detailed_report.py" afterPath="$PROJECT_DIR$/bin/process_detailed_report.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/appserver/static/appicon.png" afterPath="$PROJECT_DIR$/appserver/static/appicon.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/appserver/static/screenshot.png" afterPath="$PROJECT_DIR$/appserver/static/screenshot.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="SplunkAppforAWSBilling.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="2e4d57ce-b8ba-42d4-976b-5f8da8e86863" time="1376906363300" ignored="false" />
+    <file path="/Dummy.txt" changelist="2e4d57ce-b8ba-42d4-976b-5f8da8e86863" time="1376906460874" ignored="false" />
     <file path="/test_bill.py" changelist="2e4d57ce-b8ba-42d4-976b-5f8da8e86863" time="1376879313540" ignored="false" />
     <file path="/aws.yaml.example" changelist="2e4d57ce-b8ba-42d4-976b-5f8da8e86863" time="1376879464849" ignored="false" />
     <file path="/fetch_detailed_report.py" changelist="2e4d57ce-b8ba-42d4-976b-5f8da8e86863" time="1376906412660" ignored="false" />
@@ -73,7 +73,7 @@
       <file leaf-file-name="process_detailed_report.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/bin/process_detailed_report.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="34" column="89" selection-start="928" selection-end="928" vertical-scroll-proportion="0.06974128">
+            <state line="34" column="89" selection-start="928" selection-end="928" vertical-scroll-proportion="-1.5050619">
               <folding>
                 <element signature="e#138#147#0" expanded="true" />
               </folding>
@@ -535,7 +535,11 @@
       <created>1376906367332</created>
       <updated>1376906367332</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="tiny name changes for detailed report zip in preperation for multiple accounts">
+      <created>1376906464492</created>
+      <updated>1376906464492</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TodoView" selected-index="4">
@@ -624,7 +628,7 @@
     <option name="WRAP_WHEN_TYPING_REACHES_RIGHT_MARGIN" value="false" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="added new screenshot" />
+    <option name="LAST_COMMIT_MESSAGE" value="tiny name changes for detailed report zip in preperation for multiple accounts" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -647,6 +651,7 @@
     <MESSAGE value="new app logo just coz" />
     <MESSAGE value="some firendly code changes for strptime" />
     <MESSAGE value="added new screenshot" />
+    <MESSAGE value="tiny name changes for detailed report zip in preperation for multiple accounts" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -763,7 +768,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/bin/process_detailed_report.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="34" column="89" selection-start="928" selection-end="928" vertical-scroll-proportion="0.06974128">
+        <state line="34" column="89" selection-start="928" selection-end="928" vertical-scroll-proportion="-1.5050619">
           <folding>
             <element signature="e#138#147#0" expanded="true" />
           </folding>
