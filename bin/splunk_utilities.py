@@ -1,3 +1,15 @@
+#!/usr/bin/python
+# get_detailed_bill.py
+__author__ = 'monk-ee'
+
+"""This module provides some handy utilities
+"""
+import os
+import sys
+import calendar
+import datetime
+import time
+
 #path and file stuff
 path = os.environ["SPLUNK_HOME"]
 appname = 'SplunkAppforAWSBilling'
