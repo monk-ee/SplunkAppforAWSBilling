@@ -1,188 +1,121 @@
 <?xml version='1.0' encoding='utf-8'?>
 <dashboard>
-  <label>AWS Dashboard</label>
+  <label>AWS Billing Dashboard</label>
   <row>
     <chart>
-      <searchString>index=aws-data sourcetype=aws-data  subaccount!="1" subaccount!="$11" | stats sum(amount) as amt</searchString>
-      <title>AWS Bill - Till Today</title>
-      <earliestTime>-24h</earliestTime>
+      <searchString>index=aws-bill BlendedCost !="" | timechart span=1mon sum(BlendedCost) as $</searchString>
+      <title>Monthly Raw costs ($)</title>
+      <earliestTime>-1y@y</earliestTime>
       <latestTime>now</latestTime>
-      <option name="charting.chart">radialGauge</option>
-      <option name="charting.chart.rangeValues">[0,50000,100000,150000]</option>
-      <option name="charting.gaugeColors">[0x84e900,0xffe800,0xbf3030]</option>
-      <option name="count">10</option>
-      <option name="displayRowNumbers">true</option>
-    </chart>
-    <table>
-      <searchString>index=aws-data sourcetype=aws-data earliest=-24h  subaccount!="1" subaccount!="$11" | stats values(amount) as amt by subaccount| sort -amt</searchString>
-      <title>AWS Monthly Bill - Till Today</title>
-      <option name="count">5</option>
-      <option name="displayRowNumbers">true</option>
-    </table>
-    <chart>
-      <searchString>index=aws-data sourcetype=aws-data  earliest=-24h subaccount!="1" subaccount!="$11" |stats sum(amount) as amt, avg(date_mday) as dayno| eval projected=round(30*amt/dayno) |fields projected</searchString>
-      <title>Monthly Billing Projection</title>
-      <earliestTime>-24h</earliestTime>
-      <option name="charting.chart">radialGauge</option>
-      <option name="charting.chart.rangeValues">[0,50000,100000,150000]</option>
-      <option name="charting.gaugeColors">[0x84e900,0xffe800,0xbf3030]</option>
-      <option name="count">10</option>
-      <option name="displayRowNumbers">true</option>
-    </chart>
-  </row>
-  <row>
-    <chart>
-      <searchString>index=aws-data  sourcetype=aws-data reserved="N" | timechart span=1h count by subaccount useother=f</searchString>
-      <title>on-demand-running-instances</title>
-      <earliestTime>-7d</earliestTime>
-      <latestTime>now</latestTime>
-      <option name="charting.chart">area</option>
+      <option name="charting.chart">column</option>
       <option name="charting.chart.stackMode">stacked</option>
+      <option name="charting.axisTitleY.text">$</option>
+      <option name="charting.axisTitleX.text">Months</option>
     </chart>
     <chart>
-      <searchString>index=aws-data sourcetype=aws-data subaccount!="1" subaccount!="$11"  | timechart span=1d values(amount) by subaccount useother=f</searchString>
-      <title>AWS Monthly Billing</title>
-      <earliestTime>@mon</earliestTime>
+      <searchString>index=aws-bill BlendedCost !="" |eval date_hour=strftime(_time, "%H") | search (date_hour&gt;=7 AND date_hour&lt;=17) |timechart span=1mon sum(BlendedCost) as $</searchString>
+      <title>Monthly Daily Raw costs ($)</title>
+      <earliestTime>-1y@y</earliestTime>
       <latestTime>now</latestTime>
-      <option name="charting.chart">area</option>
-      <option name="charting.chart.nullValueMode">connect</option>
+      <option name="charting.chart">column</option>
       <option name="charting.chart.stackMode">stacked</option>
-      <option name="charting.legend.labelStyle.overflowMode">ellipsisEnd</option>
-      <option name="charting.legend.placement">right</option>
-      <option name="count">10</option>
-      <option name="displayRowNumbers">true</option>
+      <option name="charting.axisTitleY.text">$</option>
+      <option name="charting.axisTitleX.text">Months</option>
     </chart>
+          <chart>
+      <searchString>index=aws-bill BlendedCost !="" |eval date_hour=strftime(_time, "%H") | search (date_hour$gt;=18 AND date_hour&lt;=23) OR (date_hour&gt;=0 AND date_hour&lt;=6) |timechart span=1mon sum(BlendedCost) as $</searchString>
+      <title>Monthly Nightly Raw costs ($)</title>
+      <earliestTime>-1y@y</earliestTime>
+      <latestTime>now</latestTime>
+      <option name="charting.chart">column</option>
+      <option name="charting.chart.stackMode">stacked</option>
+      <option name="charting.axisTitleY.text">$</option>
+      <option name="charting.axisTitleX.text">Months</option>
+    </chart>
+    </row>
+    <row>
+       <chart>
+      <searchString>index=aws-bill user_SERVICE_ENVIRONMENT !="" |eval date_hour=strftime(_time, "%H") | search (date_hour&gt;=7 AND date_hour&lt;=17) |timechart sum(BlendedCost) as $ by user_SERVICE_ENVIRONMENT</searchString>
+      <title>Daily costs ($)</title>
+      <earliestTime>-1y@y</earliestTime>
+      <latestTime>now</latestTime>
+      <option name="charting.chart">column</option>
+      <option name="charting.chart.stackMode">stacked</option>
+      <option name="charting.axisTitleY.text">$</option>
+      <option name="charting.axisTitleX.text">Months</option>
+    </chart>
+          <chart>
+      <searchString>index=aws-bill user_SERVICE_ENVIRONMENT !="" |eval date_hour=strftime(_time, "%H") | search (date_hour$gt;=18 AND date_hour&lt;=23) OR (date_hour&gt;=0 AND date_hour&lt;=6) |timechart sum(BlendedCost) as $ by user_SERVICE_ENVIRONMENT</searchString>
+      <title>Nightly costs ($)</title>
+      <earliestTime>-1y@y</earliestTime>
+      <latestTime>now</latestTime>
+      <option name="charting.chart">column</option>
+      <option name="charting.chart.stackMode">stacked</option>
+      <option name="charting.axisTitleY.text">$</option>
+      <option name="charting.axisTitleX.text">Months</option>
+    </chart>
+    </row>
+    <row>
     <chart>
-      <searchString>index=aws-data  sourcetype=aws-data reserved="N" | timechart span=1h count by instancetype useother=f</searchString>
-      <title>On Demand Running Instances by Instancetype</title>
+      <searchString>index=aws-bill | timechart span=1day sum(BlendedCost) as $ by ProductName</searchString>
+      <title>Costs By AWS Product</title>
       <earliestTime>-7d@h</earliestTime>
       <latestTime>now</latestTime>
-      <option name="charting.chart">area</option>
+      <option name="charting.chart">column</option>
       <option name="charting.chart.nullValueMode">gaps</option>
       <option name="charting.chart.stackMode">stacked</option>
       <option name="charting.layout.splitSeries">false</option>
       <option name="charting.legend.placement">right</option>
       <option name="charting.secondaryAxis.maximumNumber">""</option>
       <option name="charting.secondaryAxis.minimumNumber">""</option>
+      <option name="charting.axisTitleY.text">$</option>
+      <option name="charting.axisTitleX.text">Days</option>
       <option name="count">50</option>
       <option name="displayRowNumbers">true</option>
       <option name="drilldown">all</option>
     </chart>
   </row>
+
   <row>
     <chart>
-      <searchString>index=aws-data  sourcetype=aws-data running="Y" AND reserved="N"| chart count by subaccount </searchString>
-      <title>On Demand Instances (last hour)</title>
-      <earliestTime>-1h</earliestTime>
-      <option name="charting.chart">pie</option>
-      <option name="count">10</option>
-      <option name="displayRowNumbers">true</option>
-    </chart>
-    <chart>
-      <searchString>index=aws-data  sourcetype=aws-data earliest=-60m running="Y" reserved="N"| chart count by instancetype</searchString>
-      <title>On-demand Instances - (last hour)</title>
-      <option name="charting.chart">pie</option>
-      <option name="count">10</option>
-      <option name="displayRowNumbers">true</option>
-      <option name="drilldown">all</option>
-    </chart>
-  </row>
-  <row>
-    <chart>
-      <searchString>index=aws-data  sourcetype=aws-data earliest=-65m | chart count(eval(reserved="N" AND running="Y")) as on-demand-Is</searchString>
-      <title>On-Demand Instances Total - (last hour)</title>
+      <searchString>index=aws-bill | stats sum(BlendedCost)</searchString>
+      <title>Current $ Spend</title>
       <option name="charting.chart">radialGauge</option>
-      <option name="charting.chart.rangeValues">[0,100,300,1000]</option>
+      <option name="charting.chart.rangeValues">[0,15000,20000,25000]</option>
       <option name="charting.gaugeColors">[0x84e900,0xffe800,0xbf3030]</option>
       <option name="count">10</option>
       <option name="displayRowNumbers">true</option>
     </chart>
     <chart>
-      <searchString>index=aws-data  sourcetype=aws-data earliest=-65m | chart count(eval(running="Y")) as RIs</searchString>
-      <title>Running Instances - All</title>
+      <searchString>index=aws-bill | stats count(BlendedCost)</searchString>
+      <title>Billing Items</title>
       <option name="charting.chart">radialGauge</option>
-      <option name="charting.chart.rangeValues">[500,1000,1500]</option>
+      <option name="charting.chart.rangeValues">[0,300000,400000]</option>
       <option name="charting.gaugeColors">[0x84e900,0xffe800,0xbf3030]</option>
       <option name="count">10</option>
       <option name="displayRowNumbers">true</option>
     </chart>
     <chart>
-      <searchString>index=aws-data  sourcetype=aws-data earliest=-65m | chart count(eval(reserved="Y" AND running="N")) as Un-used-RIs</searchString>
-      <title>Un-Used RIs Total - (last hour)</title>
+      <searchString>index=aws-bill | stats sum(UsageQuantity)</searchString>
+      <title>Usage Quantity</title>
       <option name="charting.chart">radialGauge</option>
-      <option name="charting.chart.rangeValues">[0,100,200,400]</option>
+      <option name="charting.chart.rangeValues">[0,20000000,400000000,800000000]</option>
       <option name="charting.gaugeColors">[0x84e900,0xffe800,0xbf3030]</option>
       <option name="count">10</option>
       <option name="displayRowNumbers">true</option>
     </chart>
   </row>
   <row>
-    <chart>
-      <searchString>index=aws-data  sourcetype=aws-data | timechart span=1h count(eval(reserved="Y" AND running="Y")) as In-use-RIs, count(eval(reserved="N" and running="Y")) as On-demand-Is</searchString>
-      <title>Running Instances - On-Demand vs Reserved</title>
-      <earliestTime>-10d</earliestTime>
-      <option name="charting.chart">area</option>
-      <option name="count">50</option>
-      <option name="displayRowNumbers">true</option>
-    </chart>
-    <chart>
-      <searchString>index=aws-data  sourcetype=aws-data | timechart span=1h count(eval(reserved="Y" AND running="Y")) as In-Use-RIs, count(eval(reserved="Y" AND running="N")) as Un-used-RIs
-</searchString>
-      <title>Reserved Instances Status</title>
-      <earliestTime>-10d</earliestTime>
-      <option name="charting.chart">area</option>
-      <option name="charting.chart.stackMode">stacked</option>
-      <option name="count">50</option>
-      <option name="displayRowNumbers">true</option>
-    </chart>
-    <chart>
-      <searchString>index=aws-data  sourcetype=aws-data | timechart span=1h  count(eval(running="Y")) as RIs by subaccount useother=f usenull=f</searchString>
-      <title>Running Instances - All</title>
-      <earliestTime>-10d</earliestTime>
+          <chart>
+      <searchString>index=aws-bill AvailabilityZone!="" | timechart sum(BlendedCost) as $ by AvailabilityZone</searchString>
+      <title>Costs by Availability Zone</title>
+      <earliestTime>-28d</earliestTime>
       <latestTime>now</latestTime>
-      <option name="charting.chart">area</option>
-      <option name="charting.chart.stackMode">stacked</option>
-      <option name="count">10</option>
-      <option name="displayRowNumbers">true</option>
-    </chart>
-  </row>
-  <row>
-    <chart>
-      <searchString>index=aws-data  sourcetype=aws-data earliest=-60m running="N" | chart count by subaccount</searchString>
-      <title>Unused RIs by sub-accounts</title>
-      <option name="charting.chart">pie</option>
-      <option name="count">50</option>
-      <option name="displayRowNumbers">true</option>
-    </chart>
-<table>
-      <searchString>index=aws-data sourcetype=aws-data earliest=-3mon| bucket _time span=1h | stats count(eval(running="Y")) as running by instancetype,_time| stats min(running) as baseline1, stdev(running) as baseline2, mode(running) as baseline3 by instancetype |eval baseline-low=baseline1 | eval baseline-stdev=round(baseline2) | eval baseline-mod=round(baseline3)| fields instancetype,baseline-low,baseline-mod,baseline-stdev</searchString>
-      <title>Baseline Estimation - based on last 3 months of usage</title>
-    </table>
-    <chart>
-      <searchString>index=aws-data  sourcetype=aws-data earliest=-60m running="N" | chart count by instancetype</searchString>
-      <title>Un-used RIs by instance type</title>
-      <option name="charting.chart">pie</option>
-      <option name="charting.chart.rangeValues">[0,500,600,700]</option>
-      <option name="charting.chart.style">shiny</option>
-      <option name="charting.gaugeColors">[0x84e900,0xffe800,0xbf3030]</option>
-      <option name="count">50</option>
-      <option name="displayRowNumbers">true</option>
-      <option name="drilldown">all</option>
-    </chart>
-  </row>
-  <row>
-    <chart>
-      <searchString>index=aws-data sourcetype=aws-data  earliest=@mon latest=now | stats sum(amount) as This_Month by _time | appendcols [ search index=aws-data sourcetype=aws-data  earliest=-mon@mon latest=-mon| stats sum(amount) as Last_Month by _time ]  | fields _time, This_Month, Last_Month </searchString>
-      <title> Month over Month Comparison </title>
-      <option name="charting.axisY.scale">linear</option>
       <option name="charting.chart">column</option>
-      <option name="charting.chart.nullValueMode">connect</option>
-      <option name="charting.chart.stackMode">default</option>
-      <option name="charting.legend.placement">bottom</option>
-      <option name="charting.secondaryAxis.scale">linear</option>
-      <option name="count">10</option>
-      <option name="displayRowNumbers">true</option>
+      <option name="charting.axisTitleY.text">$</option>
+      <option name="charting.axisTitleX.text">Days</option>
     </chart>
-  </row>
+    </row>
+
 </dashboard>
 
