@@ -45,18 +45,21 @@ You will need to fill in the following pieces of information in the local direct
 
 Restart splunk and you should be away.
 
-> s3:
->  account_number: 123456
->  billing_bucket: name-of-bucket
->  time_zone: Australia/Brisbane
-> regions:
->  - name: ap-southeast-2
-> keys:
->  - account_number    : 123456
->    name              : service.splunk
->    aws_access_key    : AAAAAAAAAAAA
->    aws_secret_key    : AAAAAAAAAAAABBBBBBBBBBBBBBCC
->    spend_limit       : 10000
->    corporate_key     : true
+<blockquote>
+ s3:
+  account_number: 123456
+  billing_bucket: name-of-bucket
+  time_zone: Australia/Brisbane
+ regions:
+  - name: ap-southeast-2
+ keys:
+  - account_number    : 123456
+    name              : service.splunk
+    aws_access_key    : AAAAAAAAAAAA
+    aws_secret_key    : AAAAAAAAAAAABBBBBBBBBBBBBBCC
+    spend_limit       : 10000
+    corporate_key     : true
+</blockquote>
+
 
 Special thanks to Nilesh Khetia who's module I borrowed to make this one http://answers.splunk.com/users/114849/nkhetia
