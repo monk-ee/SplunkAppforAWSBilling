@@ -1,3 +1,7 @@
+s3:
+ account_number:
+ billing_bucket:
+ time_zone: Australia/Brisbane
 regions:
  - name: ap-southeast-2
 keys:
@@ -7,7 +11,3 @@ keys:
    aws_secret_key    : 
    spend_limit       : 10000
    corporate_key     : true
-   s3:
-    account_number:
-    billing_bucket:
-    time_zone: Australia/Brisbane
