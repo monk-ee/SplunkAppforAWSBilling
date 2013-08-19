@@ -2,13 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2e4d57ce-b8ba-42d4-976b-5f8da8e86863" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/maintain_detailed_reports.py" afterPath="$PROJECT_DIR$/bin/maintain_detailed_reports.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/splunk_utilities.py" afterPath="$PROJECT_DIR$/bin/splunk_utilities.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="SplunkAppforAWSBilling.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="2e4d57ce-b8ba-42d4-976b-5f8da8e86863" time="1376893595442" ignored="false" />
+    <file path="/Dummy.txt" changelist="2e4d57ce-b8ba-42d4-976b-5f8da8e86863" time="1376895253131" ignored="false" />
     <file path="/test_bill.py" changelist="2e4d57ce-b8ba-42d4-976b-5f8da8e86863" time="1376879313540" ignored="false" />
     <file path="/aws.yaml.example" changelist="2e4d57ce-b8ba-42d4-976b-5f8da8e86863" time="1376879464849" ignored="false" />
     <file path="/fetch_detailed_report.py" changelist="2e4d57ce-b8ba-42d4-976b-5f8da8e86863" time="1376883525464" ignored="false" />
@@ -57,10 +55,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="splunk_utilities.py" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="splunk_utilities.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/bin/splunk_utilities.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="32" column="32" selection-start="1029" selection-end="1029" vertical-scroll-proportion="0.0">
+            <state line="32" column="32" selection-start="1029" selection-end="1029" vertical-scroll-proportion="0.7362069">
               <folding>
                 <element signature="e#114#123#0" expanded="true" />
               </folding>
@@ -79,10 +77,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="maintain_detailed_reports.py" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="maintain_detailed_reports.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/bin/maintain_detailed_reports.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="6" column="10" selection-start="116" selection-end="116" vertical-scroll-proportion="0.05862069">
+            <state line="6" column="10" selection-start="116" selection-end="116" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -521,7 +519,11 @@
       <created>1376893598987</created>
       <updated>1376893598987</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="some firendly code changes for strptime">
+      <created>1376895255308</created>
+      <updated>1376895255308</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TodoView" selected-index="4">
@@ -721,15 +723,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/bin/splunk_utilities.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="32" column="32" selection-start="1029" selection-end="1029" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="e#114#123#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/bin/fetch_detailed_report.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="19" column="27" selection-start="406" selection-end="406" vertical-scroll-proportion="0.0">
@@ -748,8 +741,17 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/bin/maintain_detailed_reports.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="10" selection-start="116" selection-end="116" vertical-scroll-proportion="0.05862069">
+        <state line="6" column="10" selection-start="116" selection-end="116" vertical-scroll-proportion="0.0">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bin/splunk_utilities.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="32" column="32" selection-start="1029" selection-end="1029" vertical-scroll-proportion="0.7362069">
+          <folding>
+            <element signature="e#114#123#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
