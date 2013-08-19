@@ -4,7 +4,7 @@
   <row>
     <chart>
       <searchString>index=aws-bill BlendedCost !="" | timechart span=1mon sum(BlendedCost) as $</searchString>
-      <title>Monthly Raw costs ($)</title>
+      <title>Monthly Blended Raw Costs ($)</title>
       <earliestTime>-1y@y</earliestTime>
       <latestTime>now</latestTime>
       <option name="charting.chart">column</option>
@@ -13,18 +13,8 @@
       <option name="charting.axisTitleX.text">Months</option>
     </chart>
     <chart>
-      <searchString>index=aws-bill BlendedCost !="" |eval date_hour=strftime(_time, "%H") | search (date_hour&gt;=7 AND date_hour&lt;=17) |timechart span=1mon sum(BlendedCost) as $</searchString>
-      <title>Monthly Daily Raw costs ($)</title>
-      <earliestTime>-1y@y</earliestTime>
-      <latestTime>now</latestTime>
-      <option name="charting.chart">column</option>
-      <option name="charting.chart.stackMode">stacked</option>
-      <option name="charting.axisTitleY.text">$</option>
-      <option name="charting.axisTitleX.text">Months</option>
-    </chart>
-          <chart>
-      <searchString>index=aws-bill BlendedCost !="" |eval date_hour=strftime(_time, "%H") | search (date_hour$gt;=18 AND date_hour&lt;=23) OR (date_hour&gt;=0 AND date_hour&lt;=6) |timechart span=1mon sum(BlendedCost) as $</searchString>
-      <title>Monthly Nightly Raw costs ($)</title>
+      <searchString>index=aws-bill UnBlendedCost !="" | timechart span=1mon sum(UnBlendedCost) as $</searchString>
+      <title>Monthly UnBlended Raw Costs ($)</title>
       <earliestTime>-1y@y</earliestTime>
       <latestTime>now</latestTime>
       <option name="charting.chart">column</option>
@@ -35,9 +25,9 @@
     </row>
     <row>
        <chart>
-      <searchString>index=aws-bill user_SERVICE_ENVIRONMENT !="" |eval date_hour=strftime(_time, "%H") | search (date_hour&gt;=7 AND date_hour&lt;=17) |timechart sum(BlendedCost) as $ by user_SERVICE_ENVIRONMENT</searchString>
-      <title>Daily costs ($)</title>
-      <earliestTime>-1y@y</earliestTime>
+      <searchString>index=aws-bill ProductName !="" |eval date_hour=strftime(_time, "%H") | search (date_hour&gt;=7 AND date_hour&lt;=17) |timechart sum(BlendedCost) as $ by ProductName</searchString>
+      <title>Last Month Daytime Blended Costs ($)</title>
+      <earliestTime>-1@month</earliestTime>
       <latestTime>now</latestTime>
       <option name="charting.chart">column</option>
       <option name="charting.chart.stackMode">stacked</option>
@@ -45,9 +35,9 @@
       <option name="charting.axisTitleX.text">Months</option>
     </chart>
           <chart>
-      <searchString>index=aws-bill user_SERVICE_ENVIRONMENT !="" |eval date_hour=strftime(_time, "%H") | search (date_hour$gt;=18 AND date_hour&lt;=23) OR (date_hour&gt;=0 AND date_hour&lt;=6) |timechart sum(BlendedCost) as $ by user_SERVICE_ENVIRONMENT</searchString>
-      <title>Nightly costs ($)</title>
-      <earliestTime>-1y@y</earliestTime>
+      <searchString>index=aws-bill ProductName !="" |eval date_hour=strftime(_time, "%H") | search (date_hour$gt;=18 AND date_hour&lt;=23) OR (date_hour&gt;=0 AND date_hour&lt;=6) |timechart sum(BlendedCost) as $ by ProductName</searchString>
+      <title>Last Month Nighttime Blended Costs ($)</title>
+      <earliestTime>-1@month</earliestTime>
       <latestTime>now</latestTime>
       <option name="charting.chart">column</option>
       <option name="charting.chart.stackMode">stacked</option>
@@ -58,7 +48,7 @@
     <row>
     <chart>
       <searchString>index=aws-bill | timechart span=1day sum(BlendedCost) as $ by ProductName</searchString>
-      <title>Costs By AWS Product</title>
+      <title>Blended Costs By AWS Product</title>
       <earliestTime>-7d@h</earliestTime>
       <latestTime>now</latestTime>
       <option name="charting.chart">column</option>
@@ -108,7 +98,7 @@
   <row>
           <chart>
       <searchString>index=aws-bill AvailabilityZone!="" | timechart sum(BlendedCost) as $ by AvailabilityZone</searchString>
-      <title>Costs by Availability Zone</title>
+      <title>Blended Costs by Availability Zone</title>
       <earliestTime>-28d</earliestTime>
       <latestTime>now</latestTime>
       <option name="charting.chart">column</option>
@@ -118,4 +108,3 @@
     </row>
 
 </dashboard>
-
