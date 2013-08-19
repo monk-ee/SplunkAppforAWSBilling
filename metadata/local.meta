@@ -1,0 +1,78 @@
+[app/ui]
+version = 5.0
+modtime = 1351901516.150984000
+
+[app/launcher]
+version = 5.0
+modtime = 1351901516.153750000
+
+[myappsetup/setupentity]
+version = 5.0
+modtime = 1352149974.559611000
+
+[app/install/is_configured]
+version = 5.0
+modtime = 1352155335.844257000
+
+[aws1/misc]
+version = 5.0
+modtime = 1352155335.218686000
+
+[views/AWS-Dashboard]
+access = read : [ * ], write : [ admin, power ]
+owner = nobody
+version = 5.0.4
+modtime = 1376539574.107076000
+
+[inputs/splunktcp%3A%2F%2F8001]
+owner = admin
+version = 5.0.4
+modtime = 1375234110.360176000
+
+[inputs/script%3A%2F%2F%24SPLUNK_HOME%2Fetc%2Fapps%2FSplunkAppforAWS%2Fbin%2Fget_instances.py]
+version = 5.0.4
+modtime = 1375678125.314691000
+
+[indexes/aws-data]
+version = 5.0.4
+modtime = 1375235492.083664000
+
+[inputs/script%3A%2F%2F%24SPLUNK_HOME%2Fetc%2Fapps%2FSplunkAppforAWS%2Fbin%2Fget_bill.py]
+version = 5.0.4
+modtime = 1375249103.350827000
+
+[props/aws-data/EXTRACT-OWNER]
+access = read : [ * ]
+export = none
+owner = admin
+version = 5.0.4
+modtime = 1375678956.180105000
+
+[inputs/script%3A%2F%2F%24SPLUNK_HOME%2Fetc%2Fapps%2FSplunkAppforAWS%2Fbin%2Fget_all_rds.py]
+version = 5.0.4
+modtime = 1375766919.900887000
+
+[props/aws-data/EXTRACT-rds_id]
+access = read : [ * ]
+export = none
+owner = admin
+version = 5.0.4
+modtime = 1375831506.895539000
+
+[props/aws-data/EXTRACT-rds_db_instance_type]
+access = read : [ * ]
+export = none
+owner = admin
+version = 5.0.4
+modtime = 1375831866.249368000
+
+[indexes/aws-bill]
+version = 5.0.4
+modtime = 1376267468.583415000
+
+[views/Billing-Dashboard]
+access = read : [ * ], write : [ power, splunk-system-role, user ]
+export = none
+owner = admin
+version = 5.0.4
+modtime = 1376874780.341048000
