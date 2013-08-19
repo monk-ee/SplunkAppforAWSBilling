@@ -32,7 +32,7 @@ configurationObject = yaml.load(configurationStream)
 
 #now set detailed billing file
 BILLINGREPORTZIPFILE = os.path.join(path, 'etc', 'apps', 'SplunkAppforAWSBilling', 'tmp',
-                                    str(configurationObject['s3']['account_number']) + 'detailed_billing.zip')
+                                    str(configurationObject['s3']['account_number']) + '_detailed_billing.zip')
 
 #file name
 billingFileName = str(configurationObject['s3'][

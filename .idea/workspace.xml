@@ -2,18 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2e4d57ce-b8ba-42d4-976b-5f8da8e86863" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/appserver/static/screenshot.png" afterPath="$PROJECT_DIR$/appserver/static/screenshot.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/fetch_detailed_report.py" afterPath="$PROJECT_DIR$/bin/fetch_detailed_report.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/process_detailed_report.py" afterPath="$PROJECT_DIR$/bin/process_detailed_report.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="SplunkAppforAWSBilling.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="2e4d57ce-b8ba-42d4-976b-5f8da8e86863" time="1376895509400" ignored="false" />
+    <file path="/Dummy.txt" changelist="2e4d57ce-b8ba-42d4-976b-5f8da8e86863" time="1376906363300" ignored="false" />
     <file path="/test_bill.py" changelist="2e4d57ce-b8ba-42d4-976b-5f8da8e86863" time="1376879313540" ignored="false" />
     <file path="/aws.yaml.example" changelist="2e4d57ce-b8ba-42d4-976b-5f8da8e86863" time="1376879464849" ignored="false" />
-    <file path="/fetch_detailed_report.py" changelist="2e4d57ce-b8ba-42d4-976b-5f8da8e86863" time="1376883525464" ignored="false" />
+    <file path="/fetch_detailed_report.py" changelist="2e4d57ce-b8ba-42d4-976b-5f8da8e86863" time="1376906412660" ignored="false" />
     <file path="/maintain_detailed_reports.py" changelist="2e4d57ce-b8ba-42d4-976b-5f8da8e86863" time="1376895240184" ignored="false" />
     <file path="/splunk_utilities.py" changelist="2e4d57ce-b8ba-42d4-976b-5f8da8e86863" time="1376894939338" ignored="false" />
-    <file path="/process_detailed_report.py" changelist="2e4d57ce-b8ba-42d4-976b-5f8da8e86863" time="1376892983527" ignored="false" />
+    <file path="/process_detailed_report.py" changelist="2e4d57ce-b8ba-42d4-976b-5f8da8e86863" time="1376906428346" ignored="false" />
     <file path="/README.md" changelist="2e4d57ce-b8ba-42d4-976b-5f8da8e86863" time="1376888058407" ignored="false" />
     <file path="/props.conf" changelist="2e4d57ce-b8ba-42d4-976b-5f8da8e86863" time="1376885783842" ignored="false" />
     <file path="/inputs.conf" changelist="2e4d57ce-b8ba-42d4-976b-5f8da8e86863" time="1376886095973" ignored="false" />
@@ -50,16 +51,18 @@
       <file leaf-file-name="fetch_detailed_report.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/bin/fetch_detailed_report.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="19" column="27" selection-start="406" selection-end="406" vertical-scroll-proportion="0.0">
-              <folding />
+            <state line="33" column="136" selection-start="904" selection-end="904" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="e#161#170#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="splunk_utilities.py" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="splunk_utilities.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/bin/splunk_utilities.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="32" column="32" selection-start="1029" selection-end="1029" vertical-scroll-proportion="0.595186">
+            <state line="32" column="32" selection-start="1029" selection-end="1029" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="e#114#123#0" expanded="true" />
               </folding>
@@ -67,10 +70,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="process_detailed_report.py" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="process_detailed_report.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/bin/process_detailed_report.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="71" column="22" selection-start="2409" selection-end="2409" vertical-scroll-proportion="-13.36">
+            <state line="34" column="89" selection-start="928" selection-end="928" vertical-scroll-proportion="0.06974128">
               <folding>
                 <element signature="e#138#147#0" expanded="true" />
               </folding>
@@ -105,7 +108,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/bin/fetch_detailed_report.py" />
         <option value="$PROJECT_DIR$/default/inputs.conf" />
         <option value="$PROJECT_DIR$/default/indexes.conf" />
         <option value="$PROJECT_DIR$/default/app.conf" />
@@ -118,9 +120,10 @@
         <option value="$PROJECT_DIR$/metadata/local.meta" />
         <option value="$PROJECT_DIR$/default/props.conf" />
         <option value="$PROJECT_DIR$/default/data/ui/views/AWS-Billing-Dashboard.xml" />
-        <option value="$PROJECT_DIR$/bin/process_detailed_report.py" />
         <option value="$PROJECT_DIR$/bin/splunk_utilities.py" />
         <option value="$PROJECT_DIR$/bin/maintain_detailed_reports.py" />
+        <option value="$PROJECT_DIR$/bin/fetch_detailed_report.py" />
+        <option value="$PROJECT_DIR$/bin/process_detailed_report.py" />
       </list>
     </option>
   </component>
@@ -528,7 +531,11 @@
       <created>1376895512181</created>
       <updated>1376895512181</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="added new screenshot">
+      <created>1376906367332</created>
+      <updated>1376906367332</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TodoView" selected-index="4">
@@ -617,7 +624,7 @@
     <option name="WRAP_WHEN_TYPING_REACHES_RIGHT_MARGIN" value="false" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="some firendly code changes for strptime" />
+    <option name="LAST_COMMIT_MESSAGE" value="added new screenshot" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -639,6 +646,7 @@
     <MESSAGE value="import util stuff correctly" />
     <MESSAGE value="new app logo just coz" />
     <MESSAGE value="some firendly code changes for strptime" />
+    <MESSAGE value="added new screenshot" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -728,22 +736,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/bin/fetch_detailed_report.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="27" selection-start="406" selection-end="406" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bin/process_detailed_report.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="71" column="22" selection-start="2409" selection-end="2409" vertical-scroll-proportion="-13.36">
-          <folding>
-            <element signature="e#138#147#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/bin/maintain_detailed_reports.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="6" column="10" selection-start="116" selection-end="116" vertical-scroll-proportion="0.0">
@@ -753,9 +745,27 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/bin/splunk_utilities.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="32" column="32" selection-start="1029" selection-end="1029" vertical-scroll-proportion="0.595186">
+        <state line="32" column="32" selection-start="1029" selection-end="1029" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="e#114#123#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bin/fetch_detailed_report.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="33" column="136" selection-start="904" selection-end="904" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="e#161#170#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bin/process_detailed_report.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="34" column="89" selection-start="928" selection-end="928" vertical-scroll-proportion="0.06974128">
+          <folding>
+            <element signature="e#138#147#0" expanded="true" />
           </folding>
         </state>
       </provider>

@@ -31,7 +31,7 @@ configurationStream = open(AWSCONFIGFILE, 'r')
 configurationObject =  yaml.load(configurationStream)
 
 #now set detailed billing file
-BILLINGREPORTZIPFILE = os.path.join(path,'etc','apps','SplunkAppforAWSBilling','tmp',str(configurationObject['s3']['account_number'])+'detailed_billing.zip')
+BILLINGREPORTZIPFILE = os.path.join(path,'etc','apps','SplunkAppforAWSBilling','tmp',str(configurationObject['s3']['account_number'])+'_detailed_billing.zip')
 
 # get a bucket connection
 billingBucketConnection = S3Connection(configurationObject['keys'][0]['aws_access_key'], configurationObject['keys'][0]['aws_secret_key'])
