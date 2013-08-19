@@ -5,19 +5,16 @@ __author__ = 'monk-ee'
 """
 import os
 import sys
-import boto.ec2
 import calendar
 import datetime
 import time
-import boto
 import zipfile
 import yaml
 import csv
 import splunk_utilities
-from boto.s3.connection import S3Connection
-from datetime import datetime
-from boto.s3.key import Key
 from splunk_utilities import *
+from datetime import datetime
+
 
 #setup error handling file
 if not os.path.isfile(ERRORLOGFILE):
@@ -46,11 +43,11 @@ BILLINGREPORTCSVOLDPROCESSEDFILE = os.path.join(path, 'etc', 'apps', 'SplunkAppf
 #now delete them try catch
 try:
     os.remove(BILLINGREPORTCSVOLDFILE)
-except OSError, emsg1:
-    handleERRORLOGFILE.write(timenow()+' RemoveError '+str(emsg1[0])+' '+emsg1[1]+' '+str(emsg1[2])+'\n')
+except OSError:
+    pass
 try:
     os.remove(BILLINGREPORTCSVOLDPROCESSEDFILE)
-except OSError, emsg1:
-    handleERRORLOGFILE.write(timenow()+' RemoveError '+str(emsg1[0])+' '+emsg1[1]+' '+str(emsg1[2])+'\n')
+except OSError:
+    pass
 
 
