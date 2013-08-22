@@ -42,7 +42,13 @@ billingFileName = str(configurationObject['s3'][
 csvFileName = str(configurationObject['s3'][
     'account_number']) + "-aws-billing-detailed-line-items-with-resources-and-tags-" + datefilename() + ".csv"
 BILLINGREPORTZIPDIRCSV = os.path.join(path, 'etc', 'apps', 'SplunkAppforAWSBilling', 'csv', csvFileName)
-ifile = open(BILLINGREPORTZIPDIRCSV, 'rb')
+
+try:
+    ifile = open(BILLINGREPORTZIPDIRCSV, 'rb')
+except IOError:
+    #bail out the file does not exist yet
+    sys.exit(0)
+
 #ok read this file
 reader = csv.reader(ifile)
 
@@ -71,18 +77,17 @@ if processedFileExists == False:
     rownum = 0
     for row in reader:
         newrow = ""
-        #if the subscriptionid is blank - i dont want that record
-        if row[8] == "":
-            continue
+        if rownum == 0:
             #format the header row
-        elif rownum == 0:
             newrow += '"Timestamp",'
             newrow += '"AccountNumber",'
             for col in row:
                 newrow += '"' + str(col) + '",'
                 newrow = newrow[:-1]
                 newrow += '\r\n'
-            processedCSVHandle.write(newrow)
+        elif row[8] == "":
+             #if the subscriptionid is blank - i dont want that record
+            continue
         else:
             if row[15] != "":
                 try:
@@ -104,8 +109,8 @@ if processedFileExists == False:
                 newrow += '"' + str(col) + '",'
                 newrow = newrow[:-1]
                 newrow += '\r\n'
-            processedCSVHandle.write(newrow)
-            rownum += 1
+        processedCSVHandle.write(newrow)
+        rownum += 1
     #dont shut it you idiot
     processedCSVHandle.close()
 else:
@@ -122,12 +127,10 @@ else:
         newrow = ""
         #if the subscriptionid is blank - i dont want that record
         if row[8] == "":
-            rownum += 1
             continue
             #format the header row
         if rownum < processedCSVRowCount:
             #do nothing
-            rownum += 1
             continue
         else:
             if row[15] != "":

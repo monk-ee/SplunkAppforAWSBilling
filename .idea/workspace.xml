@@ -1,333 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2e4d57ce-b8ba-42d4-976b-5f8da8e86863" name="Default" comment="refactor boto paths">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/default/data/ui/views/AWS-Custom-Tags-Example-View.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/default/data/ui/views/AWS-Resources-View.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/core/README" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/file/README" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/beanstalk/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/cacerts/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/cloudformation/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/cloudfront/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/cloudsearch/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/contrib/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/core/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/datapipeline/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/dynamodb/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/dynamodb2/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/ec2/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/ec2/autoscale/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/ec2/cloudwatch/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/ec2/elb/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/ecs/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/elasticache/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/elastictranscoder/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/emr/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/file/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/fps/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/glacier/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/gs/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/iam/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/manage/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/mashups/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/mturk/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/mws/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/opsworks/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/pyami/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/pyami/installers/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/pyami/installers/ubuntu/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/rds/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/redshift/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/roboto/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/route53/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/s3/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/sdb/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/sdb/db/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/sdb/db/manager/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/services/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/ses/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/sns/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/sqs/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/sts/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/support/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/swf/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/vpc/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/gs/acl.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/s3/acl.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/ec2/autoscale/activity.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/ec2/address.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/ec2/cloudwatch/alarm.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/pyami/installers/ubuntu/apache.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/ec2/attributes.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/sqs/attributes.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/auth.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/core/auth.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/auth_handler.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/roboto/awsqueryrequest.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/roboto/awsqueryservice.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/dynamodb/batch.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/sqs/batchresults.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/sdb/db/blob.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/ec2/blockdevicemapping.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/pyami/bootstrap.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/emr/bootstrap_action.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/services/bs.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/file/bucket.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/gs/bucket.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/s3/bucket.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/gs/bucketlistresultset.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/s3/bucketlistresultset.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/s3/bucketlogging.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/ec2/bundleinstance.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/ec2/buyreservation.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/cacerts/cacerts.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/manage/cmdshell.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/compat.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/glacier/concurrent.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/dynamodb/condition.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/pyami/config.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/connection.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/cloudformation/connection.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/ec2/connection.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/emr/connection.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/file/connection.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/fps/connection.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/gs/connection.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/iam/connection.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/mturk/connection.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/mws/connection.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/route53/connection.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/s3/connection.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/sdb/connection.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/ses/connection.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/sns/connection.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/sqs/connection.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/sts/connection.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/pyami/copybot.cfg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/pyami/copybot.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/gs/cors.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/s3/cors.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/core/credentials.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/sts/credentials.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/vpc/customergateway.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/ec2/cloudwatch/datapoint.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/rds/dbinstance.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/rds/dbsecuritygroup.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/rds/dbsnapshot.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/rds/dbsubnetgroup.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/s3/deletemarker.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/vpc/dhcpoptions.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/core/dictresponse.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/ec2/cloudwatch/dimension.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/cloudfront/distribution.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/cloudsearch/document.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/cloudsearch/domain.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/sdb/domain.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/pyami/installers/ubuntu/ebs.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/ec2/ec2object.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/emr/emrobject.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/rds/event.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/exception.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/beanstalk/exception.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/cloudfront/exception.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/fps/exception.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/mws/exception.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/route53/exception.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/datapipeline/exceptions.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/dynamodb/exceptions.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/dynamodb2/exceptions.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/elastictranscoder/exceptions.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/glacier/exceptions.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/opsworks/exceptions.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/redshift/exceptions.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/ses/exceptions.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/support/exceptions.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/swf/exceptions.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/dynamodb2/fields.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/ec2/group.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/ec2/autoscale/group.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/handler.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/ec2/elb/healthcheck.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/pyami/helloworld.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/route53/hostedzone.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/https_connection.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/cloudfront/identity.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/ec2/image.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/pyami/installers/ubuntu/installer.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/ec2/instance.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/ec2/autoscale/instance.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/emr/instance_group.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/ec2/instanceinfo.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/ec2/elb/instancestate.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/ec2/instancestatus.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/mashups/interactive.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/vpc/internetgateway.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/cloudfront/invalidation.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/mashups/iobject.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/dynamodb/item.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/ecs/item.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/sdb/item.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/dynamodb2/items.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/glacier/job.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/sqs/jsonmessage.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/jsonresponse.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/file/key.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/gs/key.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/s3/key.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/sdb/db/key.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/s3/keyfile.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/ec2/keypair.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/pyami/launch_ami.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/ec2/autoscale/launchconfig.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/ec2/launchspecification.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/beanstalk/layer1.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/cloudsearch/layer1.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/datapipeline/layer1.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/dynamodb/layer1.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/dynamodb2/layer1.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/elasticache/layer1.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/elastictranscoder/layer1.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/glacier/layer1.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/opsworks/layer1.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/redshift/layer1.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/support/layer1.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/swf/layer1.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/swf/layer1_decisions.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/cloudsearch/layer2.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/dynamodb/layer2.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/glacier/layer2.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/swf/layer2.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/mturk/layoutparam.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/gs/lifecycle.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/s3/lifecycle.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/ec2/cloudwatch/listelement.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/ec2/elb/listelement.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/ec2/elb/listener.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/ec2/elb/loadbalancer.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/cloudfront/logging.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/services/message.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/sqs/message.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/ec2/cloudwatch/metric.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/sdb/db/model.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/s3/multidelete.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/s3/multipart.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/pyami/installers/ubuntu/mysql.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/ec2/networkinterface.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/mturk/notification.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/cloudfront/object.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/rds/optiongroup.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/cloudsearch/optionstatus.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/mashups/order.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/cloudfront/origin.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/roboto/param.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/rds/parametergroup.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/ec2/placementgroup.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/plugin.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/ec2/elb/policies.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/ec2/autoscale/policy.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/s3/prefix.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/mturk/price.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/sdb/db/property.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/manage/propget.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/provider.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/mturk/qualification.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/sdb/db/query.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/sdb/queryresultset.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/mturk/question.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/sqs/queue.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/route53/record.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/regioninfo.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/ec2/regioninfo.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/rds/regioninfo.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/sdb/regioninfo.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/sqs/regioninfo.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/ec2/autoscale/request.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/ec2/reservedinstance.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/beanstalk/response.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/fps/response.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/glacier/response.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/mws/response.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/services/result.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/dynamodb2/results.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/resultset.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/s3/resumable_download_handler.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/gs/resumable_upload_handler.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/vpc/routetable.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/ec2/autoscale/scheduled.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/dynamodb/schema.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/pyami/scriptbase.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/sdb/db/manager/sdbmanager.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/cloudsearch/search.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/ec2/securitygroup.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/ec2/elb/securitygroup.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/sdb/db/sequence.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/manage/server.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/mashups/server.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/core/service.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/services/service.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/services/servicedef.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/cloudfront/signers.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/file/simpleresultset.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/ec2/snapshot.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/services/sonofmmm.cfg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/services/sonofmmm.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/cloudsearch/sourceattribute.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/ec2/spotdatafeedsubscription.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/ec2/spotinstancerequest.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/ec2/spotpricehistory.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/cloudformation/stack.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/pyami/startup.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/route53/status.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/rds/statusinfo.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/emr/step.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/storage_uri.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/services/submit.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/vpc/subnet.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/iam/summarymap.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/dynamodb/table.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/dynamodb2/table.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/ec2/tag.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/ec2/autoscale/tag.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/s3/tagging.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/manage/task.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/cloudformation/template.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/sdb/db/test_db.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/manage/test_manage.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/pyami/installers/ubuntu/trac.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/dynamodb/types.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/dynamodb2/types.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/gs/user.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/s3/user.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/utils.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/glacier/utils.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/glacier/vault.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/ec2/vmtype.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/ec2/volume.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/manage/volume.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/ec2/volumestatus.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/vpc/vpc.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/vpc/vpnconnection.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/vpc/vpngateway.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/s3/website.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/beanstalk/wrapper.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/glacier/writer.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/sdb/db/manager/xmlmanager.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/contrib/ymlmessage.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/ec2/zone.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/boto/route53/zone.py" />
+    <list default="true" id="2e4d57ce-b8ba-42d4-976b-5f8da8e86863" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/process_detailed_report.py" afterPath="$PROJECT_DIR$/bin/process_detailed_report.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="SplunkAppforAWSBilling.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="2e4d57ce-b8ba-42d4-976b-5f8da8e86863" time="1377129894320" ignored="false" />
+    <file path="/Dummy.txt" changelist="2e4d57ce-b8ba-42d4-976b-5f8da8e86863" time="1377129938982" ignored="false" />
     <file path="/test_bill.py" changelist="2e4d57ce-b8ba-42d4-976b-5f8da8e86863" time="1376879313540" ignored="false" />
     <file path="/aws.yaml.example" changelist="2e4d57ce-b8ba-42d4-976b-5f8da8e86863" time="1376879464849" ignored="false" />
     <file path="/fetch_detailed_report.py" changelist="2e4d57ce-b8ba-42d4-976b-5f8da8e86863" time="1376906412660" ignored="false" />
     <file path="/maintain_detailed_reports.py" changelist="2e4d57ce-b8ba-42d4-976b-5f8da8e86863" time="1376895240184" ignored="false" />
     <file path="/splunk_utilities.py" changelist="2e4d57ce-b8ba-42d4-976b-5f8da8e86863" time="1376894939338" ignored="false" />
-    <file path="/process_detailed_report.py" changelist="2e4d57ce-b8ba-42d4-976b-5f8da8e86863" time="1376906428346" ignored="false" />
+    <file path="/process_detailed_report.py" changelist="2e4d57ce-b8ba-42d4-976b-5f8da8e86863" time="1377167386205" ignored="false" />
     <file path="/README.md" changelist="2e4d57ce-b8ba-42d4-976b-5f8da8e86863" time="1376888058407" ignored="false" />
     <file path="/props.conf" changelist="2e4d57ce-b8ba-42d4-976b-5f8da8e86863" time="1376885783842" ignored="false" />
     <file path="/inputs.conf" changelist="2e4d57ce-b8ba-42d4-976b-5f8da8e86863" time="1376886095973" ignored="false" />
@@ -374,11 +60,22 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AWS-Resources-View.xml" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="AWS-Resources-View.xml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/default/data/ui/views/AWS-Resources-View.xml">
           <provider selected="true" editor-type-id="text-editor">
             <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="process_detailed_report.py" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/bin/process_detailed_report.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="110" column="32" selection-start="3912" selection-end="3912" vertical-scroll-proportion="0.18106312">
+              <folding>
+                <element signature="e#138#147#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -423,17 +120,17 @@
         <option value="$PROJECT_DIR$/bin/splunk_utilities.py" />
         <option value="$PROJECT_DIR$/bin/maintain_detailed_reports.py" />
         <option value="$PROJECT_DIR$/bin/fetch_detailed_report.py" />
-        <option value="$PROJECT_DIR$/bin/process_detailed_report.py" />
         <option value="$USER_HOME$/Documents/GitHub/inline_template/lib/puppet/type/inline_template.rb" />
         <option value="$USER_HOME$/Documents/GitHub/inline_template/lib/puppet/provider/inline_template/inline_template.rb" />
+        <option value="$PROJECT_DIR$/bin/process_detailed_report.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="1912" />
+    <option name="x" value="-8" />
     <option name="y" value="-8" />
-    <option name="width" value="1936" />
-    <option name="height" value="1056" />
+    <option name="width" value="2576" />
+    <option name="height" value="1390" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
@@ -934,7 +631,11 @@
       <created>1377129767012</created>
       <updated>1377129767012</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="refactor boto paths -add new views">
+      <created>1377129944840</created>
+      <updated>1377129944840</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TodoView" selected-index="4">
@@ -958,8 +659,8 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="1912" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="false" />
+    <frame x="-8" y="-8" width="2576" height="1390" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3236607" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -967,7 +668,7 @@
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32924107" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24493062" sideWeight="0.6707589" order="1" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18257757" sideWeight="0.6707589" order="1" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
@@ -1023,7 +724,7 @@
     <option name="WRAP_WHEN_TYPING_REACHES_RIGHT_MARGIN" value="false" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor boto paths" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor boto paths -add new views" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -1049,6 +750,7 @@
     <MESSAGE value="tiny name changes for detailed report zip in preperation for multiple accounts" />
     <MESSAGE value="fixed image sizes ready for release" />
     <MESSAGE value="refactor boto paths" />
+    <MESSAGE value="refactor boto paths -add new views" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -1110,15 +812,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/bin/process_detailed_report.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="129" column="23" selection-start="4609" selection-end="4609" vertical-scroll-proportion="2.6126127">
-          <folding>
-            <element signature="e#138#147#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/bin/splunk_utilities.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="32" column="32" selection-start="1029" selection-end="1029" vertical-scroll-proportion="0.93793106">
@@ -1172,6 +865,15 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bin/process_detailed_report.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="110" column="32" selection-start="3912" selection-end="3912" vertical-scroll-proportion="0.18106312">
+          <folding>
+            <element signature="e#138#147#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
