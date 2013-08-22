@@ -7,7 +7,7 @@
     </list>
     <ignored path="SplunkAppforAWSBilling.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="2e4d57ce-b8ba-42d4-976b-5f8da8e86863" time="1377129938982" ignored="false" />
+    <file path="/Dummy.txt" changelist="2e4d57ce-b8ba-42d4-976b-5f8da8e86863" time="1377167517537" ignored="false" />
     <file path="/test_bill.py" changelist="2e4d57ce-b8ba-42d4-976b-5f8da8e86863" time="1376879313540" ignored="false" />
     <file path="/aws.yaml.example" changelist="2e4d57ce-b8ba-42d4-976b-5f8da8e86863" time="1376879464849" ignored="false" />
     <file path="/fetch_detailed_report.py" changelist="2e4d57ce-b8ba-42d4-976b-5f8da8e86863" time="1376906412660" ignored="false" />
@@ -72,7 +72,7 @@
       <file leaf-file-name="process_detailed_report.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/bin/process_detailed_report.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="110" column="32" selection-start="3912" selection-end="3912" vertical-scroll-proportion="0.18106312">
+            <state line="130" column="23" selection-start="4524" selection-end="4524" vertical-scroll-proportion="0.8023256">
               <folding>
                 <element signature="e#138#147#0" expanded="true" />
               </folding>
@@ -635,7 +635,11 @@
       <created>1377129944840</created>
       <updated>1377129944840</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="added file eror handlers">
+      <created>1377167519925</created>
+      <updated>1377167519925</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TodoView" selected-index="4">
@@ -724,7 +728,7 @@
     <option name="WRAP_WHEN_TYPING_REACHES_RIGHT_MARGIN" value="false" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor boto paths -add new views" />
+    <option name="LAST_COMMIT_MESSAGE" value="added file eror handlers" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -751,6 +755,7 @@
     <MESSAGE value="fixed image sizes ready for release" />
     <MESSAGE value="refactor boto paths" />
     <MESSAGE value="refactor boto paths -add new views" />
+    <MESSAGE value="added file eror handlers" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -870,7 +875,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/bin/process_detailed_report.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="110" column="32" selection-start="3912" selection-end="3912" vertical-scroll-proportion="0.18106312">
+        <state line="130" column="23" selection-start="4524" selection-end="4524" vertical-scroll-proportion="0.8023256">
           <folding>
             <element signature="e#138#147#0" expanded="true" />
           </folding>

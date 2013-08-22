@@ -87,6 +87,7 @@ if processedFileExists == False:
                 newrow += '\r\n'
         elif row[8] == "":
              #if the subscriptionid is blank - i dont want that record
+            rownum += 1
             continue
         else:
             if row[15] != "":
@@ -127,10 +128,12 @@ else:
         newrow = ""
         #if the subscriptionid is blank - i dont want that record
         if row[8] == "":
+            rownum += 1
             continue
             #format the header row
         if rownum < processedCSVRowCount:
             #do nothing
+            rownum += 1
             continue
         else:
             if row[15] != "":
