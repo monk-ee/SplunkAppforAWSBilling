@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/SplunkAppforAWSBilling.iml" filepath="$PROJECT_DIR$/.idea/SplunkAppforAWSBilling.iml" />
       <module fileurl="file://$USER_HOME$/PycharmProjects/Sweeper/.idea/Sweeper.iml" filepath="$USER_HOME$/PycharmProjects/Sweeper/.idea/Sweeper.iml" />
+      <module fileurl="file://$USER_HOME$/Documents/GitHub/inline_template/.idea/inline_template.iml" filepath="$USER_HOME$/Documents/GitHub/inline_template/.idea/inline_template.iml" />
     </modules>
   </component>
 </project>

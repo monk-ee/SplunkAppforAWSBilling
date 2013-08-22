@@ -1,14 +1,680 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2e4d57ce-b8ba-42d4-976b-5f8da8e86863" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/appserver/static/appicon.png" afterPath="$PROJECT_DIR$/appserver/static/appicon.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/appserver/static/screenshot.png" afterPath="$PROJECT_DIR$/appserver/static/screenshot.png" />
+    <list default="true" id="2e4d57ce-b8ba-42d4-976b-5f8da8e86863" name="Default" comment="fixed image sizes ready for release">
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\.gitignore" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\.travis.yml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\CONTRIBUTING" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\Changelog.rst" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\LICENSE" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\MANIFEST.in" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\README.rst" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\bin\asadmin" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\bin\bundle_image" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\bin\cfadmin" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\bin\cq" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\bin\cwutil" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\bin\dynamodb_dump" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\bin\dynamodb_load" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\bin\elbadmin" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\bin\fetch_file" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\bin\glacier" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\bin\instance_events" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\bin\kill_instance" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\bin\launch_instance" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\bin\list_instances" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\bin\lss3" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\bin\mturk" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\bin\pyami_sendmail" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\bin\route53" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\bin\s3put" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\bin\sdbadmin" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\bin\taskadmin" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\auth.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\auth_handler.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\beanstalk\__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\beanstalk\exception.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\beanstalk\layer1.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\beanstalk\response.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\beanstalk\wrapper.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\cacerts\__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\cacerts\cacerts.txt" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\cloudformation\__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\cloudformation\connection.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\cloudformation\stack.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\cloudformation\template.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\cloudfront\__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\cloudfront\distribution.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\cloudfront\exception.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\cloudfront\identity.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\cloudfront\invalidation.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\cloudfront\logging.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\cloudfront\object.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\cloudfront\origin.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\cloudfront\signers.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\cloudsearch\__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\cloudsearch\document.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\cloudsearch\domain.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\cloudsearch\layer1.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\cloudsearch\layer2.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\cloudsearch\optionstatus.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\cloudsearch\search.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\cloudsearch\sourceattribute.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\compat.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\connection.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\contrib\__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\contrib\ymlmessage.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\core\README" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\core\__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\core\auth.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\core\credentials.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\core\dictresponse.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\core\service.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\datapipeline\__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\datapipeline\exceptions.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\datapipeline\layer1.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\dynamodb2\__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\dynamodb2\exceptions.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\dynamodb2\fields.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\dynamodb2\items.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\dynamodb2\layer1.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\dynamodb2\results.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\dynamodb2\table.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\dynamodb2\types.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\dynamodb\__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\dynamodb\batch.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\dynamodb\condition.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\dynamodb\exceptions.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\dynamodb\item.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\dynamodb\layer1.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\dynamodb\layer2.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\dynamodb\schema.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\dynamodb\table.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\dynamodb\types.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\ec2\__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\ec2\address.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\ec2\attributes.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\ec2\autoscale\__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\ec2\autoscale\activity.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\ec2\autoscale\group.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\ec2\autoscale\instance.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\ec2\autoscale\launchconfig.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\ec2\autoscale\policy.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\ec2\autoscale\request.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\ec2\autoscale\scheduled.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\ec2\autoscale\tag.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\ec2\blockdevicemapping.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\ec2\bundleinstance.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\ec2\buyreservation.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\ec2\cloudwatch\__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\ec2\cloudwatch\alarm.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\ec2\cloudwatch\datapoint.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\ec2\cloudwatch\dimension.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\ec2\cloudwatch\listelement.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\ec2\cloudwatch\metric.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\ec2\connection.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\ec2\ec2object.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\ec2\elb\__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\ec2\elb\healthcheck.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\ec2\elb\instancestate.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\ec2\elb\listelement.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\ec2\elb\listener.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\ec2\elb\loadbalancer.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\ec2\elb\policies.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\ec2\elb\securitygroup.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\ec2\group.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\ec2\image.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\ec2\instance.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\ec2\instanceinfo.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\ec2\instancestatus.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\ec2\keypair.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\ec2\launchspecification.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\ec2\networkinterface.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\ec2\placementgroup.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\ec2\regioninfo.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\ec2\reservedinstance.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\ec2\securitygroup.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\ec2\snapshot.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\ec2\spotdatafeedsubscription.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\ec2\spotinstancerequest.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\ec2\spotpricehistory.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\ec2\tag.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\ec2\vmtype.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\ec2\volume.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\ec2\volumestatus.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\ec2\zone.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\ecs\__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\ecs\item.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\elasticache\__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\elasticache\layer1.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\elastictranscoder\__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\elastictranscoder\exceptions.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\elastictranscoder\layer1.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\emr\__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\emr\bootstrap_action.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\emr\connection.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\emr\emrobject.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\emr\instance_group.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\emr\step.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\exception.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\file\README" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\file\__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\file\bucket.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\file\connection.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\file\key.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\file\simpleresultset.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\fps\__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\fps\connection.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\fps\exception.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\fps\response.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\glacier\__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\glacier\concurrent.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\glacier\exceptions.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\glacier\job.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\glacier\layer1.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\glacier\layer2.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\glacier\response.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\glacier\utils.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\glacier\vault.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\glacier\writer.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\gs\__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\gs\acl.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\gs\bucket.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\gs\bucketlistresultset.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\gs\connection.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\gs\cors.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\gs\key.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\gs\lifecycle.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\gs\resumable_upload_handler.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\gs\user.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\handler.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\https_connection.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\iam\__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\iam\connection.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\iam\summarymap.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\jsonresponse.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\manage\__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\manage\cmdshell.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\manage\propget.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\manage\server.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\manage\task.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\manage\test_manage.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\manage\volume.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\mashups\__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\mashups\interactive.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\mashups\iobject.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\mashups\order.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\mashups\server.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\mturk\__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\mturk\connection.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\mturk\layoutparam.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\mturk\notification.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\mturk\price.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\mturk\qualification.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\mturk\question.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\mws\__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\mws\connection.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\mws\exception.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\mws\response.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\opsworks\__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\opsworks\exceptions.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\opsworks\layer1.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\plugin.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\provider.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\pyami\__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\pyami\bootstrap.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\pyami\config.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\pyami\copybot.cfg" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\pyami\copybot.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\pyami\helloworld.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\pyami\installers\__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\pyami\installers\ubuntu\__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\pyami\installers\ubuntu\apache.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\pyami\installers\ubuntu\ebs.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\pyami\installers\ubuntu\installer.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\pyami\installers\ubuntu\mysql.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\pyami\installers\ubuntu\trac.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\pyami\launch_ami.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\pyami\scriptbase.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\pyami\startup.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\rds\__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\rds\dbinstance.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\rds\dbsecuritygroup.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\rds\dbsnapshot.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\rds\dbsubnetgroup.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\rds\event.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\rds\optiongroup.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\rds\parametergroup.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\rds\regioninfo.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\rds\statusinfo.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\redshift\__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\redshift\exceptions.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\redshift\layer1.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\regioninfo.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\resultset.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\roboto\__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\roboto\awsqueryrequest.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\roboto\awsqueryservice.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\roboto\param.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\route53\__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\route53\connection.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\route53\exception.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\route53\hostedzone.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\route53\record.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\route53\status.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\route53\zone.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\s3\__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\s3\acl.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\s3\bucket.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\s3\bucketlistresultset.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\s3\bucketlogging.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\s3\connection.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\s3\cors.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\s3\deletemarker.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\s3\key.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\s3\keyfile.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\s3\lifecycle.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\s3\multidelete.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\s3\multipart.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\s3\prefix.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\s3\resumable_download_handler.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\s3\tagging.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\s3\user.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\s3\website.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\sdb\__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\sdb\connection.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\sdb\db\__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\sdb\db\blob.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\sdb\db\key.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\sdb\db\manager\__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\sdb\db\manager\sdbmanager.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\sdb\db\manager\xmlmanager.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\sdb\db\model.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\sdb\db\property.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\sdb\db\query.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\sdb\db\sequence.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\sdb\db\test_db.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\sdb\domain.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\sdb\item.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\sdb\queryresultset.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\sdb\regioninfo.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\services\__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\services\bs.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\services\message.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\services\result.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\services\service.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\services\servicedef.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\services\sonofmmm.cfg" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\services\sonofmmm.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\services\submit.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\ses\__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\ses\connection.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\ses\exceptions.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\sns\__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\sns\connection.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\sqs\__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\sqs\attributes.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\sqs\batchresults.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\sqs\connection.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\sqs\jsonmessage.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\sqs\message.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\sqs\queue.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\sqs\regioninfo.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\storage_uri.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\sts\__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\sts\connection.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\sts\credentials.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\support\__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\support\exceptions.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\support\layer1.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\swf\__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\swf\exceptions.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\swf\layer1.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\swf\layer1_decisions.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\swf\layer2.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\utils.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\vpc\__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\vpc\customergateway.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\vpc\dhcpoptions.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\vpc\internetgateway.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\vpc\routetable.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\vpc\subnet.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\vpc\vpc.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\vpc\vpnconnection.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\boto\vpc\vpngateway.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\docs\BotoCheatSheet.pdf" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\docs\Makefile" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\docs\make.bat" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\docs\source\_templates\layout.html" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\docs\source\autoscale_tut.rst" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\docs\source\boto_config_tut.rst" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\docs\source\boto_theme\static\boto.css_t" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\docs\source\boto_theme\static\pygments.css" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\docs\source\boto_theme\theme.conf" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\docs\source\cloudfront_tut.rst" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\docs\source\cloudsearch_tut.rst" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\docs\source\cloudwatch_tut.rst" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\docs\source\conf.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\docs\source\contributing.rst" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\docs\source\documentation.rst" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\docs\source\dynamodb2_tut.rst" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\docs\source\dynamodb_tut.rst" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\docs\source\ec2_tut.rst" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\docs\source\elb_tut.rst" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\docs\source\emr_tut.rst" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\docs\source\extensions\githublinks\__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\docs\source\getting_started.rst" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\docs\source\index.rst" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\docs\source\migrations\dynamodb_v1_to_v2.rst" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\docs\source\rds_tut.rst" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\docs\source\ref\autoscale.rst" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\docs\source\ref\beanstalk.rst" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\docs\source\ref\boto.rst" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\docs\source\ref\cloudformation.rst" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\docs\source\ref\cloudfront.rst" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\docs\source\ref\cloudsearch.rst" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\docs\source\ref\cloudwatch.rst" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\docs\source\ref\contrib.rst" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\docs\source\ref\datapipeline.rst" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\docs\source\ref\dynamodb.rst" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\docs\source\ref\dynamodb2.rst" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\docs\source\ref\ec2.rst" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\docs\source\ref\ecs.rst" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\docs\source\ref\elasticache.rst" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\docs\source\ref\elastictranscoder.rst" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\docs\source\ref\elb.rst" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\docs\source\ref\emr.rst" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\docs\source\ref\file.rst" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\docs\source\ref\fps.rst" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\docs\source\ref\glacier.rst" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\docs\source\ref\gs.rst" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\docs\source\ref\iam.rst" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\docs\source\ref\index.rst" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\docs\source\ref\manage.rst" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\docs\source\ref\mturk.rst" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\docs\source\ref\mws.rst" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\docs\source\ref\pyami.rst" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\docs\source\ref\rds.rst" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\docs\source\ref\redshift.rst" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\docs\source\ref\route53.rst" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\docs\source\ref\s3.rst" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\docs\source\ref\sdb.rst" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\docs\source\ref\sdb_db.rst" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\docs\source\ref\services.rst" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\docs\source\ref\ses.rst" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\docs\source\ref\sns.rst" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\docs\source\ref\sqs.rst" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\docs\source\ref\sts.rst" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\docs\source\ref\support.rst" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\docs\source\ref\swf.rst" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\docs\source\ref\vpc.rst" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\docs\source\releasenotes\v2.0.0.rst" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\docs\source\releasenotes\v2.0b1.rst" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\docs\source\releasenotes\v2.1.0.rst" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\docs\source\releasenotes\v2.1.1.rst" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\docs\source\releasenotes\v2.10.0.rst" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\docs\source\releasenotes\v2.2.0.rst" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\docs\source\releasenotes\v2.2.1.rst" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\docs\source\releasenotes\v2.2.2.rst" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\docs\source\releasenotes\v2.3.0.rst" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\docs\source\releasenotes\v2.4.0.rst" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\docs\source\releasenotes\v2.5.0.rst" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\docs\source\releasenotes\v2.5.1.rst" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\docs\source\releasenotes\v2.5.2.rst" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\docs\source\releasenotes\v2.6.0.rst" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\docs\source\releasenotes\v2.7.0.rst" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\docs\source\releasenotes\v2.8.0.rst" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\docs\source\releasenotes\v2.9.0.rst" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\docs\source\releasenotes\v2.9.1.rst" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\docs\source\releasenotes\v2.9.2.rst" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\docs\source\releasenotes\v2.9.3.rst" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\docs\source\releasenotes\v2.9.4.rst" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\docs\source\releasenotes\v2.9.5.rst" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\docs\source\releasenotes\v2.9.6.rst" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\docs\source\releasenotes\v2.9.7.rst" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\docs\source\releasenotes\v2.9.8.rst" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\docs\source\releasenotes\v2.9.9.rst" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\docs\source\s3_tut.rst" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\docs\source\security_groups.rst" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\docs\source\ses_tut.rst" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\docs\source\simpledb_tut.rst" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\docs\source\sqs_tut.rst" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\docs\source\support_tut.rst" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\docs\source\vpc_tut.rst" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\pylintrc" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\requirements.txt" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\setup.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\db\test_lists.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\db\test_password.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\db\test_query.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\db\test_sequence.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\devpay\__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\devpay\test_s3.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\fps\__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\fps\test.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\fps\test_verify_signature.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\integration\__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\integration\beanstalk\test_wrapper.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\integration\cloudformation\__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\integration\cloudformation\test_cert_verification.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\integration\cloudformation\test_connection.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\integration\cloudsearch\__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\integration\cloudsearch\test_cert_verification.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\integration\cloudsearch\test_layers.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\integration\datapipeline\test_layer1.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\integration\dynamodb2\__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\integration\dynamodb2\test_cert_verification.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\integration\dynamodb2\test_highlevel.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\integration\dynamodb2\test_layer1.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\integration\dynamodb\__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\integration\dynamodb\test_cert_verification.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\integration\dynamodb\test_layer1.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\integration\dynamodb\test_layer2.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\integration\dynamodb\test_table.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\integration\ec2\__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\integration\ec2\autoscale\__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\integration\ec2\autoscale\test_cert_verification.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\integration\ec2\autoscale\test_connection.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\integration\ec2\cloudwatch\__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\integration\ec2\cloudwatch\test_cert_verification.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\integration\ec2\cloudwatch\test_connection.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\integration\ec2\elb\__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\integration\ec2\elb\test_cert_verification.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\integration\ec2\elb\test_connection.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\integration\ec2\test_cert_verification.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\integration\ec2\test_connection.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\integration\ec2\vpc\__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\integration\ec2\vpc\test_connection.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\integration\elasticache\__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\integration\elasticache\test_layer1.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\integration\elastictranscoder\__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\integration\elastictranscoder\test_cert_verification.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\integration\elastictranscoder\test_layer1.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\integration\emr\__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\integration\emr\test_cert_verification.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\integration\glacier\__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\integration\glacier\test_cert_verification.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\integration\glacier\test_layer1.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\integration\glacier\test_layer2.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\integration\gs\__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\integration\gs\cb_test_harness.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\integration\gs\test_basic.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\integration\gs\test_generation_conditionals.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\integration\gs\test_resumable_downloads.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\integration\gs\test_resumable_uploads.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\integration\gs\test_storage_uri.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\integration\gs\test_versioning.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\integration\gs\testcase.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\integration\gs\util.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\integration\iam\__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\integration\iam\test_cert_verification.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\integration\mws\__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\integration\mws\test.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\integration\opsworks\__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\integration\opsworks\test_layer1.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\integration\rds\__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\integration\rds\test_cert_verification.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\integration\rds\test_db_subnet_group.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\integration\redshift\__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\integration\redshift\test_cert_verification.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\integration\redshift\test_layer1.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\integration\route53\__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\integration\route53\test_cert_verification.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\integration\route53\test_resourcerecordsets.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\integration\route53\test_zone.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\integration\s3\__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\integration\s3\mock_storage_service.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\integration\s3\other_cacerts.txt" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\integration\s3\test_bucket.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\integration\s3\test_cert_verification.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\integration\s3\test_connection.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\integration\s3\test_cors.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\integration\s3\test_encryption.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\integration\s3\test_https_cert_validation.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\integration\s3\test_key.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\integration\s3\test_mfa.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\integration\s3\test_multidelete.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\integration\s3\test_multipart.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\integration\s3\test_pool.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\integration\s3\test_versioning.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\integration\sdb\__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\integration\sdb\test_cert_verification.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\integration\sdb\test_connection.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\integration\ses\__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\integration\ses\test_cert_verification.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\integration\ses\test_connection.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\integration\sns\__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\integration\sns\test_cert_verification.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\integration\sns\test_connection.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\integration\sns\test_sns_sqs_subscription.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\integration\sqs\__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\integration\sqs\test_cert_verification.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\integration\sqs\test_connection.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\integration\storage_uri\__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\integration\storage_uri\test_storage_uri.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\integration\sts\__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\integration\sts\test_cert_verification.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\integration\sts\test_session_token.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\integration\support\__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\integration\support\test_cert_verification.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\integration\support\test_layer1.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\integration\swf\__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\integration\swf\test_cert_verification.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\integration\swf\test_layer1.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\integration\swf\test_layer1_workflow_execution.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\mturk\.gitignore" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\mturk\__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\mturk\_init_environment.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\mturk\all_tests.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\mturk\cleanup_tests.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\mturk\common.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\mturk\create_free_text_question_regex.doctest" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\mturk\create_hit.doctest" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\mturk\create_hit_binary.doctest" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\mturk\create_hit_external.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\mturk\create_hit_from_hit_type.doctest" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\mturk\create_hit_test.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\mturk\create_hit_with_qualifications.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\mturk\hit_persistence.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\mturk\mocks.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\mturk\reviewable_hits.doctest" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\mturk\run-doctest.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\mturk\search_hits.doctest" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\mturk\selenium_support.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\mturk\support.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\mturk\test_disable_hit.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\test.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\unit\__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\unit\auth\__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\unit\auth\test_sigv4.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\unit\beanstalk\__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\unit\beanstalk\test_layer1.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\unit\cloudformation\__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\unit\cloudformation\test_connection.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\unit\cloudformation\test_stack.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\unit\cloudfront\__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\unit\cloudfront\test_distribution.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\unit\cloudfront\test_invalidation_list.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\unit\cloudfront\test_signed_urls.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\unit\cloudsearch\__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\unit\cloudsearch\test_connection.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\unit\cloudsearch\test_document.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\unit\cloudsearch\test_exceptions.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\unit\cloudsearch\test_search.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\unit\dynamodb2\__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\unit\dynamodb2\test_layer1.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\unit\dynamodb2\test_table.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\unit\dynamodb\__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\unit\dynamodb\test_batch.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\unit\dynamodb\test_layer2.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\unit\dynamodb\test_types.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\unit\ec2\__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\unit\ec2\autoscale\__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\unit\ec2\autoscale\test_group.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\unit\ec2\cloudwatch\__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\unit\ec2\cloudwatch\test_connection.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\unit\ec2\elb\__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\unit\ec2\elb\test_listener.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\unit\ec2\elb\test_loadbalancer.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\unit\ec2\test_address.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\unit\ec2\test_blockdevicemapping.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\unit\ec2\test_connection.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\unit\ec2\test_instance.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\unit\ec2\test_instancestatus.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\unit\ec2\test_networkinterface.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\unit\ec2\test_volume.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\unit\emr\test_emr_responses.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\unit\emr\test_instance_group_args.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\unit\glacier\__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\unit\glacier\test_concurrent.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\unit\glacier\test_job.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\unit\glacier\test_layer1.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\unit\glacier\test_layer2.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\unit\glacier\test_utils.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\unit\glacier\test_vault.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\unit\glacier\test_writer.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\unit\provider\__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\unit\provider\test_provider.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\unit\rds\__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\unit\rds\test_connection.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\unit\s3\__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\unit\s3\test_bucket.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\unit\s3\test_cors_configuration.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\unit\s3\test_key.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\unit\s3\test_keyfile.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\unit\s3\test_lifecycle.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\unit\s3\test_tagging.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\unit\s3\test_uri.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\unit\s3\test_website.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\unit\ses\__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\unit\ses\test_identity.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\unit\sns\__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\unit\sns\test_connection.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\unit\sqs\__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\unit\sqs\test_connection.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\unit\sqs\test_message.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\unit\sqs\test_queue.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\unit\sts\test_connection.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\unit\test_connection.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\unit\test_exception.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\unit\utils\__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\unit\utils\test_utils.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\unit\vpc\__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\unit\vpc\test_vpc.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tests\unit\vpc\test_vpnconnection.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\swanl\SplunkAppforAWSBilling\bin\boto\tox.ini" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/SplunkAppforAWSBilling.iml" afterPath="$PROJECT_DIR$/.idea/SplunkAppforAWSBilling.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/default/data/ui/views/AWS-Billing-Dashboard.xml" afterPath="$PROJECT_DIR$/default/data/ui/views/AWS-Billing-Dashboard.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="SplunkAppforAWSBilling.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="2e4d57ce-b8ba-42d4-976b-5f8da8e86863" time="1376906460874" ignored="false" />
+    <file path="/Dummy.txt" changelist="2e4d57ce-b8ba-42d4-976b-5f8da8e86863" time="1377129342155" ignored="false" />
     <file path="/test_bill.py" changelist="2e4d57ce-b8ba-42d4-976b-5f8da8e86863" time="1376879313540" ignored="false" />
     <file path="/aws.yaml.example" changelist="2e4d57ce-b8ba-42d4-976b-5f8da8e86863" time="1376879464849" ignored="false" />
     <file path="/fetch_detailed_report.py" changelist="2e4d57ce-b8ba-42d4-976b-5f8da8e86863" time="1376906412660" ignored="false" />
@@ -20,6 +686,7 @@
     <file path="/inputs.conf" changelist="2e4d57ce-b8ba-42d4-976b-5f8da8e86863" time="1376886095973" ignored="false" />
     <file path="/app.conf" changelist="2e4d57ce-b8ba-42d4-976b-5f8da8e86863" time="1376886185205" ignored="false" />
     <file path="/local.meta" changelist="2e4d57ce-b8ba-42d4-976b-5f8da8e86863" time="1376888406718" ignored="false" />
+    <file path="/inline_template.rb" changelist="2e4d57ce-b8ba-42d4-976b-5f8da8e86863" time="1376956834333" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,52 +706,22 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="AWS-Billing-Dashboard.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/default/data/ui/views/AWS-Billing-Dashboard.xml">
+      <file leaf-file-name="inline_template.rb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$USER_HOME$/Documents/GitHub/inline_template/lib/puppet/provider/inline_template/inline_template.rb">
+          <provider editor-type-id="com.intellij.persistence.database.editor.CsvTableFileEditorProvider">
+            <state />
+          </provider>
           <provider selected="true" editor-type-id="text-editor">
-            <state line="90" column="56" selection-start="4430" selection-end="4430" vertical-scroll-proportion="0.0">
+            <state line="19" column="21" selection-start="594" selection-end="594" vertical-scroll-proportion="-12.92">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="fetch_detailed_report.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/bin/fetch_detailed_report.py">
+      <file leaf-file-name="inline_template.rb" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$USER_HOME$/Documents/GitHub/inline_template/lib/puppet/type/inline_template.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="33" column="136" selection-start="904" selection-end="904" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="e#161#170#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="splunk_utilities.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/bin/splunk_utilities.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="32" column="32" selection-start="1029" selection-end="1029" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="e#114#123#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="process_detailed_report.py" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/bin/process_detailed_report.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="34" column="89" selection-start="928" selection-end="928" vertical-scroll-proportion="-1.5050619">
-              <folding>
-                <element signature="e#138#147#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="maintain_detailed_reports.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/bin/maintain_detailed_reports.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="6" column="10" selection-start="116" selection-end="116" vertical-scroll-proportion="0.0">
+            <state line="29" column="14" selection-start="1104" selection-end="1104" vertical-scroll-proportion="0.8573913">
               <folding />
             </state>
           </provider>
@@ -98,7 +735,7 @@
     </FindUsagesManager>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$USER_HOME$/Documents/GitHub/inline_template" />
   </component>
   <component name="GitLogSettings">
     <option name="myDateState">
@@ -108,8 +745,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/default/inputs.conf" />
-        <option value="$PROJECT_DIR$/default/indexes.conf" />
         <option value="$PROJECT_DIR$/default/app.conf" />
         <option value="$PROJECT_DIR$/default/data/ui/views/AWS-Dashboard.xml" />
         <option value="$PROJECT_DIR$/csv/.gitignore" />
@@ -124,16 +759,18 @@
         <option value="$PROJECT_DIR$/bin/maintain_detailed_reports.py" />
         <option value="$PROJECT_DIR$/bin/fetch_detailed_report.py" />
         <option value="$PROJECT_DIR$/bin/process_detailed_report.py" />
+        <option value="$USER_HOME$/Documents/GitHub/inline_template/lib/puppet/type/inline_template.rb" />
+        <option value="$USER_HOME$/Documents/GitHub/inline_template/lib/puppet/provider/inline_template/inline_template.rb" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-8" />
+    <option name="x" value="1912" />
     <option name="y" value="-8" />
-    <option name="width" value="2576" />
-    <option name="height" value="1390" />
+    <option name="width" value="1936" />
+    <option name="height" value="1056" />
   </component>
-  <component name="ProjectLevelVcsManager" settingsEditedManually="false">
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
     <OptionsSetting value="true" id="Remove" />
     <OptionsSetting value="true" id="Checkout" />
@@ -165,6 +802,78 @@
             <PATH_ELEMENT>
               <option name="myItemId" value="SplunkAppforAWSBilling" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SplunkAppforAWSBilling" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="inline_template" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SplunkAppforAWSBilling" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="inline_template" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="lib" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="puppet" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="type" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SplunkAppforAWSBilling" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="inline_template" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="lib" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="puppet" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="provider" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="inline_template" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SplunkAppforAWSBilling" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="inline_template" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="files" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -339,6 +1048,24 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SplunkAppforAWSBilling" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SplunkAppforAWSBilling" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="bin" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="boto" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
       <pane id="Scope" />
@@ -348,10 +1075,23 @@
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="recentsLimit" value="5" />
-    <property name="options.lastSelected" value="http.proxy" />
-    <property name="last_opened_file_path" value="$USER_HOME$" />
+    <property name="options.lastSelected" value="project.propVCSSupport.Mappings" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Documents/GitHub/inline_template" />
     <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.searchVisible" value="true" />
+  </component>
+  <component name="PyConsoleOptionsProvider">
+    <option name="myPythonConsoleState">
+      <PyConsoleSettings />
+    </option>
+    <option name="myDjangoConsoleState">
+      <PyConsoleSettings />
+    </option>
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\swanl\SplunkAppforAWSBilling\bin" />
+    </key>
   </component>
   <component name="RunManager" selected="Django server.Sweeper">
     <configuration default="true" type="tests" factoryName="Nosetests">
@@ -539,7 +1279,11 @@
       <created>1376906464492</created>
       <updated>1376906464492</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="fixed image sizes ready for release">
+      <created>1376907418502</created>
+      <updated>1376907418502</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TodoView" selected-index="4">
@@ -563,16 +1307,16 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="2576" height="1390" extended-state="6" />
-    <editor active="true" />
+    <frame x="1912" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="false" />
     <layout>
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23577236" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3236607" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32954547" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32924107" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32924107" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18257757" sideWeight="0.7642276" order="1" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24493062" sideWeight="0.6707589" order="1" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
@@ -618,7 +1362,7 @@
     <option name="INCLUDE_TEXT_INTO_PATCH" value="false" />
     <option name="INCLUDE_TEXT_INTO_SHELF" value="false" />
     <option name="SHOW_FILE_HISTORY_DETAILS" value="true" />
-    <option name="SHOW_VCS_ERROR_NOTIFICATIONS" value="true" />
+    <option name="SHOW_VCS_ERROR_NOTIFICATIONS" value="false" />
     <option name="SHOW_DIRTY_RECURSIVELY" value="false" />
     <option name="LIMIT_HISTORY" value="true" />
     <option name="MAXIMUM_HISTORY_ROWS" value="1000" />
@@ -628,7 +1372,7 @@
     <option name="WRAP_WHEN_TYPING_REACHES_RIGHT_MARGIN" value="false" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="tiny name changes for detailed report zip in preperation for multiple accounts" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed image sizes ready for release" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -652,25 +1396,12 @@
     <MESSAGE value="some firendly code changes for strptime" />
     <MESSAGE value="added new screenshot" />
     <MESSAGE value="tiny name changes for detailed report zip in preperation for multiple accounts" />
+    <MESSAGE value="fixed image sizes ready for release" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/local/aws.yaml.example">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="13" selection-start="0" selection-end="274" vertical-scroll-proportion="0.08793104">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/metadata/default.meta">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/local/props.conf">
       <provider selected="true" editor-type-id="text-editor">
         <state line="15" column="0" selection-start="228" selection-end="228" vertical-scroll-proportion="0.0">
@@ -734,13 +1465,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/default/data/ui/views/AWS-Billing-Dashboard.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="90" column="56" selection-start="4430" selection-end="4430" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/bin/maintain_detailed_reports.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="6" column="10" selection-start="116" selection-end="116" vertical-scroll-proportion="0.0">
@@ -748,9 +1472,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/bin/process_detailed_report.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="129" column="23" selection-start="4609" selection-end="4609" vertical-scroll-proportion="2.6126127">
+          <folding>
+            <element signature="e#138#147#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/bin/splunk_utilities.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="32" column="32" selection-start="1029" selection-end="1029" vertical-scroll-proportion="0.0">
+        <state line="32" column="32" selection-start="1029" selection-end="1029" vertical-scroll-proportion="0.93793106">
           <folding>
             <element signature="e#114#123#0" expanded="true" />
           </folding>
@@ -759,19 +1492,34 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/bin/fetch_detailed_report.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="33" column="136" selection-start="904" selection-end="904" vertical-scroll-proportion="0.0">
+        <state line="33" column="136" selection-start="904" selection-end="904" vertical-scroll-proportion="0.49137932">
           <folding>
             <element signature="e#161#170#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/bin/process_detailed_report.py">
+    <entry file="file://$PROJECT_DIR$/default/data/ui/views/AWS-Billing-Dashboard.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="34" column="89" selection-start="928" selection-end="928" vertical-scroll-proportion="-1.5050619">
-          <folding>
-            <element signature="e#138#147#0" expanded="true" />
-          </folding>
+        <state line="90" column="56" selection-start="4430" selection-end="4430" vertical-scroll-proportion="0.340388">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Documents/GitHub/inline_template/lib/puppet/provider/inline_template/inline_template.rb">
+      <provider editor-type-id="com.intellij.persistence.database.editor.CsvTableFileEditorProvider">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="19" column="21" selection-start="594" selection-end="594" vertical-scroll-proportion="-12.92">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Documents/GitHub/inline_template/lib/puppet/type/inline_template.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="29" column="14" selection-start="1104" selection-end="1104" vertical-scroll-proportion="0.8573913">
+          <folding />
         </state>
       </provider>
     </entry>

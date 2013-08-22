@@ -32,7 +32,7 @@
       <option name="charting.chart">column</option>
       <option name="charting.chart.stackMode">stacked</option>
       <option name="charting.axisTitleY.text">$</option>
-      <option name="charting.axisTitleX.text">Months</option>
+      <option name="charting.axisTitleX.text">Days</option>
     </chart>
           <chart>
       <searchString>index=aws-bill ProductName !="" |eval date_hour=strftime(_time, "%H") | search (date_hour$gt;=18 AND date_hour&lt;=23) OR (date_hour&gt;=0 AND date_hour&lt;=6) |timechart sum(BlendedCost) as $ by ProductName</searchString>
@@ -42,7 +42,7 @@
       <option name="charting.chart">column</option>
       <option name="charting.chart.stackMode">stacked</option>
       <option name="charting.axisTitleY.text">$</option>
-      <option name="charting.axisTitleX.text">Months</option>
+      <option name="charting.axisTitleX.text">Days</option>
     </chart>
     </row>
     <row>

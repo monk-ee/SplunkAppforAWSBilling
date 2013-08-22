@@ -5,6 +5,7 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="Sweeper" />
+    <orderEntry type="module" module-name="inline_template" />
   </component>
 </module>
 
