@@ -155,7 +155,7 @@ else:
             for col in row:
                 newrow += '"' + str(col) + '",'
                 newrow = newrow[:-1]
-                newrow += '\r\n'
+            newrow += '\r\n'
         processedCSVHandle.write(newrow)
         rownum += 1
     #dont shut it you idiot
