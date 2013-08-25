@@ -84,7 +84,7 @@ if processedFileExists == False:
             for col in row:
                 newrow += '"' + str(col) + '",'
                 newrow = newrow[:-1]
-                newrow += '\r\n'
+            newrow += '\r\n'
         elif row[8] == "":
              #if the subscriptionid is blank - i dont want that record
             rownum += 1
