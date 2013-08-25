@@ -83,7 +83,7 @@ if processedFileExists == False:
             newrow += '"AccountNumber",'
             for col in row:
                 newrow += '"' + str(col) + '",'
-                newrow = newrow[:-1]
+            newrow = newrow[:-1]
             newrow += '\r\n'
         elif row[8] == "":
              #if the subscriptionid is blank - i dont want that record
@@ -108,7 +108,7 @@ if processedFileExists == False:
             newrow += str(configurationObject['s3']['account_number']) + ', '
             for col in row:
                 newrow += '"' + str(col) + '",'
-                newrow = newrow[:-1]
+            newrow = newrow[:-1]
             newrow += '\r\n'
         processedCSVHandle.write(newrow)
         rownum += 1
@@ -154,7 +154,7 @@ else:
             newrow += str(configurationObject['s3']['account_number']) + ', '
             for col in row:
                 newrow += '"' + str(col) + '",'
-                newrow = newrow[:-1]
+            newrow = newrow[:-1]
             newrow += '\r\n'
         processedCSVHandle.write(newrow)
         rownum += 1
