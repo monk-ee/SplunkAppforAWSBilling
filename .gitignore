@@ -2,3 +2,4 @@ log/
 tmp/
 csv/
 local/aws.yaml
+.idea/
