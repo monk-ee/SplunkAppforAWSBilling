@@ -37,15 +37,16 @@ api_version_path = {
     'Products':     ('2011-10-01', 'SellerId', '/Products/2011-10-01'),
     'Sellers':      ('2011-07-01', 'SellerId', '/Sellers/2011-07-01'),
     'Inbound':      ('2010-10-01', 'SellerId',
-                '/FulfillmentInboundShipment/2010-10-01'),
+                     '/FulfillmentInboundShipment/2010-10-01'),
     'Outbound':     ('2010-10-01', 'SellerId',
-                '/FulfillmentOutboundShipment/2010-10-01'),
+                     '/FulfillmentOutboundShipment/2010-10-01'),
     'Inventory':    ('2010-10-01', 'SellerId',
-                '/FulfillmentInventory/2010-10-01'),
+                     '/FulfillmentInventory/2010-10-01'),
 }
 content_md5 = lambda c: base64.encodestring(hashlib.md5(c).digest()).strip()
 decorated_attrs = ('action', 'response', 'section',
                    'quota', 'restore', 'version')
+api_call_map = {}
 
 
 def add_attrs_from(func, to):
@@ -67,7 +68,7 @@ def structured_lists(*fields):
                     kw.pop(key)
             return func(self, *args, **kw)
         wrapper.__doc__ = "{0}\nLists: {1}".format(func.__doc__,
-                                                 ', '.join(fields))
+                                                   ', '.join(fields))
         return add_attrs_from(func, to=wrapper)
     return decorator
 
@@ -77,7 +78,7 @@ def http_body(field):
     def decorator(func):
 
         def wrapper(*args, **kw):
-            if filter(lambda x: not x in kw, (field, 'content_type')):
+            if any([f not in kw for f in (field, 'content_type')]):
                 message = "{0} requires {1} and content_type arguments for " \
                           "building HTTP body".format(func.action, field)
                 raise KeyError(message)
@@ -93,16 +94,18 @@ def http_body(field):
     return decorator
 
 
-def destructure_object(value, into={}, prefix=''):
+def destructure_object(value, into, prefix=''):
     if isinstance(value, ResponseElement):
-        for name, attr in value.__dict__.items():
+        destructure_object(value.__dict__, into, prefix=prefix)
+    elif isinstance(value, dict):
+        for name, attr in value.iteritems():
             if name.startswith('_'):
                 continue
-            destructure_object(attr, into=into, prefix=prefix + '.' + name)
-    elif filter(lambda x: isinstance(value, x), (list, set, tuple)):
-        for index, element in [(prefix + '.' + str(i + 1), value[i])
-                                    for i in range(len(value))]:
-            destructure_object(element, into=into, prefix=index)
+            destructure_object(attr, into, prefix=prefix + '.' + name)
+    elif any([isinstance(value, typ) for typ in (list, set, tuple)]):
+        for index, element in enumerate(value):
+            newprefix = prefix + '.' + str(index + 1)
+            destructure_object(element, into, prefix=newprefix)
     elif isinstance(value, bool):
         into[prefix] = str(value).lower()
     else:
@@ -115,10 +118,10 @@ def structured_objects(*fields):
 
         def wrapper(*args, **kw):
             for field in filter(kw.has_key, fields):
-                destructure_object(kw.pop(field), into=kw, prefix=field)
+                destructure_object(kw.pop(field), kw, prefix=field)
             return func(*args, **kw)
-        wrapper.__doc__ = "{0}\nObjects: {1}".format(func.__doc__,
-                                                   ', '.join(fields))
+        wrapper.__doc__ = "{0}\nObjects|dicts: {1}".format(func.__doc__,
+                                                           ', '.join(fields))
         return add_attrs_from(func, to=wrapper)
     return decorator
 
@@ -137,7 +140,7 @@ def requires(*groups):
             return func(*args, **kw)
         message = ' OR '.join(['+'.join(g) for g in groups])
         wrapper.__doc__ = "{0}\nRequired: {1}".format(func.__doc__,
-                                                           message)
+                                                      message)
         return add_attrs_from(func, to=wrapper)
     return decorator
 
@@ -156,7 +159,7 @@ def exclusive(*groups):
             return func(*args, **kw)
         message = ' OR '.join(['+'.join(g) for g in groups])
         wrapper.__doc__ = "{0}\nEither: {1}".format(func.__doc__,
-                                                           message)
+                                                    message)
         return add_attrs_from(func, to=wrapper)
     return decorator
 
@@ -175,8 +178,8 @@ def dependent(field, *groups):
             return func(*args, **kw)
         message = ' OR '.join(['+'.join(g) for g in groups])
         wrapper.__doc__ = "{0}\n{1} requires: {2}".format(func.__doc__,
-                                                           field,
-                                                           message)
+                                                          field,
+                                                          message)
         return add_attrs_from(func, to=wrapper)
     return decorator
 
@@ -192,7 +195,7 @@ def requires_some_of(*fields):
                 raise KeyError(message)
             return func(*args, **kw)
         wrapper.__doc__ = "{0}\nSome Required: {1}".format(func.__doc__,
-                                                         ', '.join(fields))
+                                                           ', '.join(fields))
         return add_attrs_from(func, to=wrapper)
     return decorator
 
@@ -202,11 +205,11 @@ def boolean_arguments(*fields):
     def decorator(func):
 
         def wrapper(*args, **kw):
-            for field in filter(lambda x: isinstance(kw.get(x), bool), fields):
+            for field in [f for f in fields if isinstance(kw.get(f), bool)]:
                 kw[field] = str(kw[field]).lower()
             return func(*args, **kw)
         wrapper.__doc__ = "{0}\nBooleans: {1}".format(func.__doc__,
-                                                    ', '.join(fields))
+                                                      ', '.join(fields))
         return add_attrs_from(func, to=wrapper)
     return decorator
 
@@ -237,6 +240,7 @@ def api_action(section, quota, restore, *api):
         wrapper.__doc__ = "MWS {0}/{1} API call; quota={2} restore={3:.2f}\n" \
                           "{4}".format(action, version, quota, restore,
                                        func.__doc__)
+        api_call_map[action] = func.func_name
         return wrapper
     return decorator
 
@@ -249,18 +253,21 @@ class MWSConnection(AWSQueryConnection):
         kw.setdefault('host', 'mws.amazonservices.com')
         self.Merchant = kw.pop('Merchant', None) or kw.get('SellerId')
         self.SellerId = kw.pop('SellerId', None) or self.Merchant
-        AWSQueryConnection.__init__(self, *args, **kw)
+        super(MWSConnection, self).__init__(*args, **kw)
 
     def _required_auth_capability(self):
         return ['mws']
 
-    def post_request(self, path, params, cls, body='', headers={}, isXML=True):
+    def post_request(self, path, params, cls, body='', headers=None,
+                     isXML=True):
         """Make a POST request, optionally with a content body,
            and return the response, optionally as raw text.
            Modelled off of the inherited get_object/make_request flow.
         """
+        headers = headers or {}
         request = self.build_base_http_request('POST', path, None, data=body,
-                      params=params, headers=headers, host=self.server_name())
+                                               params=params, headers=headers,
+                                               host=self.host)
         response = self._mexe(request, override_num_retries=None)
         body = response.read()
         boto.log.debug(body)
@@ -275,6 +282,9 @@ class MWSConnection(AWSQueryConnection):
             digest = response.getheader('Content-MD5')
             assert content_md5(body) == digest
             return body
+        return self._parse_response(cls, body)
+
+    def _parse_response(self, cls, body):
         obj = cls(self)
         h = XmlHandler(obj, self)
         xml.sax.parseString(body, h)
@@ -285,13 +295,10 @@ class MWSConnection(AWSQueryConnection):
            The named method can be in CamelCase or underlined_lower_case.
            This is the complement to MWSConnection.any_call.action
         """
-        # this looks ridiculous but it should be better than regex
         action = '_' in name and string.capwords(name, '_') or name
-        attribs = [getattr(self, m) for m in dir(self)]
-        ismethod = lambda m: type(m) is type(self.method_for)
-        ismatch = lambda m: getattr(m, 'action', None) == action
-        method = filter(ismatch, filter(ismethod, attribs))
-        return method and method[0] or None
+        if action in api_call_map:
+            return getattr(self, api_call_map[action])
+        return None
 
     def iter_call(self, call, *args, **kw):
         """Pass a call name as the first argument and a generator
@@ -318,11 +325,12 @@ class MWSConnection(AWSQueryConnection):
     @structured_lists('MarketplaceIdList.Id')
     @requires(['FeedType'])
     @api_action('Feeds', 15, 120)
-    def submit_feed(self, path, response, headers={}, body='', **kw):
+    def submit_feed(self, path, response, headers=None, body='', **kw):
         """Uploads a feed for processing by Amazon MWS.
         """
+        headers = headers or {}
         return self.post_request(path, kw, response, body=body,
-                                                     headers=headers)
+                                 headers=headers)
 
     @structured_lists('FeedSubmissionIdList.Id', 'FeedTypeList.Type',
                       'FeedProcessingStatusList.Status')
@@ -365,10 +373,10 @@ class MWSConnection(AWSQueryConnection):
     def get_service_status(self, **kw):
         """Instruct the user on how to get service status.
         """
+        sections = ', '.join(map(str.lower, api_version_path.keys()))
         message = "Use {0}.get_(section)_service_status(), " \
                   "where (section) is one of the following: " \
-                  "{1}".format(self.__class__.__name__,
-                      ', '.join(map(str.lower, api_version_path.keys())))
+                  "{1}".format(self.__class__.__name__, sections)
         raise AttributeError(message)
 
     @structured_lists('MarketplaceIdList.Id')
@@ -583,6 +591,14 @@ class MWSConnection(AWSQueryConnection):
         """
         return self.post_request(path, kw, response)
 
+    @requires(['PackageNumber'])
+    @api_action('Outbound', 30, 0.5)
+    def get_package_tracking_details(self, path, response, **kw):
+        """Returns delivery tracking information for a package in
+           an outbound shipment for a Multi-Channel Fulfillment order.
+        """
+        return self.post_request(path, kw, response)
+
     @structured_objects('Address', 'Items')
     @requires(['Address', 'Items'])
     @api_action('Outbound', 30, 0.5)
@@ -659,8 +675,8 @@ class MWSConnection(AWSQueryConnection):
            frame that you specify.
         """
         toggle = set(('FulfillmentChannel.Channel.1',
-             'OrderStatus.Status.1', 'PaymentMethod.1',
-             'LastUpdatedAfter', 'LastUpdatedBefore'))
+                      'OrderStatus.Status.1', 'PaymentMethod.1',
+                      'LastUpdatedAfter', 'LastUpdatedBefore'))
         for do, dont in {
             'BuyerEmail': toggle.union(['SellerOrderId']),
             'SellerOrderId': toggle.union(['BuyerEmail']),
@@ -804,7 +820,7 @@ class MWSConnection(AWSQueryConnection):
     @requires(['NextToken'])
     @api_action('Sellers', 15, 60)
     def list_marketplace_participations_by_next_token(self, path, response,
-                                                                        **kw):
+                                                      **kw):
         """Returns the next page of marketplaces and participations
            using the NextToken value that was returned by your
            previous request to either ListMarketplaceParticipations

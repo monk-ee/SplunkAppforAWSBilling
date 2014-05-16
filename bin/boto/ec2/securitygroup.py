@@ -31,7 +31,7 @@ class SecurityGroup(TaggedEC2Object):
 
     def __init__(self, connection=None, owner_id=None,
                  name=None, description=None, id=None):
-        TaggedEC2Object.__init__(self, connection)
+        super(SecurityGroup, self).__init__(connection)
         self.id = id
         self.owner_id = owner_id
         self.name = name
@@ -44,7 +44,8 @@ class SecurityGroup(TaggedEC2Object):
         return 'SecurityGroup:%s' % self.name
 
     def startElement(self, name, attrs, connection):
-        retval = TaggedEC2Object.startElement(self, name, attrs, connection)
+        retval = super(SecurityGroup, self).startElement(name, attrs,
+            connection)
         if retval is not None:
             return retval
         if name == 'ipPermissions':
@@ -123,6 +124,9 @@ class SecurityGroup(TaggedEC2Object):
         only changes the local version of the object.  No information
         is sent to EC2.
         """
+        if not self.rules:
+            raise ValueError("The security group has no rules")
+
         target_rule = None
         for rule in self.rules:
             if rule.ip_protocol == ip_protocol:
@@ -136,9 +140,9 @@ class SecurityGroup(TaggedEC2Object):
                                     if grant.cidr_ip == cidr_ip:
                                         target_grant = grant
                         if target_grant:
-                            rule.grants.remove(target_grant, dry_run=dry_run)
-        if len(rule.grants) == 0:
-            self.rules.remove(target_rule, dry_run=dry_run)
+                            rule.grants.remove(target_grant)
+            if len(rule.grants) == 0:
+                self.rules.remove(target_rule)
 
     def authorize(self, ip_protocol=None, from_port=None, to_port=None,
                   cidr_ip=None, src_group=None, dry_run=False):
@@ -348,7 +352,8 @@ class IPPermissions(object):
         else:
             setattr(self, name, value)
 
-    def add_grant(self, name=None, owner_id=None, cidr_ip=None, group_id=None):
+    def add_grant(self, name=None, owner_id=None, cidr_ip=None, group_id=None,
+                  dry_run=False):
         grant = GroupOrCIDR(self)
         grant.owner_id = owner_id
         grant.group_id = group_id

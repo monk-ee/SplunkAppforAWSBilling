@@ -31,7 +31,7 @@ class ReservedInstancesOffering(EC2Object):
                  usage_price=None, description=None, instance_tenancy=None,
                  currency_code=None, offering_type=None,
                  recurring_charges=None, pricing_details=None):
-        EC2Object.__init__(self, connection)
+        super(ReservedInstancesOffering, self).__init__(connection)
         self.id = id
         self.instance_type = instance_type
         self.availability_zone = availability_zone
@@ -128,9 +128,10 @@ class ReservedInstance(ReservedInstancesOffering):
                  availability_zone=None, duration=None, fixed_price=None,
                  usage_price=None, description=None,
                  instance_count=None, state=None):
-        ReservedInstancesOffering.__init__(self, connection, id, instance_type,
-                                           availability_zone, duration, fixed_price,
-                                           usage_price, description)
+        super(ReservedInstance, self).__init__(connection, id, instance_type,
+                                           availability_zone, duration,
+                                           fixed_price, usage_price,
+                                           description)
         self.instance_count = instance_count
         self.state = state
         self.start = None
@@ -148,7 +149,7 @@ class ReservedInstance(ReservedInstancesOffering):
         elif name == 'start':
             self.start = value
         else:
-            ReservedInstancesOffering.endElement(self, name, value, connection)
+            super(ReservedInstance, self).endElement(name, value, connection)
 
 
 class ReservedInstanceListing(EC2Object):
@@ -234,11 +235,12 @@ class PriceSchedule(object):
 
 class ReservedInstancesConfiguration(object):
     def __init__(self, connection=None, availability_zone=None, platform=None,
-                 instance_count=None):
+                 instance_count=None, instance_type=None):
         self.connection = connection
         self.availability_zone = availability_zone
         self.platform = platform
         self.instance_count = instance_count
+        self.instance_type = instance_type
 
     def startElement(self, name, attrs, connection):
         return None
@@ -250,6 +252,8 @@ class ReservedInstancesConfiguration(object):
             self.platform = value
         elif name == 'instanceCount':
             self.instance_count = int(value)
+        elif name == 'instanceType':
+            self.instance_type = value
         else:
             setattr(self, name, value)
 
@@ -271,12 +275,14 @@ class ModifyReservedInstancesResult(object):
 
 class ModificationResult(object):
     def __init__(self, connection=None, modification_id=None,
-                 availability_zone=None, platform=None, instance_count=None):
+                 availability_zone=None, platform=None, instance_count=None,
+                 instance_type=None):
         self.connection = connection
         self.modification_id = modification_id
         self.availability_zone = availability_zone
         self.platform = platform
         self.instance_count = instance_count
+        self.instance_type = instance_type
 
     def startElement(self, name, attrs, connection):
         return None
@@ -290,6 +296,8 @@ class ModificationResult(object):
             self.platform = value
         elif name == 'instanceCount':
             self.instance_count = int(value)
+        elif name == 'instanceType':
+            self.instance_type = value
         else:
             setattr(self, name, value)
 

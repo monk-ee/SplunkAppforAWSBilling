@@ -42,18 +42,19 @@ class SESConnection(AWSAuthConnection):
                  is_secure=True, port=None, proxy=None, proxy_port=None,
                  proxy_user=None, proxy_pass=None, debug=0,
                  https_connection_factory=None, region=None, path='/',
-                 security_token=None, validate_certs=True):
+                 security_token=None, validate_certs=True, profile_name=None):
         if not region:
             region = RegionInfo(self, self.DefaultRegionName,
                                 self.DefaultRegionEndpoint)
         self.region = region
-        AWSAuthConnection.__init__(self, self.region.endpoint,
+        super(SESConnection, self).__init__(self.region.endpoint,
                                    aws_access_key_id, aws_secret_access_key,
                                    is_secure, port, proxy, proxy_port,
                                    proxy_user, proxy_pass, debug,
                                    https_connection_factory, path,
                                    security_token=security_token,
-                                   validate_certs=validate_certs)
+                                   validate_certs=validate_certs,
+                                   profile_name=profile_name)
 
     def _required_auth_capability(self):
         return ['ses']

@@ -19,6 +19,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
 # IN THE SOFTWARE.
 
+import boto
 from boto.connection import AWSQueryConnection
 from boto.sqs.regioninfo import SQSRegionInfo
 from boto.sqs.queue import Queue
@@ -32,9 +33,10 @@ class SQSConnection(AWSQueryConnection):
     """
     A Connection to the SQS Service.
     """
-    DefaultRegionName = 'us-east-1'
-    DefaultRegionEndpoint = 'queue.amazonaws.com'
-    APIVersion = '2012-11-05'
+    DefaultRegionName = boto.config.get('Boto', 'sqs_region_name', 'us-east-1')
+    DefaultRegionEndpoint = boto.config.get('Boto', 'sqs_region_endpoint',
+                                            'queue.amazonaws.com')
+    APIVersion = boto.config.get('Boto', 'sqs_version', '2012-11-05')
     DefaultContentType = 'text/plain'
     ResponseError = SQSError
     AuthServiceName = 'sqs'
@@ -48,7 +50,7 @@ class SQSConnection(AWSQueryConnection):
             region = SQSRegionInfo(self, self.DefaultRegionName,
                                    self.DefaultRegionEndpoint)
         self.region = region
-        AWSQueryConnection.__init__(self, aws_access_key_id,
+        super(SQSConnection, self).__init__(aws_access_key_id,
                                     aws_secret_access_key,
                                     is_secure, port,
                                     proxy, proxy_port,
@@ -113,7 +115,7 @@ class SQSConnection(AWSQueryConnection):
         Gets one or all attributes of a Queue
 
         :type queue: A Queue object
-        :param queue: The SQS queue to be deleted
+        :param queue: The SQS queue to get attributes for
 
         :type attribute: str
         :type attribute: The specific attribute requested.  If not
@@ -127,6 +129,7 @@ class SQSConnection(AWSQueryConnection):
             * LastModifiedTimestamp
             * Policy
             * ReceiveMessageWaitTimeSeconds
+            * RedrivePolicy
 
         :rtype: :class:`boto.sqs.attributes.Attributes`
         :return: An Attributes object containing request value(s).
@@ -286,8 +289,8 @@ class SQSConnection(AWSQueryConnection):
         :param queue: The Queue from which messages are read.
 
         :type receipt_handle: str
-        :param queue: The receipt handle associated with the message whose
-                      visibility timeout will be changed.
+        :param receipt_handle: The receipt handle associated with the message
+                               whose visibility timeout will be changed.
 
         :type visibility_timeout: int
         :param visibility_timeout: The new value of the message's visibility
@@ -337,22 +340,38 @@ class SQSConnection(AWSQueryConnection):
             params['QueueNamePrefix'] = prefix
         return self.get_list('ListQueues', params, [('QueueUrl', Queue)])
 
-    def get_queue(self, queue_name):
+    def get_queue(self, queue_name, owner_acct_id=None):
         """
         Retrieves the queue with the given name, or ``None`` if no match
         was found.
 
         :param str queue_name: The name of the queue to retrieve.
+        :param str owner_acct_id: Optionally, the AWS account ID of the account that created the queue.
         :rtype: :py:class:`boto.sqs.queue.Queue` or ``None``
         :returns: The requested queue, or ``None`` if no match was found.
         """
         params = {'QueueName': queue_name}
+        if owner_acct_id:
+            params['QueueOwnerAWSAccountId']=owner_acct_id
         try:
             return self.get_object('GetQueueUrl', params, Queue)
         except SQSError:
             return None
 
     lookup = get_queue
+
+    def get_dead_letter_source_queues(self, queue):
+        """
+        Retrieves the dead letter source queues for a given queue.
+
+        :type queue: A :class:`boto.sqs.queue.Queue` object.
+        :param queue: The queue for which to get DL source queues
+        :rtype: list
+        :returns: A list of :py:class:`boto.sqs.queue.Queue` instances.
+        """
+        params = {'QueueUrl': queue.url}
+        return self.get_list('ListDeadLetterSourceQueues', params,
+                             [('QueueUrl', Queue)])
 
     #
     # Permissions methods

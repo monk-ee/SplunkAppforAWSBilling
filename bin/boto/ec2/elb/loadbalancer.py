@@ -122,6 +122,7 @@ class LoadBalancer(object):
         self.vpc_id = None
         self.scheme = None
         self.backends = None
+        self._attributes = None
 
     def __repr__(self):
         return 'LoadBalancer:%s' % self.name
@@ -185,7 +186,7 @@ class LoadBalancer(object):
         :param zones: The name of the zone(s) to add.
 
         """
-        if isinstance(zones, str) or isinstance(zones, unicode):
+        if isinstance(zones, basestring):
             zones = [zones]
         new_zones = self.connection.enable_availability_zones(self.name, zones)
         self.availability_zones = new_zones
@@ -198,10 +199,62 @@ class LoadBalancer(object):
         :param zones: The name of the zone(s) to add.
 
         """
-        if isinstance(zones, str) or isinstance(zones, unicode):
+        if isinstance(zones, basestring):
             zones = [zones]
         new_zones = self.connection.disable_availability_zones(self.name, zones)
         self.availability_zones = new_zones
+
+    def get_attributes(self, force=False):
+        """
+        Gets the LbAttributes.  The Attributes will be cached.
+
+        :type force: bool
+        :param force: Ignore cache value and reload.
+
+        :rtype: boto.ec2.elb.attributes.LbAttributes
+        :return: The LbAttribues object
+        """
+        if not self._attributes or force:
+            self._attributes = self.connection.get_all_lb_attributes(self.name)
+        return self._attributes
+
+    def is_cross_zone_load_balancing(self, force=False):
+        """
+        Identifies if the ELB is current configured to do CrossZone Balancing.
+
+        :type force: bool
+        :param force: Ignore cache value and reload.
+
+        :rtype: bool
+        :return: True if balancing is enabled, False if not.
+        """
+        return self.get_attributes(force).cross_zone_load_balancing.enabled
+
+    def enable_cross_zone_load_balancing(self):
+        """
+        Turns on CrossZone Load Balancing for this ELB.
+
+        :rtype: bool
+        :return: True if successful, False if not.
+        """
+        success = self.connection.modify_lb_attribute(
+            self.name, 'crossZoneLoadBalancing', True)
+        if success and self._attributes:
+            self._attributes.cross_zone_load_balancing.enabled = True
+        return success
+
+    def disable_cross_zone_load_balancing(self):
+        """
+        Turns off CrossZone Load Balancing for this ELB.
+
+        :rtype: bool
+        :return: True if successful, False if not.
+        """
+        success = self.connection.modify_lb_attribute(
+            self.name, 'crossZoneLoadBalancing', False)
+        if success and self._attributes:
+            self._attributes.cross_zone_load_balancing.enabled = False
+        return success
 
     def register_instances(self, instances):
         """
@@ -213,7 +266,7 @@ class LoadBalancer(object):
             to add to this load balancer.
 
         """
-        if isinstance(instances, str) or isinstance(instances, unicode):
+        if isinstance(instances, basestring):
             instances = [instances]
         new_instances = self.connection.register_instances(self.name,
                                                            instances)
@@ -228,7 +281,7 @@ class LoadBalancer(object):
             to remove from this load balancer.
 
         """
-        if isinstance(instances, str) or isinstance(instances, unicode):
+        if isinstance(instances, basestring):
             instances = [instances]
         new_instances = self.connection.deregister_instances(self.name,
                                                              instances)
@@ -271,7 +324,7 @@ class LoadBalancer(object):
                                                               listeners)
 
     def create_listener(self, inPort, outPort=None, proto="tcp"):
-        if outPort == None:
+        if outPort is None:
             outPort = inPort
         return self.create_listeners([(inPort, outPort, proto)])
 
@@ -327,7 +380,7 @@ class LoadBalancer(object):
         :param subnets: The name of the subnet(s) to add.
 
         """
-        if isinstance(subnets, str) or isinstance(subnets, unicode):
+        if isinstance(subnets, basestring):
             subnets = [subnets]
         new_subnets = self.connection.attach_lb_to_subnets(self.name, subnets)
         self.subnets = new_subnets
@@ -340,9 +393,9 @@ class LoadBalancer(object):
         :param subnets: The name of the subnet(s) to detach.
 
         """
-        if isinstance(subnets, str) or isinstance(subnets, unicode):
+        if isinstance(subnets, basestring):
             subnets = [subnets]
-        new_subnets = self.connection.detach_lb_to_subnets(self.name, subnets)
+        new_subnets = self.connection.detach_lb_from_subnets(self.name, subnets)
         self.subnets = new_subnets
 
     def apply_security_groups(self, security_groups):
@@ -355,8 +408,7 @@ class LoadBalancer(object):
         :param security_groups: The name of the security group(s) to add.
 
         """
-        if isinstance(security_groups, str) or \
-              isinstance(security_groups, unicode):
+        if isinstance(security_groups, basestring):
             security_groups = [security_groups]
         new_sgs = self.connection.apply_security_groups_to_lb(
                                          self.name, security_groups)

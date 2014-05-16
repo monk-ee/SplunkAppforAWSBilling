@@ -34,10 +34,11 @@ class SSHClient(object):
 
     def __init__(self, server,
                  host_key_file='~/.ssh/known_hosts',
-                 uname='root', ssh_pwd=None):
+                 uname='root', timeout=None, ssh_pwd=None):
         self.server = server
         self.host_key_file = host_key_file
         self.uname = uname
+        self._timeout = timeout
         self._pkey = paramiko.RSAKey.from_private_key_file(server.ssh_key_file,
                                                            password=ssh_pwd)
         self._ssh_client = paramiko.SSHClient()
@@ -52,7 +53,8 @@ class SSHClient(object):
             try:
                 self._ssh_client.connect(self.server.hostname,
                                          username=self.uname,
-                                         pkey=self._pkey)
+                                         pkey=self._pkey,
+                                         timeout=self._timeout)
                 return
             except socket.error, (value, message):
                 if value in (51, 61, 111):
@@ -116,7 +118,7 @@ class SSHClient(object):
     def run(self, command):
         """
         Execute a command on the remote host.  Return a tuple containing
-        an integer status and a two strings, the first containing stdout
+        an integer status and two strings, the first containing stdout
         and the second containing stderr from the command.
         """
         boto.log.debug('running:%s on %s' % (command, self.server.instance_id))
@@ -180,7 +182,7 @@ class LocalClient(object):
         log_fp = StringIO.StringIO()
         process = subprocess.Popen(self.command, shell=True, stdin=subprocess.PIPE,
                                    stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-        while process.poll() == None:
+        while process.poll() is None:
             time.sleep(1)
             t = process.communicate()
             log_fp.write(t[0])

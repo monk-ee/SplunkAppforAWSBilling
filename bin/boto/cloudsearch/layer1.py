@@ -46,7 +46,7 @@ class Layer1(AWSQueryConnection):
                  proxy_user=None, proxy_pass=None, debug=0,
                  https_connection_factory=None, region=None, path='/',
                  api_version=None, security_token=None,
-                 validate_certs=True):
+                 validate_certs=True, profile_name=None):
         if not region:
             region = RegionInfo(self, self.DefaultRegionName,
                                 self.DefaultRegionEndpoint)
@@ -66,10 +66,11 @@ class Layer1(AWSQueryConnection):
             https_connection_factory=https_connection_factory,
             path=path,
             security_token=security_token,
-            validate_certs=validate_certs)
+            validate_certs=validate_certs,
+            profile_name=profile_name)
 
     def _required_auth_capability(self):
-        return ['sign-v2']
+        return ['hmac-v4']
 
     def get_response(self, doc_path, action, params, path='/',
                      parent=None, verb='GET', list_marker=None):
@@ -88,7 +89,7 @@ class Layer1(AWSQueryConnection):
             for p in doc_path:
                 inner = inner.get(p)
             if not inner:
-                return None if list_marker == None else []
+                return None if list_marker is None else []
             if isinstance(inner, list):
                 return inner
             else:
