@@ -36,7 +36,7 @@ billingBucketConnection = S3Connection(configurationObject['keys'][0]['aws_acces
 
 #make sure bucket exists before fetching - assume that this stops certain errors
 try:
-        billingBucket = billingBucketConnection.create_bucket(configurationObject['s3']['billing_bucket'])
+        billingBucket = billingBucketConnection.get_bucket(configurationObject['s3']['billing_bucket'])
 except boto.exception.S3ResponseError, emsg1:
         handleERRORLOGFILE.write(timenow()+' S3ResponseError '+str(emsg1[0])+' '+emsg1[1]+' '+str(emsg1[2])+'\n')
 
