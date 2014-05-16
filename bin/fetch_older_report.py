@@ -1,8 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-"""get_detailed_bill.py: This module provides an interface to the billing report
-in the amazon S3 billing bucket."""
+"""get_detailed_bill.py: Init for this module."""
 
 __author__ = "monkee"
 __license__ = "GPLv3.0"
@@ -11,10 +10,22 @@ __maintainer__ = "monk-ee"
 __email__ = "magic.monkee.magic@gmail.com"
 __status__ = "Development"
 
+
+"""This module provides an interface to the billing report
+in the amazon S3 billing bucket.
+"""
+import os
+import sys
+import boto.ec2
+import calendar
+import datetime
+import time
 import boto
 import zipfile
 import yaml
+import splunk_utilities
 from boto.s3.connection import S3Connection
+from datetime import datetime
 from boto.s3.key import Key
 from splunk_utilities import *
 

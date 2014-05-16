@@ -1,19 +1,18 @@
-#!/usr/bin/python
-__author__ = 'monk-ee'
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 
+"""get_detailed_bill.py: Init for this module."""
+
+__author__ = "monkee"
+__license__ = "GPLv3.0"
+__version__ = "1.2"
+__maintainer__ = "monk-ee"
+__email__ = "magic.monkee.magic@gmail.com"
+__status__ = "Development"
 """This module cleans up the old reports and csvs
 """
-import os
-import sys
-import calendar
-import datetime
-import time
-import zipfile
 import yaml
-import csv
-import splunk_utilities
 from splunk_utilities import *
-from datetime import datetime
 
 
 #setup error handling file

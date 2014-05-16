@@ -1,13 +1,18 @@
-#!/usr/bin/python
-# get_detailed_bill.py
-__author__ = 'monk-ee'
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+"""get_detailed_bill.py: Init for this module."""
+
+__author__ = "monkee"
+__license__ = "GPLv3.0"
+__version__ = "1.2"
+__maintainer__ = "monk-ee"
+__email__ = "magic.monkee.magic@gmail.com"
+__status__ = "Development"
 
 """This module provides some handy utilities
 """
 import os
-import sys
-import calendar
-import datetime
 import time
 from datetime import datetime,timedelta
 

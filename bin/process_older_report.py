@@ -13,11 +13,11 @@ __status__ = "Development"
 """This module provides an interface to the billing report
 in the amazon S3 billing bucket.
 """
+import sys
 import yaml
 import csv
 from splunk_utilities import *
 from datetime import datetime
-
 
 #setup error handling file
 if not os.path.isfile(ERRORLOGFILE):
