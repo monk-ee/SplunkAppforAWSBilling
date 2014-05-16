@@ -1,7 +1,23 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-"""get_detailed_bill.py: Init for this module."""
+"""
+process_older_report.py:
+
+usage: process_older_report.py [-h] [-d] year month
+
+A utility for processing older report files into splunk for processing. Be
+very careful, do not process this months data - you will cause a double up of
+records in the splunk index.
+
+positional arguments:
+  year          The year in this format: 2014 (YYYY)
+  month         The month in this format: 05 (MM)
+
+optional arguments:
+  -h, --help    show this help message and exit
+  -d, --dryrun  Fake runs for testing purposes.
+"""
 
 __author__ = "monkee"
 __license__ = "GPLv3.0"
