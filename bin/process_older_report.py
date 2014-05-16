@@ -22,6 +22,8 @@ from datetime import datetime
 
 
 def main(arg):
+
+
     #setup error handling file
     if not os.path.isfile(ERRORLOGFILE):
         handleERRORLOGFILE = open(ERRORLOGFILE, 'w')
@@ -34,14 +36,18 @@ def main(arg):
 
     #now set detailed billing file
     BILLINGREPORTZIPFILE = os.path.join(path,'etc','apps','SplunkAppforAWSBilling','tmp',
-                                        str(configurationObject['s3']['account_number'])+'_detailed_billing-'+ str(arg.year)+'-'+str(arg.month).zfill(2)+'.zip')
+                                        str(configurationObject['s3']['account_number'])+'_detailed_billing-' + str(arg.year) + '-' + str(arg.month).zfill(2) + '.zip')
     #file name
     billingFileName = str(configurationObject['s3']['account_number'])+"-aws-billing-detailed-line-items-with-resources-and-tags-" + \
-                      str(arg.year) + "-" +str(arg.month).zfill(2) +".csv.zip"
+                      str(arg.year) + "-" + str(arg.month).zfill(2) +".csv.zip"
     #now read that stupid file
     csvFileName = str(configurationObject['s3'][
-        'account_number']) + "-aws-billing-detailed-line-items-with-resources-and-tags-" + datefilename() + ".csv"
+        'account_number']) + "-aws-billing-detailed-line-items-with-resources-and-tags-" + str(arg.year) + "-" + str(arg.month).zfill(2) + ".csv"
     BILLINGREPORTZIPDIRCSV = os.path.join(path, 'etc', 'apps', 'SplunkAppforAWSBilling', 'csv', csvFileName)
+
+    #dryrun aborts here
+    if arg.dryrun:
+        return
 
     try:
         ifile = open(BILLINGREPORTZIPDIRCSV, 'rb')
@@ -54,7 +60,7 @@ def main(arg):
 
     #processnewcsv
     processedCSVFileName = str(configurationObject['s3'][
-        'account_number']) + "-aws-billing-detailed-line-items-with-resources-and-tags-" + datefilename() + ".processed.csv"
+        'account_number']) + "-aws-billing-detailed-line-items-with-resources-and-tags-" + str(arg.year) + "-" + str(arg.month).zfill(2) + ".processed.csv"
     BILLINGREPORTZIPDIRPROCESSEDCSV = os.path.join(path, 'etc', 'apps', 'SplunkAppforAWSBilling', 'csv',
                                                    processedCSVFileName)
 
