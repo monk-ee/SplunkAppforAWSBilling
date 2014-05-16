@@ -60,7 +60,8 @@ def main(arg):
     configurationObject =  yaml.load(configurationStream)
 
     #now set detailed billing file
-    BILLINGREPORTZIPFILE = os.path.join(path,'etc','apps','SplunkAppforAWSBilling','tmp',str(configurationObject['s3']['account_number'])+'_detailed_billing-'+ str(arg.year)+'-'+str(arg.month).zfill(2)+'.zip')
+    BILLINGREPORTZIPFILE = os.path.join(path,'etc','apps','SplunkAppforAWSBilling','tmp',
+                                        str(configurationObject['s3']['account_number'])+'_detailed_billing-'+ str(arg.year)+'-'+str(arg.month).zfill(2)+'.zip')
 
     # get a bucket connection
     billingBucketConnection = S3Connection(configurationObject['keys'][0]['aws_access_key'], configurationObject['keys'][0]['aws_secret_key'])
@@ -73,7 +74,8 @@ def main(arg):
 
 
     #file name
-    billingFileName = str(configurationObject['s3']['account_number'])+"-aws-billing-detailed-line-items-with-resources-and-tags-" + str(arg.year) + "-" +str(arg.month).zfill(2) +".csv.zip"
+    billingFileName = str(configurationObject['s3']['account_number'])+"-aws-billing-detailed-line-items-with-resources-and-tags-" + \
+                      str(arg.year) + "-" +str(arg.month).zfill(2) +".csv.zip"
     billingBucketHandle = billingBucketConnection.get_bucket(configurationObject['s3']['billing_bucket'])
 
     #key object fudging
@@ -102,7 +104,8 @@ def main(arg):
 
 if __name__ == "__main__":
     #grab the arguments when the script is ran
-    parser = argparse.ArgumentParser(description='A utility for fetching older report files into splunk for processing. Be very careful, do not fetch the current months data - you will cause a double up of records in the splunk index.')
+    parser = argparse.ArgumentParser(description='A utility for fetching older report files into splunk for processing. '
+                                                 'Be very careful, do not fetch the current months data - you will cause a double up of records in the splunk index.')
     parser.add_argument('-d', '--dryrun', action='store_true', default=False, help='Fake runs for testing purposes.')
     parser.add_argument('year', type=int, help='The year in this format: 2014 (YYYY)')
     parser.add_argument('month', type=int, help='The month in this format: 05 (MM)')
