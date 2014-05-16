@@ -9,6 +9,10 @@ usage: fetch_older_report.py [-h] [-d] year month
 
 A utility for fetching/downloading older report files into SplunkAppforAWSBilling.
 
+Be very careful, do not fetch the current months data - you will cause a double up of
+records in the splunk index.
+
+
 To be used in conjunction with process_older_report.py
 
 positional arguments:
@@ -40,6 +44,9 @@ import argparse
 
 
 def main(arg):
+
+    billingBucket = ""
+
     #setup error handling file
     if not os.path.isfile(ERRORLOGFILE):
             handleERRORLOGFILE = open(ERRORLOGFILE,'w')
@@ -53,7 +60,7 @@ def main(arg):
     configurationObject =  yaml.load(configurationStream)
 
     #now set detailed billing file
-    BILLINGREPORTZIPFILE = os.path.join(path,'etc','apps','SplunkAppforAWSBilling','tmp',str(configurationObject['s3']['account_number'])+'_detailed_billing-',str(arg.year),'-',str(arg.month),'.zip')
+    BILLINGREPORTZIPFILE = os.path.join(path,'etc','apps','SplunkAppforAWSBilling','tmp',str(configurationObject['s3']['account_number'])+'_detailed_billing-'+ str(arg.year)+'-'+str(arg.month).zfill(2)+'.zip')
 
     # get a bucket connection
     billingBucketConnection = S3Connection(configurationObject['keys'][0]['aws_access_key'], configurationObject['keys'][0]['aws_secret_key'])
@@ -61,24 +68,31 @@ def main(arg):
     #make sure bucket exists before fetching - assume that this stops certain errors
     try:
             billingBucket = billingBucketConnection.create_bucket(configurationObject['s3']['billing_bucket'])
-    except boto.exception.S3ResponseError, emsg1:
+    except boto.exception.S3ResponseError as emsg1:
             handleERRORLOGFILE.write(timenow()+' S3ResponseError '+str(emsg1[0])+' '+emsg1[1]+' '+str(emsg1[2])+'\n')
 
 
     #file name
-    billingFileName = str(configurationObject['s3']['account_number'])+"-aws-billing-detailed-line-items-with-resources-and-tags-" + str(arg.year) + "-" +str(arg.month) +".csv.zip"
+    billingFileName = str(configurationObject['s3']['account_number'])+"-aws-billing-detailed-line-items-with-resources-and-tags-" + str(arg.year) + "-" +str(arg.month).zfill(2) +".csv.zip"
     billingBucketHandle = billingBucketConnection.get_bucket(configurationObject['s3']['billing_bucket'])
 
     #key object fudging
     billingFileNameKey = Key(billingBucketHandle)
     billingFileNameKey.key = billingFileName
 
+    #dryrun aborts here
+    if arg.dryrun:
+        return
+
     #fetch the file to a temporary place on the filesystem
     try:
         retrieveFileContents = billingFileNameKey.get_contents_to_filename(BILLINGREPORTZIPFILE)
-    except boto.exception.S3ResponseError, emsg:
+    except boto.exception.S3ResponseError as emsg:
         handleERRORLOGFILE.write(timenow()+' S3ResponseError : '+billingFileName+' '+str(emsg[0])+' '+emsg[1]+' '+str(emsg[2])+'\n')
-        exit("It seems that the billing file does not exist in the billing bucket.")
+        exit("It seems that s3 is not really happy with that request, maybe that bill doesn't exist?")
+    except Exception as emsg:
+        handleERRORLOGFILE.write(timenow()+' More general Error : '+billingFileName+' '+str(emsg)+'\n')
+        exit("Something went wrong on the server, check your file permissions?")
 
     #now unzip it ready for splunk monitoring
     #unzip
@@ -88,7 +102,7 @@ def main(arg):
 
 if __name__ == "__main__":
     #grab the arguments when the script is ran
-    parser = argparse.ArgumentParser(description='A utility for fetching older report files into splunk for processing.')
+    parser = argparse.ArgumentParser(description='A utility for fetching older report files into splunk for processing. Be very careful, do not fetch the current months data - you will cause a double up of records in the splunk index.')
     parser.add_argument('-d', '--dryrun', action='store_true', default=False, help='Fake runs for testing purposes.')
     parser.add_argument('year', type=int, help='The year in this format: 2014 (YYYY)')
     parser.add_argument('month', type=int, help='The month in this format: 05 (MM)')

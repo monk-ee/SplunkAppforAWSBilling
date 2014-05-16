@@ -4,3 +4,4 @@ csv/
 local/aws.yaml
 .idea
 *.pyc
+.DS_Store
