@@ -56,6 +56,9 @@ Splunk App for AWS Billing is hosted at GitHub
 Feel free to submit a pull request:
 [https://github.com/monk-ee/SplunkAppforAWSBilling](https://github.com/monk-ee/SplunkAppforAWSBilling)
 
+## Cost Models
+The application supports the straight Cost model as well as the Blended/Unblended Cost Model. Dashboards for both are provided; use the one that suits your billing settings.
+
 ## Setup Amazon detailed billing
 You will need to ensure that you have set your billing preferences correctly.
 
@@ -125,7 +128,7 @@ Located in the bin directory of the application are two new tools for fetching a
 A utility for fetching/downloading older report files into SplunkAppforAWSBilling.
 
 Be very careful, do not fetch the current months data - you will cause a double up of records in the splunk index.
-
+`
 To be used in conjunction with process_older_report.py
 
     positional arguments:

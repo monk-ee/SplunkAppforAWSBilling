@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <dashboard>
-  <label>AWS Resources Cost Dashboard</label>
+  <label>AWS Resources Blended Cost Dashboard</label>
      <row>
        <chart>
       <searchString>index=aws-bill ProductName="Amazon Elastic Compute Cloud" ResourceId!="" | timechart dc(ResourceId) as Items span=1day</searchString>
@@ -13,7 +13,7 @@
       <option name="charting.axisTitleX.text">Days</option>
     </chart>
     <chart>
-      <searchString>index=aws-bill ProductName="Amazon Elastic Compute Cloud" | timechart sum(Cost) as $</searchString>
+      <searchString>index=aws-bill ProductName="Amazon Elastic Compute Cloud" | timechart sum(BlendedCost) as $</searchString>
       <title>Amazon Elastic Compute Cloud ($)</title>
       <earliestTime>-1@month</earliestTime>
       <latestTime>now</latestTime>
@@ -35,7 +35,7 @@
       <option name="charting.axisTitleX.text">Days</option>
     </chart>
     <chart>
-      <searchString>index=aws-bill ProductName="Amazon RDS Service" | timechart sum(Cost) as $</searchString>
+      <searchString>index=aws-bill ProductName="Amazon RDS Service" | timechart sum(BlendedCost) as $</searchString>
       <title>Amazon RDS Service Cloud ($)</title>
       <earliestTime>-1@month</earliestTime>
       <latestTime>now</latestTime>
@@ -57,7 +57,7 @@
       <option name="charting.axisTitleX.text">Days</option>
     </chart>
     <chart>
-      <searchString>index=aws-bill ProductName="Amazon Simple Storage Service" | timechart sum(Cost) as $ span=1day</searchString>
+      <searchString>index=aws-bill ProductName="Amazon Simple Storage Service" | timechart sum(BlendedCost) as $ span=1day</searchString>
       <title>Amazon Simple Storage Service Cloud ($)</title>
       <earliestTime>-1@month</earliestTime>
       <latestTime>now</latestTime>
@@ -79,7 +79,7 @@
       <option name="charting.axisTitleX.text">Days</option>
     </chart>
     <chart>
-      <searchString>index=aws-bill ProductName="Amazon DynamoDB" | timechart sum(Cost) as $ span=1day</searchString>
+      <searchString>index=aws-bill ProductName="Amazon DynamoDB" | timechart sum(BlendedCost) as $ span=1day</searchString>
       <title>Amazon DynamoDB ($)</title>
       <earliestTime>-1@month</earliestTime>
       <latestTime>now</latestTime>
@@ -101,7 +101,7 @@
       <option name="charting.axisTitleX.text">Days</option>
     </chart>
     <chart>
-      <searchString>index=aws-bill ProductName="Amazon Simple Notification Service" | timechart sum(Cost) as $ span=1day</searchString>
+      <searchString>index=aws-bill ProductName="Amazon Simple Notification Service" | timechart sum(BlendedCost) as $ span=1day</searchString>
       <title>Amazon Simple Notification Service ($)</title>
       <earliestTime>-1@month</earliestTime>
       <latestTime>now</latestTime>
@@ -124,7 +124,7 @@
       <option name="charting.axisTitleX.text">Days</option>
     </chart>
     <chart>
-      <searchString>index=aws-bill ProductName="AWS Direct Connect" | timechart sum(Cost) as $ span=1day</searchString>
+      <searchString>index=aws-bill ProductName="AWS Direct Connect" | timechart sum(BlendedCost) as $ span=1day</searchString>
       <title>AWS Direct Connect Service ($)</title>
       <earliestTime>-1@month</earliestTime>
       <latestTime>now</latestTime>
@@ -147,7 +147,7 @@
       <option name="charting.axisTitleX.text">Days</option>
     </chart>
     <chart>
-      <searchString>index=aws-bill ProductName="Amazon Virtual Private Cloud" | timechart sum(Cost) as $ span=1day</searchString>
+      <searchString>index=aws-bill ProductName="Amazon Virtual Private Cloud" | timechart sum(BlendedCost) as $ span=1day</searchString>
       <title>Amazon Virtual Private Cloud ($)</title>
       <earliestTime>-1@month</earliestTime>
       <latestTime>now</latestTime>
@@ -171,7 +171,7 @@
       <option name="charting.axisTitleX.text">Days</option>
     </chart>
     <chart>
-      <searchString>index=aws-bill ProductName="AWS Support (Business)" | timechart sum(Cost) as $ span=1day</searchString>
+      <searchString>index=aws-bill ProductName="AWS Support (Business)" | timechart sum(BlendedCost) as $ span=1day</searchString>
       <title>AWS Support (Business) ($)</title>
       <earliestTime>-1@month</earliestTime>
       <latestTime>now</latestTime>
@@ -196,7 +196,7 @@
     </row>
     <row>
     <chart>
-      <searchString>index=aws-bill ResourceId!="" | timechart sum(Cost) as $ by ResourceId useother=f limit=25</searchString>
+      <searchString>index=aws-bill ResourceId!="" | timechart sum(BlendedCost) as $ by ResourceId useother=f limit=25</searchString>
       <title>Top 25 Billed Items($)</title>
       <earliestTime>-1y@y</earliestTime>
       <latestTime>now</latestTime>

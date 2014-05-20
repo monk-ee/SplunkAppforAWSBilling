@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <dashboard>
-  <label>AWS Custom Tags Example Dashboard</label>
+  <label>AWS Custom Tags Example Blended Cost Dashboard</label>
      <row>
        <chart>
       <searchString>index=aws-bill user_Name!="" | timechart dc(user_Name) as Items span=1day</searchString>
@@ -13,7 +13,7 @@
       <option name="charting.axisTitleX.text">Days</option>
     </chart>
     <chart>
-      <searchString>index=aws-bill user_Name!=""| timechart sum(Cost) as $</searchString>
+      <searchString>index=aws-bill user_Name!=""| timechart sum(BlendedCost) as $</searchString>
       <title>User Name Tag ($)</title>
       <earliestTime>-1@month</earliestTime>
       <latestTime>now</latestTime>
@@ -39,7 +39,7 @@
     </row>
     <row>
     <chart>
-      <searchString>index=aws-bill user_Name!="" | timechart sum(Cost) as $ by user_Name useother=f limit=25</searchString>
+      <searchString>index=aws-bill user_Name!="" | timechart sum(BlendedCost) as $ by user_Name useother=f limit=25</searchString>
       <title>Top 25 User Name Tagged Billed Items($)</title>
       <earliestTime>-1y@y</earliestTime>
       <latestTime>now</latestTime>
