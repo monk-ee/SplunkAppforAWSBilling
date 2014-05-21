@@ -1,11 +1,11 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-"""get_detailed_bill.py: Init for this module."""
+"""splunk_utilities.py: Init for this module."""
 
 __author__ = "monkee"
 __license__ = "GPLv3.0"
-__version__ = "1.2"
+__version__ = "1.2.3"
 __maintainer__ = "monk-ee"
 __email__ = "magic.monkee.magic@gmail.com"
 __status__ = "Development"

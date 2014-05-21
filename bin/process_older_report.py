@@ -21,7 +21,7 @@ optional arguments:
 
 __author__ = "monkee"
 __license__ = "GPLv3.0"
-__version__ = "1.2"
+__version__ = "1.2.3"
 __maintainer__ = "monk-ee"
 __email__ = "magic.monkee.magic@gmail.com"
 __status__ = "Development"
