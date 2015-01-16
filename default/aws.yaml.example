@@ -1,13 +1,15 @@
 s3:
- account_number:
- billing_bucket:
+ - account:
+   account_number: 0123456789
+   billing_bucket: bucket1
+   region: ap-southeast-2
+   aws_access_key    :  AAAAAAAAAAAAAAAA
+   aws_secret_key    :  BBBBBBBBBBBBBBBB
+ - account:
+   account_number: 9876543210
+   billing_bucket: bucket2
+   region: ap-southeast-2
+   aws_access_key    :  CCCCCCCCCCCCCCCC
+   aws_secret_key    :  DDDDDDDDDDDDDDDD
+general:
  time_zone: Australia/Brisbane
-regions:
- - name: ap-southeast-2
-keys:
- - account_number    : 
-   name              : service.splunk
-   aws_access_key    :
-   aws_secret_key    : 
-   spend_limit       : 10000
-   corporate_key     : true

@@ -15,6 +15,7 @@ import yaml
 import csv
 from splunk_utilities import *
 from datetime import datetime
+import sys
 
 
 def main():
