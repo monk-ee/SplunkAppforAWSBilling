@@ -86,15 +86,18 @@ class FetchDetailedReport():
             FileObject.key = s3_billing_report
             FileObject.get_contents_to_filename(zipped_report)
         except boto.exception.S3ResponseError, emsg:
-            self.logger.error("Failed to get file from s3: " + str(emsg.reason))
+            self.logger.error("Failed to get file from s3: " + str(emsg))
             raise SystemExit
         except Exception, err:
-            self.logger.error("No idea why this went wrong: " + str(err.reason))
+            self.logger.error("No idea why this went wrong: " + str(err))
             raise SystemExit
-
-        zip = zipfile.ZipFile(zipped_report, mode='r')
-        for subfile in zip.namelist():
-            zip.extract(subfile, os.path.join(self.app_home, 'csv'))
+        try:
+            zip = zipfile.ZipFile(zipped_report, mode='r')
+            for subfile in zip.namelist():
+                zip.extract(subfile, os.path.join(self.app_home, 'csv'))
+        except Exception, err:
+            self.logger.error("Could not unzip report archive: " + str(err))
+            raise SystemExit
 
 if __name__ == "__main__":
     fdr = FetchDetailedReport()
