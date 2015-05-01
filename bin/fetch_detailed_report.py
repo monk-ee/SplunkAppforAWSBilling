@@ -24,7 +24,7 @@ import os
 from datetime import datetime,timedelta
 
 
-class FetchDetailedReport():
+class FetchDetailedReport:
     logger = ''
     appname = 'SplunkAppforAWSBilling'
     config = ''
@@ -76,7 +76,6 @@ class FetchDetailedReport():
 
 
     def fetch_file(self, key):
-
         zipped_report = os.path.join(self.app_home ,'tmp' , str(key['account_number']) + '_detailed_billing.zip')
         try:
             conn = S3Connection(key['aws_access_key'], key['aws_secret_key'])

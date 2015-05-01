@@ -31,81 +31,101 @@ __maintainer__ = "monk-ee"
 __email__ = "magic.monkee.magic@gmail.com"
 __status__ = "Production"
 
-
 import boto
 import zipfile
 import yaml
 from boto.s3.connection import S3Connection
 from boto.s3.key import Key
 from splunk_utilities import *
+import splunk.clilib.cli_common
+import logging, logging.handlers
+import splunk
+import os
 import argparse
 
 
-def main(arg):
+class FetchOlderReport:
+    logger = ''
+    appname = 'SplunkAppforAWSBilling'
+    config = ''
+    splunk_home = ''
+    app_home = ''
+    report_date = ''
 
-    billingBucket = ""
+    def __init__(self, obj):
+        self.splunk_home = os.environ['SPLUNK_HOME']
+        self.app_home = os.path.join(self.splunk_home, 'etc', 'apps', self.appname)
+        self.set_date(obj)
+        self.setup_logging()
+        self.setup_config()
+        self.process_files()
 
-    #setup error handling file
-    if not os.path.isfile(ERRORLOGFILE):
-            handleERRORLOGFILE = open(ERRORLOGFILE,'w')
-    else:
-            handleERRORLOGFILE = open(ERRORLOGFILE,'ab')
+    def set_date(self, arg):
+        self.report_date = str(arg.year) + '-' + str(arg.month).zfill(2)
 
-    #maybe some validation here
-
-    #load configuration
-    configurationStream = open(AWSCONFIGFILE, 'r')
-    configurationObject =  yaml.load(configurationStream)
-
-    #now set detailed billing file
-    BILLINGREPORTZIPFILE = os.path.join(path,'etc','apps','SplunkAppforAWSBilling','tmp',
-                                        str(configurationObject['s3']['account_number'])+'_detailed_billing-'+ str(arg.year)+'-'+str(arg.month).zfill(2)+'.zip')
-
-    # get a bucket connection
-    billingBucketConnection = S3Connection(configurationObject['keys'][0]['aws_access_key'], configurationObject['keys'][0]['aws_secret_key'])
-
-    #make sure bucket exists before fetching - assume that this stops certain errors
-    try:
-            billingBucket = billingBucketConnection.get_bucket(configurationObject['s3']['billing_bucket'])
-    except boto.exception.S3ResponseError as emsg1:
-            handleERRORLOGFILE.write(timenow()+' S3ResponseError '+str(emsg1[0])+' '+emsg1[1]+' '+str(emsg1[2])+'\n')
+    # Define the logging function
+    def setup_logging(self):
+        self.logger = logging.getLogger('splunk.SplunkAppforAWSBilling')
+        LOGGING_DEFAULT_CONFIG_FILE = os.path.join(self.splunk_home, 'etc', 'log.cfg')
+        LOGGING_LOCAL_CONFIG_FILE = os.path.join(self.splunk_home, 'etc', 'log-local.cfg')
+        LOGGING_STANZA_NAME = 'python'
+        LOGGING_FILE_NAME = "SplunkAppforAWSBilling.log"
+        BASE_LOG_PATH = os.path.join('var', 'log', 'splunk')
+        LOGGING_FORMAT = "%(asctime)s %(levelname)-s\t%(module)s:%(lineno)d - %(message)s"
+        splunk_log_handler = logging.handlers.RotatingFileHandler(
+            os.path.join(self.splunk_home, BASE_LOG_PATH, LOGGING_FILE_NAME), mode='a')
+        splunk_log_handler.setFormatter(logging.Formatter(LOGGING_FORMAT))
+        self.logger.addHandler(splunk_log_handler)
+        splunk.setupSplunkLogger(self.logger, LOGGING_DEFAULT_CONFIG_FILE, LOGGING_LOCAL_CONFIG_FILE,
+                                 LOGGING_STANZA_NAME)
 
 
-    #file name
-    billingFileName = str(configurationObject['s3']['account_number'])+"-aws-billing-detailed-line-items-with-resources-and-tags-" + \
-                      str(arg.year) + "-" +str(arg.month).zfill(2) +".csv.zip"
-    billingBucketHandle = billingBucketConnection.get_bucket(configurationObject['s3']['billing_bucket'])
+    def setup_config(self):
+        try:
+            aws_key_file = os.path.join(self.app_home, 'local', 'aws.yaml')
+            config = open(aws_key_file, 'r')
+            self.config = yaml.load(config)
+        except IOError, err:
+            self.logger.error("Failed to load configuration file aws.yaml: " + str(err))
+            raise SystemExit
 
-    #key object fudging
-    billingFileNameKey = Key(billingBucketHandle)
-    billingFileNameKey.key = billingFileName
 
-    #dryrun aborts here
-    if arg.dryrun:
-        return
+    def process_files(self):
+        for key in self.config['accounts']:
+            self.fetch_file(key)
 
-    #fetch the file to a temporary place on the filesystem
-    try:
-        retrieveFileContents = billingFileNameKey.get_contents_to_filename(BILLINGREPORTZIPFILE)
-    except boto.exception.S3ResponseError as emsg:
-        handleERRORLOGFILE.write(timenow()+' S3ResponseError : '+billingFileName+' '+str(emsg[0])+' '+emsg[1]+' '+str(emsg[2])+'\n')
-        exit("It seems that s3 is not really happy with that request, maybe that bill doesn't exist?")
-    except Exception as emsg:
-        handleERRORLOGFILE.write(timenow()+' More general Error : '+billingFileName+' '+str(emsg)+'\n')
-        exit("Something went wrong on the server, check your file permissions?")
 
-    #now unzip it ready for splunk monitoring
-    #unzip
-    zipHandle = zipfile.ZipFile(BILLINGREPORTZIPFILE, mode='r')
-    for subfile in zipHandle.namelist():
-        zipHandle.extract(subfile, BILLINGREPORTCSVDIR)
+    def fetch_file(self, key):
+        zipped_report = os.path.join(self.app_home, 'tmp', str(key['account_number']) + '_detailed_billing.zip')
+        try:
+            conn = S3Connection(key['aws_access_key'], key['aws_secret_key'])
+            s3_billing_report = str(key[
+                'account_number']) + "-aws-billing-detailed-line-items-with-resources-and-tags-" + self.report_date + ".csv.zip"
+            bucket = conn.get_bucket(key['billing_bucket'])
+            FileObject = Key(bucket)
+            FileObject.key = s3_billing_report
+            FileObject.get_contents_to_filename(zipped_report)
+        except boto.exception.S3ResponseError, emsg:
+            self.logger.error("Failed to get file from s3: " + str(emsg))
+            raise SystemExit
+        except Exception, err:
+            self.logger.error("No idea why this went wrong: " + str(err))
+            raise SystemExit
+        try:
+            zip = zipfile.ZipFile(zipped_report, mode='r')
+            for subfile in zip.namelist():
+                zip.extract(subfile, os.path.join(self.app_home, 'csv'))
+        except Exception, err:
+            self.logger.error("Could not unzip report archive: " + str(err))
+
 
 if __name__ == "__main__":
-    #grab the arguments when the script is ran
-    parser = argparse.ArgumentParser(description='A utility for fetching older report files into splunk for processing. '
-                                                 'Be very careful, do not fetch the current months data - you will cause a double up of records in the splunk index.')
+    # grab the arguments when the script is ran
+    parser = argparse.ArgumentParser(
+        description='A utility for fetching older report files into splunk for processing. '
+                    'Be very careful, do not fetch the current months data - you will cause a double up of records in the splunk index.')
     parser.add_argument('-d', '--dryrun', action='store_true', default=False, help='Fake runs for testing purposes.')
     parser.add_argument('year', type=int, help='The year in this format: 2014 (YYYY)')
     parser.add_argument('month', type=int, help='The month in this format: 05 (MM)')
     args = parser.parse_args()
-    main(args)
+    for = FetchOlderReport(args)
