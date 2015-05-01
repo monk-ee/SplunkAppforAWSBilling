@@ -21,6 +21,7 @@ import splunk.clilib.cli_common
 import logging, logging.handlers
 import splunk
 import os
+from datetime import datetime,timedelta
 
 
 class FetchDetailedReport():
@@ -29,13 +30,20 @@ class FetchDetailedReport():
     config = ''
     splunk_home = ''
     app_home = ''
+    report_date = ''
 
     def __init__(self):
         self.splunk_home = os.environ['SPLUNK_HOME']
         self.app_home = os.path.join(self.splunk_home, 'etc', 'apps', self.appname)
+        self.set_date()
         self.setup_logging()
         self.setup_config()
         self.process_files()
+
+
+    def set_date(self):
+        dt = datetime.now()
+        self.report_date = dt.strftime("%Y-%m")
 
     # Define the logging function
     def setup_logging(self):
@@ -58,7 +66,7 @@ class FetchDetailedReport():
             config = open(aws_key_file, 'r')
             self.config =  yaml.load(config)
         except IOError, err:
-            self.logger.error("Failed to load configuration file aws.yaml: " + str(err.reason))
+            self.logger.error("Failed to load configuration file aws.yaml: " + str(err))
             raise SystemExit
 
 
@@ -68,10 +76,11 @@ class FetchDetailedReport():
 
 
     def fetch_file(self, key):
-        zipped_report = os.path.join(self.app_home ,'tmp' , str(key['account_number'] + '_detailed_billing.zip'))
+
+        zipped_report = os.path.join(self.app_home ,'tmp' , str(key['account_number']) + '_detailed_billing.zip')
         try:
             conn = S3Connection(key['aws_access_key'], key['aws_secret_key'])
-            s3_billing_report = str(key['account_number']) + "-aws-billing-detailed-line-items-with-resources-and-tags-" + datefilename() + ".csv.zip"
+            s3_billing_report = str(key['account_number']) + "-aws-billing-detailed-line-items-with-resources-and-tags-" + self.report_date + ".csv.zip"
             bucket = conn.get_bucket(key['billing_bucket'])
             FileObject = Key(bucket)
             FileObject.key = s3_billing_report
@@ -83,9 +92,9 @@ class FetchDetailedReport():
             self.logger.error("No idea why this went wrong: " + str(err.reason))
             raise SystemExit
 
-        zipfile = zipfile.ZipFile(zipped_report, mode='r')
-        for subfile in zipfile.namelist():
-            zipfile.extract(subfile, os.path.join(self.app_home, 'tmp'))
+        zip = zipfile.ZipFile(zipped_report, mode='r')
+        for subfile in zip.namelist():
+            zip.extract(subfile, os.path.join(self.app_home, 'csv'))
 
 if __name__ == "__main__":
     fdr = FetchDetailedReport()
