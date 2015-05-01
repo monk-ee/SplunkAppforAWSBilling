@@ -23,6 +23,7 @@ class SWFBase(object):
     domain = None
     aws_access_key_id = None
     aws_secret_access_key = None
+    region = None
 
     def __init__(self, **kwargs):
         # Set default credentials.
@@ -33,8 +34,9 @@ class SWFBase(object):
         for kwarg in kwargs:
             setattr(self, kwarg, kwargs[kwarg])
 
-        self._swf = Layer1(self.aws_access_key_id, 
-                              self.aws_secret_access_key)
+        self._swf = Layer1(self.aws_access_key_id,
+                           self.aws_secret_access_key,
+                           region=self.region)
 
     def __repr__(self):
         rep_str = str(self.name)
@@ -77,6 +79,7 @@ class Domain(SWFBase):
                 'aws_access_key_id': self.aws_access_key_id,
                 'aws_secret_access_key': self.aws_secret_access_key,
                 'domain': self.name,
+                'region': self.region,
             })
             act_objects.append(ActivityType(**act_args))
         return act_objects
@@ -94,6 +97,7 @@ class Domain(SWFBase):
                 'aws_access_key_id': self.aws_access_key_id,
                 'aws_secret_access_key': self.aws_secret_access_key,
                 'domain': self.name,
+                'region': self.region,
             })
             
             wf_objects.append(WorkflowType(**wf_args))
@@ -126,6 +130,7 @@ class Domain(SWFBase):
                 'aws_access_key_id': self.aws_access_key_id,
                 'aws_secret_access_key': self.aws_secret_access_key,
                 'domain': self.name,
+                'region': self.region,
             })
             
             exe_objects.append(WorkflowExecution(**exe_args))
