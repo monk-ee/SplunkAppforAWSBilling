@@ -6,10 +6,10 @@ in the amazon S3 billing bucket."""
 
 __author__ = "monkee"
 __license__ = "GPLv3.0"
-__version__ = "1.2.3"
+__version__ = "2.0.0"
 __maintainer__ = "monk-ee"
 __email__ = "magic.monkee.magic@gmail.com"
-__status__ = "Development"
+__status__ = "Production"
 
 import boto
 import zipfile
@@ -17,51 +17,75 @@ import yaml
 from boto.s3.connection import S3Connection
 from boto.s3.key import Key
 from splunk_utilities import *
+import splunk.clilib.cli_common
+import logging, logging.handlers
+import splunk
+import os
 
 
-def main():
-    #setup error handling file
-    if not os.path.isfile(ERRORLOGFILE):
-            handleERRORLOGFILE = open(ERRORLOGFILE,'w')
-    else:
-            handleERRORLOGFILE = open(ERRORLOGFILE,'ab')
+class FetchDetailedReport():
+    logger = ''
+    appname = 'SplunkAppforAWSBilling'
+    config = ''
+    splunk_home = ''
+    app_home = ''
 
-    #load configuration
-    configurationStream = open(AWSCONFIGFILE, 'r')
-    configurationObject =  yaml.load(configurationStream)
+    def __init__(self):
+        self.splunk_home = os.environ['SPLUNK_HOME']
+        self.app_home = os.path.join(self.splunk_home, 'etc', 'apps', self.appname)
+        self.setup_logging()
+        self.setup_config()
+        self.process_files()
 
-    #now set detailed billing file
-    BILLINGREPORTZIPFILE = os.path.join(path,'etc','apps','SplunkAppforAWSBilling','tmp',str(configurationObject['s3']['account_number'])+'_detailed_billing.zip')
+    # Define the logging function
+    def setup_logging(self):
+        self.logger = logging.getLogger('splunk.SplunkAppforAWSBilling')
+        LOGGING_DEFAULT_CONFIG_FILE = os.path.join(self.splunk_home, 'etc', 'log.cfg')
+        LOGGING_LOCAL_CONFIG_FILE = os.path.join(self.splunk_home, 'etc', 'log-local.cfg')
+        LOGGING_STANZA_NAME = 'python'
+        LOGGING_FILE_NAME = "SplunkAppforAWSBilling.log"
+        BASE_LOG_PATH = os.path.join('var', 'log', 'splunk')
+        LOGGING_FORMAT = "%(asctime)s %(levelname)-s\t%(module)s:%(lineno)d - %(message)s"
+        splunk_log_handler = logging.handlers.RotatingFileHandler(os.path.join(self.splunk_home, BASE_LOG_PATH, LOGGING_FILE_NAME), mode='a')
+        splunk_log_handler.setFormatter(logging.Formatter(LOGGING_FORMAT))
+        self.logger.addHandler(splunk_log_handler)
+        splunk.setupSplunkLogger(self.logger, LOGGING_DEFAULT_CONFIG_FILE, LOGGING_LOCAL_CONFIG_FILE, LOGGING_STANZA_NAME)
 
-    # get a bucket connection
-    billingBucketConnection = S3Connection(configurationObject['keys'][0]['aws_access_key'], configurationObject['keys'][0]['aws_secret_key'])
 
-    #make sure bucket exists before fetching - assume that this stops certain errors
-    try:
-            billingBucket = billingBucketConnection.get_bucket(configurationObject['s3']['billing_bucket'])
-    except boto.exception.S3ResponseError, emsg1:
-            handleERRORLOGFILE.write(timenow()+' S3ResponseError '+str(emsg1[0])+' '+emsg1[1]+' '+str(emsg1[2])+'\n')
+    def setup_config(self):
+        try:
+            aws_key_file = os.path.join(self.app_home, 'local', 'aws.yaml')
+            config = open(aws_key_file, 'r')
+            self.config =  yaml.load(config)
+        except IOError, err:
+            self.logger.error("Failed to load configuration file aws.yaml: " + str(err.reason))
+            raise SystemExit
 
 
-    #file name
-    billingFileName = str(configurationObject['s3']['account_number'])+"-aws-billing-detailed-line-items-with-resources-and-tags-"+datefilename()+".csv.zip"
-    billingBucketHandle = billingBucketConnection.get_bucket(configurationObject['s3']['billing_bucket'])
+    def process_files(self):
+        for key in self.config['accounts']:
+            self.fetch_file(key)
 
-    #key object fudging
-    billingFileNameKey = Key(billingBucketHandle)
-    billingFileNameKey.key = billingFileName
 
-    #fetch the file to a temporary place on the filesystem
-    try:
-        retrieveFileContents = billingFileNameKey.get_contents_to_filename(BILLINGREPORTZIPFILE)
-    except boto.exception.S3ResponseError, emsg:
-        handleERRORLOGFILE.write(timenow()+' S3ResponseError : '+billingFileName+' '+str(emsg[0])+' '+emsg[1]+' '+str(emsg[2])+'\n')
+    def fetch_file(self, key):
+        zipped_report = os.path.join(self.app_home ,'tmp' , str(key['account_number'] + '_detailed_billing.zip'))
+        try:
+            conn = S3Connection(key['aws_access_key'], key['aws_secret_key'])
+            s3_billing_report = str(key['account_number']) + "-aws-billing-detailed-line-items-with-resources-and-tags-" + datefilename() + ".csv.zip"
+            bucket = conn.get_bucket(key['billing_bucket'])
+            FileObject = Key(bucket)
+            FileObject.key = s3_billing_report
+            FileObject.get_contents_to_filename(zipped_report)
+        except boto.exception.S3ResponseError, emsg:
+            self.logger.error("Failed to get file from s3: " + str(emsg.reason))
+            raise SystemExit
+        except Exception, err:
+            self.logger.error("No idea why this went wrong: " + str(err.reason))
+            raise SystemExit
 
-    #now unzip it ready for splunk monitoring
-    #unzip
-    zipHandle = zipfile.ZipFile(BILLINGREPORTZIPFILE, mode='r')
-    for subfile in zipHandle.namelist():
-        zipHandle.extract(subfile, BILLINGREPORTCSVDIR)
+        zipfile = zipfile.ZipFile(zipped_report, mode='r')
+        for subfile in zipfile.namelist():
+            zipfile.extract(subfile, os.path.join(self.app_home, 'tmp'))
 
 if __name__ == "__main__":
-    main()
+    fdr = FetchDetailedReport()

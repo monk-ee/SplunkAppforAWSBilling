@@ -1,21 +1,5 @@
 <setup>
     <block title="SplunkAppforAWSBilling Endpoint Setup" endpoint="SplunkAppforAWSBilling_setup/SplunkAppforAWSBilling_endpoint" entity="default">
-        <input field="url">
-            <label>URL:</label>
-            <label>https://{environment_name}.service-now.com</label>
-            <type>text</type>
-        </input>
-        <input field="endpoint">
-            <label>API Endpoint:</label>
-            <label>/api/now/v1/table/</label>
-            <type>text</type>
-        </input>
-        <input field="release">
-            <label>Release:</label>
-            <label>supported versions: Calgary, Dublin and Eureka</label>
-            <type>list</type>
-
-        </input>
         <input field="proxy_url">
             <label>Proxy URL - Keep Blank if there is no proxy - If proxy is required, type the full URL - Example:
                 https://myproxyserver:8080
