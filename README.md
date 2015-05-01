@@ -34,7 +34,7 @@ It provides a base for you to extend and articulate your own spending and usage 
 * Costs by Availability Zone
 
 ## Includes:
-* Boto 2.10.0
+* Boto 2.38.0
 * PyYaml 3.10
 
 #Installation Instructions
@@ -154,21 +154,28 @@ A utility for processing older report files into splunk for processing. Be very 
 
 Restart splunk and you should be away.
 
-<blockquote>
- s3:
-  account_number: 123456
-  billing_bucket: name-of-bucket
-  time_zone: Australia/Brisbane
- regions:
-  - name: ap-southeast-2
- keys:
-  - account_number    : 123456
-    name              : service.splunk
-    aws_access_key    : AAAAAAAAAAAA
-    aws_secret_key    : AAAAAAAAAAAABBBBBBBBBBBBBBCC
-    spend_limit       : 10000
-    corporate_key     : true
-</blockquote>
 
+### Configuration
+
+For a single account use the following style of aws.yaml:
+
+    accounts:
+        - account_number    : 123456
+          billing_bucket    : company-billing
+          aws_access_key    : AAAAAAAAAAAA
+          aws_secret_key    : AAAAAAAAAAAABBBBBBBBBBBBBBCC
+
+
+For multiple accounts use the following style of aws.yaml:
+
+    accounts:
+        - account_number    : 123456
+          billing_bucket    : company-one-billing
+          aws_access_key    : AAAAAAAAAAAA
+          aws_secret_key    : AAAAAAAAAAAABBBBBBBBBBBBBBCC
+        - account_number    : 654321
+          billing_bucket    : company-two-billing
+          aws_access_key    : AAAAAAAAAAAA
+          aws_secret_key    : AAAAAAAAAAAABBBBBBBBBBBBBBCC
 
 Special thanks to Nilesh Khetia who's module I borrowed to make this one http://answers.splunk.com/users/114849/nkhetia

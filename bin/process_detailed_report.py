@@ -78,15 +78,19 @@ class ProcessDetailedReport:
                     self.linenumber = row['latest']
         except IOError, err:
             self.logger.error("MERROR - Position File may not exist: " + str(err))
-            pass
+            return
         self.parse(s3_billing_report)
 
     def parse(self, report):
+        report_path = os.path.join(self.app_home, 'csv', report)
         try:
-            ifile = open(BILLINGREPORTZIPDIRCSV, 'rb')
-        except IOError:
-            #bail out the file does not exist yet
-            sys.exit(0)
+            ifile = open(report_path, 'rb')
+        except IOError, err:
+            self.logger.error("MERROR - Report File may not exist: " + str(err))
+            return
+        except Exception,err:
+            self.logger.error("MERROR - Report File may not exist: " + str(err))
+            return
 
         #ok read this file
         reader = csv.reader(ifile)
