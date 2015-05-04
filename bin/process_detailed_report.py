@@ -167,15 +167,18 @@ class ProcessDetailedReport:
         # we looooooooop here and do something re-org so splunk understands it better (that's the theory ;))
         # ps you can use csv.line_number instead of counting - it's better for the environment
         # you need to pop the positional logic in this loop if row.line_num < self.postion['lineitem']
-        if any({0:'LineItem'}) == False:
+        if len(self.position.keys()) == 0:
             # ok it's blank so it hasn't been set, let's set it
+            print('blank set')
             self.position['LineItem'] = 0
+
+        #let's process
         for row in reader:
             newrow = ""
-            if  row[4] != "LineItem":
-                 #(Use LineItem instead) - also skips header - yay!
+            if  row[3] != "LineItem":
+                #(Use LineItem instead) - also skips header - yay!
                 continue
-            elif row.line_number <= self.position['LineItem']:
+            elif reader.line_num <= self.position['LineItem']:
                 #we have already processed these lines throw them away
                 continue
             else:
@@ -194,13 +197,11 @@ class ProcessDetailedReport:
                     newdate = rowdate.strftime("%b %d %Y %I:%M:%S %p %z")
 
                 newrow = str(newdate) + ', '
-                newrow += str(configurationObject['s3']['account_number']) + ', '
                 for col in row:
                     newrow += '"' + str(col) + '",'
                 newrow = newrow[:-1]
-                newrow += '\r\n'
                 # set the last lineitem here
-                self.position['LineItem'] = row.line_num
+                self.position['LineItem'] = reader.line_num
                 #we push this to standard out now for the parser to get
             print(newrow)
         #write positional info
