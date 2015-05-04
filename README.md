@@ -96,27 +96,44 @@ When the app imports your billing report it adds all of the custom fields from y
 They appear like this in your report:
 ![119818](67ff275a-6900-11e3-b4de-005056ad5c72.png)
 
+## Maintenance
+A script is provided to allow the system to clean up old csv files, it is disabled by default.
+
+You can enable it by navigating to Settings > Data Inputs > Scripts and clicking on enable for the the command
+"$SPLUNK_HOME/etc/apps/SplunkAppforAWSBilling/bin/maintain_detailed_reports.py".
 
 ## Logs
 The error log file system location is [SPLUNK_HOME]/var/log/splunk/SplunkAppforAWSBilling.log.
 
 ## Additional Tools
 
-Located in the bin directory of the application are two new tools for fetching and processing older reports. 
+Located in the bin directory of the application are two tools for fetching and processing older reports. 
 
 They are designed to be run as splunk cli scripts:
 eg.
     
-    $SPLUNK_HOME/bin/splunk cmd python fetch_older_report.py 2015 04
+    $SPLUNK_HOME/bin/splunk cmd python $SPLUNK_HOME/etc/apps/SplunkAppforAWSBilling/bin/fetch_older_report.py 2015 04
     
+They are CLI only, so you will need to be able to navigate to the bin directory of the application in a shell or command
+session. They live in the $SPLUNK_HOME/etc/apps/SplunkAppforAWSBilling/bin directory.
+
+It is best to disable the fetch_detailed_report while you import the older months because they use the same temporary
+file to download to.
+
+You can disable it by navigating to Settings > Data Inputs > Scripts and clicking on disable for the the command
+"$SPLUNK_HOME/etc/apps/SplunkAppforAWSBilling/bin/fetch_detailed_report.py".
+
+You run the fetch_older_report command with the year and month report you want (you can do this for multiple months, but not in parallel)
+You then run the process_older_report command with the same year and month with user credentials for a suitably privileged user.
+
+The older events should have appeared in the index, be aware for big files this can take a long time. Don't forget to 
+re-enable the fetch_detailed_report script when you are done.
 
 ### Fetching
 #### usage: fetch_older_report.py [-h] [-d] year month
 
 A utility for fetching/downloading older report files into SplunkAppforAWSBilling.
 
-Be very careful, do not fetch the current months data - you will cause a double up of records in the splunk index.
-`
 To be used in conjunction with process_older_report.py
 
     positional arguments:
@@ -185,7 +202,7 @@ Special thanks to Nilesh Khetia who's module I borrowed to make this one http://
 
     - Supports multiple accounts
     - events are streamed in json
-    - file positions are tracked using yaml files
+    - file positions are tracked using yaml files, to reduce the likelihood of double ups
     - all functions have been moved to classes
     - boto has been updated to 2.38.0
     - proxy support is introduced but not implemented - coming soon!
