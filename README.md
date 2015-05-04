@@ -102,7 +102,13 @@ The error log file system location is [SPLUNK_HOME]/var/log/splunk/SplunkAppforA
 
 ## Additional Tools
 
-Located in the bin directory of the application are two new tools for fetching and processing older reports. They can be triggered from the Data Inputs Screen.
+Located in the bin directory of the application are two new tools for fetching and processing older reports. 
+
+They are designed to be run as splunk cli scripts:
+eg.
+    
+    $SPLUNK_HOME/bin/splunk cmd python fetch_older_report.py 2015 04
+    
 
 ### Fetching
 #### usage: fetch_older_report.py [-h] [-d] year month
@@ -120,21 +126,28 @@ To be used in conjunction with process_older_report.py
     optional arguments:
         -h, --help    show this help message and exit
         -d, --dryrun  Fake runs for testing purposes.
+        
+You don't need to stop splunk for this script to run.
+
 
 ### Processing
 #### usage: process_older_report.py [-h] [-d] year month
 
-A utility for processing older report files into splunk for processing. Be very careful, do not process this months data - you will cause a double up of records in the splunk index.
+A utility for processing older report files into splunk for processing. You will need to run the fetch script first with the appropriate date.
 
     positional arguments:
         year          The year in this format: 2014 (YYYY)
         month         The month in this format: 05 (MM)
+        user          The username for a splunk user.
+        password      The password for a splunk user
 
     optional arguments:
-        -h, --help    show this help message and exit
-        -d, --dryrun  Fake runs for testing purposes.
+        -h, --help          show this help message and exit
+        -d, --dryrun        Fake runs for testing purposes
+        -p, --port          The port to post events to.
+        -s, --serverport    The server to post events to.
 
-Restart splunk and you should be away.
+You don't need to stop splunk for this script to run.
 
 
 ### Configuration
@@ -160,4 +173,19 @@ For multiple accounts use the following style of aws.yaml:
           aws_access_key    : AAAAAAAAAAAA
           aws_secret_key    : AAAAAAAAAAAABBBBBBBBBBBBBBCC
 
+
+### Contributors
+
 Special thanks to Nilesh Khetia who's module I borrowed to make this one http://answers.splunk.com/users/114849/nkhetia
+
+
+### Release Notes
+
+2.0.0 
+
+    - Supports multiple accounts
+    - events are streamed in json
+    - file positions are tracked using yaml files
+    - all functions have been moved to classes
+    - boto has been updated to 2.38.0
+    - proxy support is introduced but not implemented - coming soon!
