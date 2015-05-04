@@ -149,10 +149,10 @@ class ProcessDetailedReport:
         try:
             ifile = open(report_path, 'rb')
         except IOError, err:
-            self.logger.error("MERROR - Report File may not exist: " + str(err))
+            self.logger.error("MERROR - Report File does not exist (IO): " + str(err))
             return
         except Exception,err:
-            self.logger.error("MERROR - Report File may not exist: " + str(err))
+            self.logger.error("MERROR - Report File does not exist (General): " + str(err))
             return
 
         #ok read the report file in
@@ -160,19 +160,17 @@ class ProcessDetailedReport:
 
         # we looooooooop here and do something re-org so splunk understands it better (that's the theory ;))
         # ps you can use csv.line_number instead of counting - it's better for the environment
+        # you need to pop the positional logic in this loop if row.line_num < self.postion['lineitem']
+        if self.postion == "":
+            # ok it's blank so it hasn't been set, let's set it
+            self.position['LineItem'] = 0
         for row in reader:
             newrow = ""
-            if rownum == 0:
-                #format the header row
-                newrow += '"Timestamp",'
-                newrow += '"AccountNumber",'
-                for col in row:
-                    newrow += '"' + str(col) + '",'
-                newrow = newrow[:-1]
-                newrow += '\r\n'
-            elif row[8] == "":
-                 #if the subscriptionid is blank - i dont want that record
-                rownum += 1
+            if  row[4] != "LineItem":
+                 #(Use LineItem instead) - also skips header - yay!
+                continue
+            elif row.line_number <= self.position['LineItem']:
+                #we have already processed these lines throw them away
                 continue
             else:
                 if row[15] != "":
@@ -195,9 +193,28 @@ class ProcessDetailedReport:
                     newrow += '"' + str(col) + '",'
                 newrow = newrow[:-1]
                 newrow += '\r\n'
-            processedCSVHandle.write(newrow)
-            rownum += 1
+                # set the last lineitem here
+                self.position['LineItem'] = row.line_num
+                #we push this to standard out now for the parser to get
+            print(newrow)
+        #write positional info
+        self.write_position(report)
 
+    def write_position(self, report):
+        """
+        This function writes the json positional file ;)
+        :param report:
+        :return: writes out a positional file to the filesystem
+        """
+        try:
+            pos_file = "{0}.yaml".format(report)
+            abs_file_path = os.path.join(self.app_home, 'local', pos_file)
+            with open(abs_file_path, 'w') as outfile:
+                outfile.write( yaml.dump(self.position, default_flow_style=True) )
+        except IOError, err:
+            self.logger.error("ERROR - Position could not be written; this is bad because we now get \
+                              duplicates : " + str(err))
+            raise SystemExit
 
 if __name__ == "__main__":
     pdr = ProcessDetailedReport()
