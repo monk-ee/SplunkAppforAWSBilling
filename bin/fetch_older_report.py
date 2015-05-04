@@ -155,4 +155,4 @@ if __name__ == "__main__":
     parser.add_argument('year', type=int, help='The year in this format: 2014 (YYYY)')
     parser.add_argument('month', type=int, help='The month in this format: 05 (MM)')
     args = parser.parse_args()
-    for = FetchOlderReport(args)
+    foldr = FetchOlderReport(args)

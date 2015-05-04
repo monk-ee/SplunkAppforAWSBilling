@@ -43,6 +43,7 @@ import splunk
 from datetime import datetime
 import os
 import json
+import splunklib client as client
 
 
 class ProcessDetailedReport:
@@ -54,6 +55,8 @@ class ProcessDetailedReport:
     report_date = ''
     linenumber = 0
     position = {}
+    service = ""
+    index= ""
 
     def __init__(self, obj):
         """
@@ -65,6 +68,7 @@ class ProcessDetailedReport:
         self.set_date(obj)
         self.setup_logging()
         self.setup_config()
+        self.connect_to_splunk(obj)
         self.process_files()
 
 
@@ -107,6 +111,19 @@ class ProcessDetailedReport:
             self.config =  yaml.load(config)
         except IOError, err:
             self.logger.error("Failed to load configuration file aws.yaml: " + str(err))
+            raise SystemExit
+
+    def connect_to_splunk(self, arg):
+        # Create a Service instance and log in
+        try:
+            self.service = client.connect(
+                host=str(arg.host),
+                port=str(arg.port),
+                username=str(arg.user),
+                password=str(arg.password))
+            self.index = service.indexes["aws-bill"]
+        except IOError, err:
+            self.logger.error("Failed to connect to splunk server and connect to index: " + str(err))
             raise SystemExit
 
     def process_files(self):
@@ -216,7 +233,9 @@ class ProcessDetailedReport:
                 # set the last lineitem here
                 self.position['LineItem'] = reader.line_num
                 #we push this to standard out now for the parser to get
-            print(json.dumps(newjson, encoding="utf-8", ensure_ascii=True))
+                self.index.submit(json.dumps(newjson, encoding="utf-8", ensure_ascii=True), \
+                                  sourcetype="SplunkAppforAWSBilling_Processor", \
+                                  source="SplunkAppforAWSBilling_Import", host="local")
         #write positional info
         self.write_position(report)
 
@@ -241,7 +260,13 @@ if __name__ == "__main__":
     #grab the arguments when the script is ran
     parser = argparse.ArgumentParser(description='A utility for processing older report files into splunk for processing. Be very careful, do not process this months data - you will cause a double up of records in the splunk index.')
     parser.add_argument('-d', '--dryrun', action='store_true', default=False, help='Fake runs for testing purposes.')
+    parser.add_argument('-h', '--host', default="localhost", help='Host name of splunk server.')
+    parser.add_argument('-p', '--port', default="8089", help='Port of splunk server.')
     parser.add_argument('year', type=int, help='The year in this format: 2014 (YYYY)')
     parser.add_argument('month', type=int, help='The month in this format: 05 (MM)')
+    parser.add_argument('user', type=str, help='Your username.')
+    parser.add_argument('password', type=str, help='Your password.')
+
+
     args = parser.parse_args()
     pdr = ProcessDetailedReport(args)

@@ -39,7 +39,7 @@ It provides a base for you to extend and articulate your own spending and usage 
 
 #Installation Instructions
 
-Install as you normally would by unpacking all the files in the SPLUNK_HOME/etc/apps directory.
+Install as you normally would by unpacking all the files in the SPLUNK_HOME/etc/apps directory or uploading using the app manager.
 
 You will need to fill in the following pieces of information in the local directory aws.yaml file. (an example is provided)
 
@@ -48,7 +48,7 @@ You will need to fill in the following pieces of information in the local direct
 ## Overview
 Splunk App for AWS Billing allows you to collect Detailed Billing data from which in-depth analysis of usage patterns and spending becomes available for Amazon Web Services environment.
 
-It provides a base for you to extend and articulate your own spending and usage patterns.
+It provides a base for you to extend and articulate your own spending and usage patterns. It converts your billing line items into JSON which is imported and can be processed in SPlunk.
 
 Any feedback, including requests for enhancement are most welcome. Email: magic.monkee.magic@gmail.com
 
@@ -96,31 +96,13 @@ When the app imports your billing report it adds all of the custom fields from y
 They appear like this in your report:
 ![119818](67ff275a-6900-11e3-b4de-005056ad5c72.png)
 
-Splunk translates them to the following values:
-![119819](67fe026c-6900-11e3-b4de-005056ad5c72.png)
-
-So to use them in a search you will need to refer to them like this:
-![119820](67fccfdc-6900-11e3-b4de-005056ad5c72.png)
-
-So to recap, your custom tag looks like this in the report:
-> user:Name
-
-And is translated to
-> user_Name
-
-All strange characters are changed on the way past to the underscore character (_)
 
 ## Logs
-The error log file system location is [SPLUNK_HOME]/etc/apps/SplunkAppforAWSBilling/log/detailed_bill_errors.txt.
+The error log file system location is [SPLUNK_HOME]/var/log/splunk/SplunkAppforAWSBilling.log.
 
-## Additional Command Line Tools
+## Additional Tools
 
-Located in the bin directory of the application are two new tools for fetching and processing older reports. If you do not change to the splunk user (recommended) you will need to set the SPLUNK_HOME for these to work:
-
-    export SPLUNK_HOME=/opt/splunk
-
-+ fetch_older_reports.py: will fetch the reports for you
-+ process_older_report.py will process them for you
+Located in the bin directory of the application are two new tools for fetching and processing older reports. They can be triggered from the Data Inputs Screen.
 
 ### Fetching
 #### usage: fetch_older_report.py [-h] [-d] year month
@@ -179,7 +161,3 @@ For multiple accounts use the following style of aws.yaml:
           aws_secret_key    : AAAAAAAAAAAABBBBBBBBBBBBBBCC
 
 Special thanks to Nilesh Khetia who's module I borrowed to make this one http://answers.splunk.com/users/114849/nkhetia
-
-
-
-@todo set the input to be scripted not csv reader

@@ -73,16 +73,9 @@ class ConfigApp(admin.MConfigHandler):
         input_1 = {'disabled': '0', 'index': 'aws-bill', 'interval': '300', 'source': 'SplunkAppforAWSBilling_Import',
                    'sourcetype': 'SplunkAppforAWSBilling_Processor', 'passAuth': 'splunk-system-user'}
 
-        input_2 = {'disabled': '1', 'index': 'aws-bill', 'interval': '300', 'source': 'SplunkAppforAWSBilling_Import',
-                   'sourcetype': 'SplunkAppforAWSBilling_Processor', 'passAuth': 'splunk-system-user'}
-
         INPUT_FILE = os.path.join(os.environ['SPLUNK_HOME'], 'etc', 'apps', 'SplunkAppforAWSBilling', 'bin', 'process_detailed_report.py')
         INPUT_FILE = 'script://' + INPUT_FILE
         self.writeConf('inputs', INPUT_FILE, input_1)
-
-        INPUT_FILE = os.path.join(os.environ['SPLUNK_HOME'], 'etc', 'apps', 'SplunkAppforAWSBilling', 'bin', 'process_older_report.py 2015 04')
-        INPUT_FILE = 'script://' + INPUT_FILE
-        self.writeConf('inputs', INPUT_FILE, input_2)
 
 
 
