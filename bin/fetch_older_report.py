@@ -53,6 +53,11 @@ class FetchOlderReport:
     report_date = ''
 
     def __init__(self, obj):
+        """
+
+        :param obj:
+        :return:
+        """
         self.splunk_home = os.environ['SPLUNK_HOME']
         self.app_home = os.path.join(self.splunk_home, 'etc', 'apps', self.appname)
         self.set_date(obj)
@@ -61,10 +66,19 @@ class FetchOlderReport:
         self.process_files()
 
     def set_date(self, arg):
+        """
+
+        :param arg:
+        :return:
+        """
         self.report_date = str(arg.year) + '-' + str(arg.month).zfill(2)
 
     # Define the logging function
     def setup_logging(self):
+        """
+
+        :return:
+        """
         self.logger = logging.getLogger('splunk.SplunkAppforAWSBilling')
         LOGGING_DEFAULT_CONFIG_FILE = os.path.join(self.splunk_home, 'etc', 'log.cfg')
         LOGGING_LOCAL_CONFIG_FILE = os.path.join(self.splunk_home, 'etc', 'log-local.cfg')
@@ -81,6 +95,10 @@ class FetchOlderReport:
 
 
     def setup_config(self):
+        """
+
+        :return:
+        """
         try:
             aws_key_file = os.path.join(self.app_home, 'local', 'aws.yaml')
             config = open(aws_key_file, 'r')
@@ -91,11 +109,20 @@ class FetchOlderReport:
 
 
     def process_files(self):
+        """
+
+        :return:
+        """
         for key in self.config['accounts']:
             self.fetch_file(key)
 
 
     def fetch_file(self, key):
+        """
+
+        :param key:
+        :return:
+        """
         zipped_report = os.path.join(self.app_home, 'tmp', str(key['account_number']) + '_detailed_billing.zip')
         try:
             conn = S3Connection(key['aws_access_key'], key['aws_secret_key'])
