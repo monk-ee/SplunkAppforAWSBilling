@@ -192,7 +192,7 @@ class ProcessDetailedReport:
                 #we have already processed these lines throw them away
                 continue
             else:
-                #the whole purpose of this function us to give context to single date billing items, I guess
+                #the whole purpose of this function us to give context to month date billing items, I guess
                 if row[15] != "":
                     try:
                         rowdate = datetime.strptime(row[15], '%Y-%m-%d %H:%M:%S')

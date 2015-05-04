@@ -33,6 +33,10 @@ class FetchDetailedReport:
     report_date = ''
 
     def __init__(self):
+        """
+
+        :return:
+        """
         self.splunk_home = os.environ['SPLUNK_HOME']
         self.app_home = os.path.join(self.splunk_home, 'etc', 'apps', self.appname)
         self.set_date()
@@ -42,6 +46,10 @@ class FetchDetailedReport:
 
 
     def set_date(self):
+        """
+
+        :return:
+        """
         dt = datetime.now()
         self.report_date = dt.strftime("%Y-%m")
 
@@ -61,6 +69,10 @@ class FetchDetailedReport:
 
 
     def setup_config(self):
+        """
+
+        :return:
+        """
         try:
             aws_key_file = os.path.join(self.app_home, 'local', 'aws.yaml')
             config = open(aws_key_file, 'r')
@@ -71,11 +83,20 @@ class FetchDetailedReport:
 
 
     def process_files(self):
+        """
+
+        :return:
+        """
         for key in self.config['accounts']:
             self.fetch_file(key)
 
 
     def fetch_file(self, key):
+        """
+
+        :param key:
+        :return:
+        """
         zipped_report = os.path.join(self.app_home ,'tmp' , str(key['account_number']) + '_detailed_billing.zip')
         try:
             conn = S3Connection(key['aws_access_key'], key['aws_secret_key'])
