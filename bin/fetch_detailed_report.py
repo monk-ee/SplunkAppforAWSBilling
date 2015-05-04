@@ -90,6 +90,7 @@ class FetchDetailedReport:
         except Exception, err:
             self.logger.error("No idea why this went wrong: " + str(err))
             raise SystemExit
+        # wunzip the file
         try:
             zip = zipfile.ZipFile(zipped_report, mode='r')
             for subfile in zip.namelist():

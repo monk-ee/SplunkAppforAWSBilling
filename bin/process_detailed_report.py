@@ -34,6 +34,9 @@ __status__ = "Production"
 import yaml
 import csv
 from splunk_utilities import *
+import splunk.clilib.cli_common
+import logging, logging.handlers
+import splunk
 from datetime import datetime
 import os
 
@@ -46,7 +49,7 @@ class ProcessDetailedReport:
     app_home = ''
     report_date = ''
     linenumber = 0
-    position = ''
+    position = {}
 
     def __init__(self):
         """
@@ -108,7 +111,7 @@ class ProcessDetailedReport:
         :return:
         """
         for key in self.config['accounts']:
-            self.fetch_file(key)
+            self.process_file(key)
 
     def process_file(self, key):
         """
@@ -118,6 +121,9 @@ class ProcessDetailedReport:
         """
         s3_billing_report = str(key[
             'account_number']) + "-aws-billing-detailed-line-items-with-resources-and-tags-" + self.report_date + ".csv"
+        #reset this or stuff will break
+        self.position = {}
+        #ok go go go go go go go
         self.load_position(s3_billing_report)
         self.parse(s3_billing_report)
 
@@ -161,7 +167,7 @@ class ProcessDetailedReport:
         # we looooooooop here and do something re-org so splunk understands it better (that's the theory ;))
         # ps you can use csv.line_number instead of counting - it's better for the environment
         # you need to pop the positional logic in this loop if row.line_num < self.postion['lineitem']
-        if self.postion == "":
+        if any({0:'LineItem'}) == False:
             # ok it's blank so it hasn't been set, let's set it
             self.position['LineItem'] = 0
         for row in reader:

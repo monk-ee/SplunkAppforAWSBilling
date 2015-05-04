@@ -179,3 +179,7 @@ For multiple accounts use the following style of aws.yaml:
           aws_secret_key    : AAAAAAAAAAAABBBBBBBBBBBBBBCC
 
 Special thanks to Nilesh Khetia who's module I borrowed to make this one http://answers.splunk.com/users/114849/nkhetia
+
+
+
+@todo set the input to be scripted not csv reader
