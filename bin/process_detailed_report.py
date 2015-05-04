@@ -20,7 +20,10 @@
       - StatementTotal
 
     This is stored in a yaml file like so:
+    LineItem: !!python/long '16467'}
 
+    This file branches as of ab16476f08071f9da1492f8df5a459374586a452 to output a yaml format rather than lines from
+    the csv.
 """
 
 __author__ = "monkee"
@@ -39,6 +42,7 @@ import logging, logging.handlers
 import splunk
 from datetime import datetime
 import os
+import json
 
 
 class ProcessDetailedReport:
@@ -169,19 +173,26 @@ class ProcessDetailedReport:
         # you need to pop the positional logic in this loop if row.line_num < self.postion['lineitem']
         if len(self.position.keys()) == 0:
             # ok it's blank so it hasn't been set, let's set it
-            print('blank set')
+
             self.position['LineItem'] = 0
 
-        #let's process
+        #let's reset headers - just in case new custom tags have been added in the interim
+        headers = ""
+
+        #time to build a dictionary of this stuff
         for row in reader:
-            newrow = ""
-            if  row[3] != "LineItem":
-                #(Use LineItem instead) - also skips header - yay!
+            newjson = {}
+            if reader.line_num == 1:
+                headers = row
+                continue
+            elif row[3] != "LineItem":
+                #(Use LineItem instead)
                 continue
             elif reader.line_num <= self.position['LineItem']:
                 #we have already processed these lines throw them away
                 continue
             else:
+                #the whole purpose of this function us to give context to single date billing items, I guess
                 if row[15] != "":
                     try:
                         rowdate = datetime.strptime(row[15], '%Y-%m-%d %H:%M:%S')
@@ -196,14 +207,16 @@ class ProcessDetailedReport:
                     rowdate = datetime.strptime(falsedate, '%Y-%m-%d %H:%M:%S')
                     newdate = rowdate.strftime("%b %d %Y %I:%M:%S %p %z")
 
-                newrow = str(newdate) + ', '
-                for col in row:
-                    newrow += '"' + str(col) + '",'
-                newrow = newrow[:-1]
+                newjson['datetime'] = str(newdate)
+                count = 0
+                for col in headers:
+                    newjson[col] = row[count]
+                    count=count+1
+
                 # set the last lineitem here
                 self.position['LineItem'] = reader.line_num
                 #we push this to standard out now for the parser to get
-            print(newrow)
+            print(json.dumps(newjson, encoding="utf-8", ensure_ascii=True))
         #write positional info
         self.write_position(report)
 
