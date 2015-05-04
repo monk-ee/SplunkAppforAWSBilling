@@ -189,3 +189,8 @@ Special thanks to Nilesh Khetia who's module I borrowed to make this one http://
     - all functions have been moved to classes
     - boto has been updated to 2.38.0
     - proxy support is introduced but not implemented - coming soon!
+    
+    
+### Examples
+
+index=aws-bill | timechart sum(BlendedCost) as $ by ItemDescription
