@@ -43,8 +43,8 @@ import splunk
 from datetime import datetime
 import os
 import json
-import splunklib client as client
-
+import splunklib.client as client
+import argparse
 
 class ProcessDetailedReport:
     logger = ''
@@ -117,11 +117,11 @@ class ProcessDetailedReport:
         # Create a Service instance and log in
         try:
             self.service = client.connect(
-                host=str(arg.host),
+                host=str(arg.serverhost),
                 port=str(arg.port),
                 username=str(arg.user),
                 password=str(arg.password))
-            self.index = service.indexes["aws-bill"]
+            self.index = self.service.indexes["aws-bill"]
         except IOError, err:
             self.logger.error("Failed to connect to splunk server and connect to index: " + str(err))
             raise SystemExit
@@ -260,7 +260,7 @@ if __name__ == "__main__":
     #grab the arguments when the script is ran
     parser = argparse.ArgumentParser(description='A utility for processing older report files into splunk for processing. Be very careful, do not process this months data - you will cause a double up of records in the splunk index.')
     parser.add_argument('-d', '--dryrun', action='store_true', default=False, help='Fake runs for testing purposes.')
-    parser.add_argument('-h', '--host', default="localhost", help='Host name of splunk server.')
+    parser.add_argument('-s', '--serverhost', default="localhost", help='Host name of splunk server.')
     parser.add_argument('-p', '--port', default="8089", help='Port of splunk server.')
     parser.add_argument('year', type=int, help='The year in this format: 2014 (YYYY)')
     parser.add_argument('month', type=int, help='The month in this format: 05 (MM)')
