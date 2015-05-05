@@ -60,6 +60,9 @@ Feel free to submit a pull request:
 The application supports the straight Cost model as well as the Blended/Unblended Cost Model. Dashboards for both are provided; use the one that suits your billing settings.
 
 ## Setup Amazon detailed billing
+
+v2.0 Indexes are not compatible with earlier versions of the app, you will have to rerun all your log data and flush the older indexes - the data has changed from csv items to JSON.
+
 You will need to ensure that you have set your billing preferences correctly.
 
  If you are not sure go to Billing Preferences:
@@ -213,3 +216,24 @@ Special thanks to Nilesh Khetia who's module I borrowed to make this one http://
 Here are some example searches, I hope you find them useful:
 
     index=aws-bill | timechart sum(BlendedCost) as $ by ItemDescription
+    index=aws-bill BlendedCost !="" | timechart span=1day sum(BlendedCost) as $ by ProductName useother=f
+    
+### Reports
+
+- Monthly Blended Raw Costs (Bar)
+- Monthly UnBlended Raw Costs (Bar)
+- Last Month Daytime Blended Costs (Bar)
+- Last Month Nighttime Blended Costs (Bar)
+- Blended Costs by AWS Product (Bar)
+- Current $ Spend  (Gauge)
+- Billing Items
+- Usage Quantity
+
+
+- Account
+- Daily Cost
+- Tag Report
+- This Month vs. Last Month Detail
+- This Week vs. Last Week by Account
+- Total Invoiced Cost
+- Usage Type.

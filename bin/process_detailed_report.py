@@ -193,20 +193,10 @@ class ProcessDetailedReport:
                 #we have already processed these lines throw them away
                 continue
             else:
-                #the whole purpose of this function us to give context to month date billing items, I guess
-                if row[15] == "":
-                    falsedate = datefilename() + "-01 00:00:00"
-                    rowdate = datetime.strptime(falsedate, '%Y-%m-%d %H:%M:%S')
-                    newdate = rowdate.strftime("%Y-%m-%d %H:%M:%S'")
-                else:
-                    newdate = row[15]
-
-                newjson['datetime'] = str(newdate)
                 count = 0
                 for col in headers:
                     newjson[col] = row[count]
                     count=count+1
-
                 # set the last lineitem here
                 self.position['LineItem'] = reader.line_num
                 #we push this to standard out now for the parser to get
