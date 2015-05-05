@@ -115,6 +115,7 @@ There are three main views:
 ## Customizing your Tag Graphs
 When the app imports your billing report it adds all of the custom fields from your report.
 They appear like this in your report:
+
 ![Billing Management Console](/screenshots/Custom_Tags.png)
 
 You can then use them in a search or to customize a dashboard like so:
