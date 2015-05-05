@@ -64,23 +64,43 @@ You will need to ensure that you have set your billing preferences correctly.
 
  If you are not sure go to Billing Preferences:
 
-![billing_management_console](/screenshots/Billing_Management_Console.png)
+![Billing Management Console](/screenshots/Billing_Management_Console.png)
 
- You will then need to make sure that you have subscribed to Programmtic Access and have setup an S3 bucket for your bills:
- ![119815](6802b53c-6900-11e3-b4de-005056ad5c72.png)
+ You will then need to make sure that you have subscribed to "Recieve Billing Reports" and have setup a valid S3 bucket for your bills.
 
- In this case the S3 bucket is called fct-billing. Now make sureyou have also subscribed to Detailed Billing Report (with resources and tags):
- ![119816](6801857c-6900-11e3-b4de-005056ad5c72.png)
+ Now make sure you have also ticked the Detailed Billing Report (with resources and tags):
 
- It's also a great idea to setup a user account that only has readonly rights to your file bucket. I use an account called service.splunk.
+ It's also a great idea to setup an IAM user account that only has readonly rights to your file bucket. 
+ 
 
-## Setup Splunk App
+## Setup and Configuration of the Splunk App
 The app is provided as an spl an can be installed using the GUI - feel free to unpack it if you want:
 
 It's file system location is [SPLUNK_HOME]/etc/apps/SplunkAppforAWSBilling.
 
 You will need to take the aws.yaml.example and put in your own configuration details then save it as aws.yaml in the [SPLUNK_HOME]/etc/apps/SplunkAppforAWSBilling/local directory.
-![119817](68005a76-6900-11e3-b4de-005056ad5c72.png)
+
+For a single account use the following style of aws.yaml:
+
+    accounts:
+        - account_number    : 123456
+          billing_bucket    : company-billing
+          aws_access_key    : AAAAAAAAAAAA
+          aws_secret_key    : AAAAAAAAAAAABBBBBBBBBBBBBBCC
+
+
+For multiple accounts use the following style of aws.yaml:
+
+    accounts:
+        - account_number    : 123456
+          billing_bucket    : company-one-billing
+          aws_access_key    : AAAAAAAAAAAA
+          aws_secret_key    : AAAAAAAAAAAABBBBBBBBBBBBBBCC
+        - account_number    : 654321
+          billing_bucket    : company-two-billing
+          aws_access_key    : AAAAAAAAAAAA
+          aws_secret_key    : AAAAAAAAAAAABBBBBBBBBBBBBBCC
+
 
 ## The index
 The index is called aws-bill
@@ -95,7 +115,11 @@ There are three main views:
 ## Customizing your Tag Graphs
 When the app imports your billing report it adds all of the custom fields from your report.
 They appear like this in your report:
-![119818](67ff275a-6900-11e3-b4de-005056ad5c72.png)
+![Billing Management Console](/screenshots/Custom_Tags.png)
+
+You can then use them in a search or to customize a dashboard like so:
+
+    index=aws-bill | timechart sum(BlendedCost) as $ by user:Customer
 
 ## Maintenance
 A script is provided to allow the system to clean up old csv files, it is disabled by default.
@@ -110,7 +134,7 @@ The error log file system location is [SPLUNK_HOME]/var/log/splunk/SplunkAppforA
 
 Located in the bin directory of the application are two tools for fetching and processing older reports. 
 
-They are designed to be run as splunk cli scripts:
+They are designed to be run as Splunk CLI scripts:
 eg.
     
     $SPLUNK_HOME/bin/splunk cmd python $SPLUNK_HOME/etc/apps/SplunkAppforAWSBilling/bin/fetch_older_report.py 2015 04
@@ -145,13 +169,13 @@ To be used in conjunction with process_older_report.py
         -h, --help    show this help message and exit
         -d, --dryrun  Fake runs for testing purposes.
         
-You don't need to stop splunk for this script to run.
+You don't need to stop Splunk for this script to run.
 
 
 ### Processing
 #### usage: process_older_report.py [-h] [-d] year month
 
-A utility for processing older report files into splunk for processing. You will need to run the fetch script first with the appropriate date.
+A utility for processing older report files into Splunk for processing. You will need to run the fetch script first with the appropriate date.
 
     positional arguments:
         year          The year in this format: 2014 (YYYY)
@@ -166,31 +190,6 @@ A utility for processing older report files into splunk for processing. You will
         -s, --serverport    The server to post events to.
 
 You don't need to stop splunk for this script to run.
-
-
-### Configuration
-
-For a single account use the following style of aws.yaml:
-
-    accounts:
-        - account_number    : 123456
-          billing_bucket    : company-billing
-          aws_access_key    : AAAAAAAAAAAA
-          aws_secret_key    : AAAAAAAAAAAABBBBBBBBBBBBBBCC
-
-
-For multiple accounts use the following style of aws.yaml:
-
-    accounts:
-        - account_number    : 123456
-          billing_bucket    : company-one-billing
-          aws_access_key    : AAAAAAAAAAAA
-          aws_secret_key    : AAAAAAAAAAAABBBBBBBBBBBBBBCC
-        - account_number    : 654321
-          billing_bucket    : company-two-billing
-          aws_access_key    : AAAAAAAAAAAA
-          aws_secret_key    : AAAAAAAAAAAABBBBBBBBBBBBBBCC
-
 
 ### Contributors
 
@@ -210,5 +209,6 @@ Special thanks to Nilesh Khetia who's module I borrowed to make this one http://
     
     
 ### Examples
+Here are some example searches, I hope you find them useful:
 
-index=aws-bill | timechart sum(BlendedCost) as $ by ItemDescription
+    index=aws-bill | timechart sum(BlendedCost) as $ by ItemDescription
