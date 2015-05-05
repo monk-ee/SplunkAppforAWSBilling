@@ -63,7 +63,8 @@ The application supports the straight Cost model as well as the Blended/Unblende
 You will need to ensure that you have set your billing preferences correctly.
 
  If you are not sure go to Billing Preferences:
- ![119814](6803f492-6900-11e3-b4de-005056ad5c72.png)
+
+![billing_management_console](monk-ee.github.com/SplunkAppforAWSBilling/screenshots/Billing_Management_Console.png)
 
  You will then need to make sure that you have subscribed to Programmtic Access and have setup an S3 bucket for your bills:
  ![119815](6802b53c-6900-11e3-b4de-005056ad5c72.png)
