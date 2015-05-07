@@ -45,6 +45,8 @@ import splunk
 from datetime import datetime
 import os
 import json
+import base64
+
 try:
     import cPickle as pickle
 except:
@@ -59,7 +61,7 @@ class ProcessDetailedReport:
     app_home = ''
     report_date = ''
     linenumber = 0
-    position = set()
+    position = {}
 
     def __init__(self):
         """
@@ -102,6 +104,14 @@ class ProcessDetailedReport:
         splunk.setupSplunkLogger(
             self.logger, LOGGING_DEFAULT_CONFIG_FILE, LOGGING_LOCAL_CONFIG_FILE, LOGGING_STANZA_NAME)
 
+    def filesafe(self, name):
+        """
+
+        :param name:
+        :return:
+        """
+        return base64.urlsafe_b64encode(name)
+
     def setup_config(self):
         """
         This just loads the yaml that contains the configuration required to calculate the report file name(s)
@@ -131,8 +141,6 @@ class ProcessDetailedReport:
         """
         s3_billing_report = str(key[
             'account_number']) + "-aws-billing-detailed-line-items-with-resources-and-tags-" + self.report_date + ".csv"
-        #reset this or stuff will break
-        self.position = ''
         #ok go go go go go go go
         self.parse(s3_billing_report)
 
@@ -143,12 +151,12 @@ class ProcessDetailedReport:
         :return:
         """
         try:
-            pos_file = "{0}.{1}.p".format(s3_billing_report, product)
+            pos_file = "{0}.{1}.p".format(s3_billing_report, self.filesafe(product))
             abs_file_path = os.path.join(self.app_home, 'local', pos_file)
-            self.position = pickle.load( open( abs_file_path, "rb" ) )
+            self.position[product] = pickle.load( open( abs_file_path, "rb" ) )
         except IOError, err:
-            # so thi sfile doesnt exist lets set it up
-            self.position[product] = set()
+            # so this file doesnt exist lets set it up
+            self.position.update({product: set()})
             pass
         return
 
@@ -195,14 +203,6 @@ class ProcessDetailedReport:
         #ok read the report file in
         reader = csv.reader(ifile)
 
-        # we looooooooop here and do something re-org so splunk understands it better (that's the theory ;))
-        # ps you can use csv.line_number instead of counting - it's better for the environment
-        # you need to pop the positional logic in this loop if row.line_num < self.postion['lineitem']
-        if len(self.position.keys()) == 0:
-            # ok it's blank so it hasn't been set, let's set it
-
-            self.position['LineItem'] = 0
-
         #let's reset headers - just in case new custom tags have been added in the interim
         headers = ""
 
@@ -228,7 +228,7 @@ class ProcessDetailedReport:
                     newjson[col] = row[count]
                     count=count+1
                 self.game_set_and_match(report, newjson)
-            self.write_position(report)
+        self.write_position(report)
 
     def output_json(self, newjson):
         """
@@ -245,11 +245,11 @@ class ProcessDetailedReport:
         :param report:
         :return: writes out a positional file to the filesystem
         """
-        for product in self.position:
+        for product in self.position.iterkeys():
             try:
-                pos_file = "{0}.{1}.p".format(report, product)
+                pos_file = "{0}.{1}.p".format(report, self.filesafe(product))
                 abs_file_path = os.path.join(self.app_home, 'local', pos_file)
-                pickle.dump( self.position, open( abs_file_path, "rb" ) )
+                pickle.dump( self.position[product], open( abs_file_path, "wb" ) )
             except IOError, err:
                 self.logger.error("ERROR - Position could not be written; this is bad because we now get \
                                   duplicates : " + str(err))
