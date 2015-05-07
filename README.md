@@ -1,5 +1,5 @@
-SplunkAppforAWSBilling
-======================
+SplunkAppforAWSBilling v2.0.4
+=============================
 
 Splunk App for AWS Billing allows you to collect Detailed Billing data from which in-depth analysis of usage patterns and spending becomes available for Amazon Web Services environment.
 It provides a base for you to extend and articulate your own spending and usage patterns.
@@ -202,13 +202,15 @@ Special thanks to Nilesh Khetia who's module I borrowed to make this one http://
 
 ### Release Notes
 
-2.0.0 
+2.0.4
 
     - Supports multiple accounts
+    - set driven duplicate protection for line items
     - events are streamed in json
-    - file positions are tracked using yaml files, to reduce the likelihood of double ups
+    - file positions are tracked using pickle binary files, to reduce the likelihood of double ups
     - all functions have been moved to classes
     - boto has been updated to 2.38.0
+    - old reports are posted to splunk using splunklib index post
     - proxy support is introduced but not implemented - coming soon!
     
     
@@ -241,3 +243,9 @@ Search for Duplicate Record Id
 - This Week vs. Last Week by Account
 - Total Invoiced Cost
 - Usage Type.
+
+### Warning: Danger Will Robinson!!!
+
+- v2.0 Indexes are not compatible with earlier versions of the app, you will have to rerun all your log data and flush the older indexes - the data has changed from csv items to JSON.
+- GST Items are thrown away - because of the currency conversion complexity. (I am considering adding these but with exclusion flags on the reports)
+- Any LineItem that does not have a RecordId is thrown away - because it is not charged to your bill

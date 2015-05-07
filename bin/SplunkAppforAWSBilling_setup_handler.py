@@ -1,6 +1,11 @@
 # -*- coding: utf-8 -*-
 __author__ = 'Monkee Magic <magic.monkee.magic@gmail.com>'
-__version__ = '2.0.0'
+__author__ = "monkee"
+__license__ = "GPLv3.0"
+__version__ = "2.0.4"
+__maintainer__ = "monk-ee"
+__email__ = "magic.monkee.magic@gmail.com"
+__status__ = "Production"
 
 import splunk.admin as admin
 import splunk.entity as en

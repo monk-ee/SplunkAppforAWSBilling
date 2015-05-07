@@ -30,7 +30,7 @@
 
 __author__ = "monkee"
 __license__ = "GPLv3.0"
-__version__ = "2.0.0"
+__version__ = "2.0.4"
 __maintainer__ = "monk-ee"
 __email__ = "magic.monkee.magic@gmail.com"
 __status__ = "Production"
