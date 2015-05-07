@@ -24,6 +24,7 @@
 
     This file branches as of ab16476f08071f9da1492f8df5a459374586a452 to output a yaml format rather than lines from
     the csv.
+    The dashboards will need to understand estimated versus actual
 
 """
 
@@ -44,6 +45,10 @@ import splunk
 from datetime import datetime
 import os
 import json
+try:
+    import cPickle as pickle
+except:
+    import pickle
 
 
 class ProcessDetailedReport:
@@ -54,7 +59,7 @@ class ProcessDetailedReport:
     app_home = ''
     report_date = ''
     linenumber = 0
-    position = {}
+    position = set()
 
     def __init__(self):
         """
@@ -127,27 +132,48 @@ class ProcessDetailedReport:
         s3_billing_report = str(key[
             'account_number']) + "-aws-billing-detailed-line-items-with-resources-and-tags-" + self.report_date + ".csv"
         #reset this or stuff will break
-        self.position = {}
+        self.position = ''
         #ok go go go go go go go
-        self.load_position(s3_billing_report)
         self.parse(s3_billing_report)
 
 
-    def load_position(self, s3_billing_report):
+    def load_position(self, s3_billing_report, product):
         """
         :param s3_billing_report: this is the calculated name of the report file based on account number and month/year
         :return:
         """
         try:
-            pos_file = "{0}.yaml".format(s3_billing_report)
+            pos_file = "{0}.{1}.p".format(s3_billing_report, product)
             abs_file_path = os.path.join(self.app_home, 'local', pos_file)
-            file = open(abs_file_path, 'r')
-            self.position = yaml.load(file)
+            self.position = pickle.load( open( abs_file_path, "rb" ) )
         except IOError, err:
-            #self.logger.error("MERROR - Position File may not exist: " + str(err))
-            #we dont care about this really - will happen first time a file is seen
+            # so thi sfile doesnt exist lets set it up
+            self.position[product] = set()
             pass
         return
+
+    def game_set_and_match(self, report, newjson):
+        """
+
+        :param report:
+        :param newjson:
+        :return:
+        """
+        #first define the set
+        product = newjson['ProductName']
+        try:
+            self.position[product]
+        except:
+            #go fetch
+            self.load_position(report, product)
+        # now let's check it
+        if newjson['RecordId'] in self.position[product]:
+            #ok we got this one move on
+            return
+        else:
+            #ok add us in dano
+            self.position[product].add(newjson['RecordId'])
+            self.output_json(newjson)
 
     def parse(self, report):
         """
@@ -187,22 +213,31 @@ class ProcessDetailedReport:
                 headers = row
                 continue
             elif row[3] != "LineItem":
-                #(Use LineItem instead)
+                #(Use LineItem instead) - throw it away
                 continue
-            elif reader.line_num <= self.position['LineItem']:
-                #we have already processed these lines throw them away
+            elif row[5] == 0:
+                #throw it away it is gst - don't want it right now - or ever really - there is currency conversion mess
+                # associated with this
+                continue
+            elif row[5] == "":
+                #ha this breaks lots of stuff to do with my set logic - so no no no
                 continue
             else:
                 count = 0
                 for col in headers:
                     newjson[col] = row[count]
                     count=count+1
-                # set the last lineitem here
-                self.position['LineItem'] = reader.line_num
-                #we push this to standard out now for the parser to get
-            print(json.dumps(newjson, encoding="utf-8", ensure_ascii=True))
-        #write positional info
-        self.write_position(report)
+                self.game_set_and_match(report, newjson)
+            self.write_position(report)
+
+    def output_json(self, newjson):
+        """
+
+        :param newjson:
+        :return:
+        """
+        print(json.dumps(newjson, encoding="utf-8", ensure_ascii=True))
+
 
     def write_position(self, report):
         """
@@ -210,15 +245,15 @@ class ProcessDetailedReport:
         :param report:
         :return: writes out a positional file to the filesystem
         """
-        try:
-            pos_file = "{0}.yaml".format(report)
-            abs_file_path = os.path.join(self.app_home, 'local', pos_file)
-            with open(abs_file_path, 'w') as outfile:
-                outfile.write( yaml.dump(self.position, default_flow_style=True) )
-        except IOError, err:
-            self.logger.error("ERROR - Position could not be written; this is bad because we now get \
-                              duplicates : " + str(err))
-            raise SystemExit
+        for product in self.position:
+            try:
+                pos_file = "{0}.{1}.p".format(report, product)
+                abs_file_path = os.path.join(self.app_home, 'local', pos_file)
+                pickle.dump( self.position, open( abs_file_path, "rb" ) )
+            except IOError, err:
+                self.logger.error("ERROR - Position could not be written; this is bad because we now get \
+                                  duplicates : " + str(err))
+                raise SystemExit
 
 if __name__ == "__main__":
     pdr = ProcessDetailedReport()

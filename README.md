@@ -218,6 +218,10 @@ Here are some example searches, I hope you find them useful:
     index=aws-bill | timechart sum(BlendedCost) as $ by ItemDescription
     index=aws-bill BlendedCost !="" | timechart span=1day sum(BlendedCost) as $ by ProductName useother=f
     
+Search for Duplicate Record Id
+
+    index=aws-bill | stats count by RecordId | where count > 1
+    
 ### Reports
 
 - Monthly Blended Raw Costs (Bar)
