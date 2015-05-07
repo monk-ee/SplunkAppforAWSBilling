@@ -47,6 +47,7 @@ import os
 import json
 import base64
 
+#we would rather use cpickle but if it's not there that is ok too
 try:
     import cPickle as pickle
 except:
