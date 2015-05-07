@@ -245,7 +245,9 @@ class ProcessDetailedReport:
         :param newjson:
         :return:
         """
-        print(json.dumps(newjson, encoding="utf-8", ensure_ascii=True))
+        self.index.submit(json.dumps(newjson, encoding="utf-8", ensure_ascii=True), \
+                          sourcetype="SplunkAppforAWSBilling_Processor", \
+                          source="SplunkAppforAWSBilling_Import", host="local")
 
 
     def write_position(self, report):
