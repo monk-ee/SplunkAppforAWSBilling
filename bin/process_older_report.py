@@ -238,6 +238,10 @@ class ProcessDetailedReport:
             elif row[5] == "":
                 #ha this breaks lots of stuff to do with my set logic - so no no no
                 continue
+            elif row[4] =="":
+                #so these are calculated aws support costs but not used unless you have broken the thresholds
+                #then they get recordids because they are chargeable - throw them away if they are blank
+                continue
             else:
                 count = 0
                 for col in headers:
