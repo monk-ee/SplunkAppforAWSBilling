@@ -100,6 +100,14 @@ class ProcessDetailedReport:
         splunk.setupSplunkLogger(
             self.logger, LOGGING_DEFAULT_CONFIG_FILE, LOGGING_LOCAL_CONFIG_FILE, LOGGING_STANZA_NAME)
 
+    def filesafe(self, name):
+        """
+
+        :param name:
+        :return:
+        """
+        return base64.urlsafe_b64encode(name)
+
     def setup_config(self):
         """
         This just loads the yaml that contains the configuration required to calculate the report file name(s)
@@ -142,28 +150,47 @@ class ProcessDetailedReport:
         """
         s3_billing_report = str(key[
             'account_number']) + "-aws-billing-detailed-line-items-with-resources-and-tags-" + self.report_date + ".csv"
-        #reset this or stuff will break
-        self.position = {}
         #ok go go go go go go go
-        self.load_position(s3_billing_report)
         self.parse(s3_billing_report)
 
 
-    def load_position(self, s3_billing_report):
+    def load_position(self, s3_billing_report, product):
         """
         :param s3_billing_report: this is the calculated name of the report file based on account number and month/year
         :return:
         """
         try:
-            pos_file = "{0}.yaml".format(s3_billing_report)
+            pos_file = "{0}.{1}.p".format(s3_billing_report, self.filesafe(product))
             abs_file_path = os.path.join(self.app_home, 'local', pos_file)
-            file = open(abs_file_path, 'r')
-            self.position = yaml.load(file)
+            self.position[product] = pickle.load( open( abs_file_path, "rb" ) )
         except IOError, err:
-            #self.logger.error("MERROR - Position File may not exist: " + str(err))
-            #we dont care about this really - will happen first time a file is seen
+            # so this file doesnt exist lets set it up
+            self.position.update({product: set()})
             pass
         return
+
+    def game_set_and_match(self, report, newjson):
+        """
+
+        :param report:
+        :param newjson:
+        :return:
+        """
+        #first define the set
+        product = newjson['ProductName']
+        try:
+            self.position[product]
+        except:
+            #go fetch
+            self.load_position(report, product)
+        # now let's check it
+        if newjson['RecordId'] in self.position[product]:
+            #ok we got this one move on
+            return
+        else:
+            #ok add us in dano
+            self.position[product].add(newjson['RecordId'])
+            self.output_json(newjson)
 
     def parse(self, report):
         """
@@ -185,14 +212,6 @@ class ProcessDetailedReport:
         #ok read the report file in
         reader = csv.reader(ifile)
 
-        # we looooooooop here and do something re-org so splunk understands it better (that's the theory ;))
-        # ps you can use csv.line_number instead of counting - it's better for the environment
-        # you need to pop the positional logic in this loop if row.line_num < self.postion['lineitem']
-        if len(self.position.keys()) == 0:
-            # ok it's blank so it hasn't been set, let's set it
-
-            self.position['LineItem'] = 0
-
         #let's reset headers - just in case new custom tags have been added in the interim
         headers = ""
 
@@ -203,24 +222,31 @@ class ProcessDetailedReport:
                 headers = row
                 continue
             elif row[3] != "LineItem":
-                #(Use LineItem instead)
+                #(Use LineItem instead) - throw it away
                 continue
-            elif reader.line_num <= self.position['LineItem']:
-                #we have already processed these lines throw them away
+            elif row[5] == 0:
+                #throw it away it is gst - don't want it right now - or ever really - there is currency conversion mess
+                # associated with this
+                continue
+            elif row[5] == "":
+                #ha this breaks lots of stuff to do with my set logic - so no no no
                 continue
             else:
                 count = 0
                 for col in headers:
                     newjson[col] = row[count]
                     count=count+1
-                # set the last lineitem here
-                self.position['LineItem'] = reader.line_num
-                #we push this to standard out now for the parser to get
-                self.index.submit(json.dumps(newjson, encoding="utf-8", ensure_ascii=True), \
-                                  sourcetype="SplunkAppforAWSBilling_Processor", \
-                                  source="SplunkAppforAWSBilling_Import", host="local")
-        #write positional info
+                self.game_set_and_match(report, newjson)
         self.write_position(report)
+
+    def output_json(self, newjson):
+        """
+
+        :param newjson:
+        :return:
+        """
+        print(json.dumps(newjson, encoding="utf-8", ensure_ascii=True))
+
 
     def write_position(self, report):
         """
@@ -228,15 +254,16 @@ class ProcessDetailedReport:
         :param report:
         :return: writes out a positional file to the filesystem
         """
-        try:
-            pos_file = "{0}.yaml".format(report)
-            abs_file_path = os.path.join(self.app_home, 'local', pos_file)
-            with open(abs_file_path, 'w') as outfile:
-                outfile.write( yaml.dump(self.position, default_flow_style=True) )
-        except IOError, err:
-            self.logger.error("ERROR - Position could not be written; this is bad because we now get \
-                              duplicates : " + str(err))
-            raise SystemExit
+        for product in self.position.iterkeys():
+            try:
+                pos_file = "{0}.{1}.p".format(report, self.filesafe(product))
+                abs_file_path = os.path.join(self.app_home, 'local', pos_file)
+                pickle.dump( self.position[product], open( abs_file_path, "wb" ) )
+            except IOError, err:
+                self.logger.error("ERROR - Position could not be written; this is bad because we now get \
+                                      duplicates : " + str(err))
+                raise SystemExit
+
 
 
 if __name__ == "__main__":

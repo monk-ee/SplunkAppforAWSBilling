@@ -106,7 +106,8 @@ class ProcessDetailedReport:
 
     def filesafe(self, name):
         """
-
+        just pulled this out because i was not sure the best way to make a filename safe
+        this could be anything really - i chose this way
         :param name:
         :return:
         """
@@ -162,7 +163,9 @@ class ProcessDetailedReport:
 
     def game_set_and_match(self, report, newjson):
         """
-
+        this method does all the hard work of tracking whether a record has been imported or not
+        we keep sets of recordid's around to do a comparison on - seems the only way to do it
+        with some sanity
         :param report:
         :param newjson:
         :return:
@@ -232,7 +235,7 @@ class ProcessDetailedReport:
 
     def output_json(self, newjson):
         """
-
+        just pushed this out to a method that can be modified independently
         :param newjson:
         :return:
         """
