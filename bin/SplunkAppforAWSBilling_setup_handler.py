@@ -34,7 +34,7 @@ class ConfigApp(admin.MConfigHandler):
 
     def setup(self):
         if self.requestedAction == admin.ACTION_EDIT:
-            for arg in ['proxy_url']:
+            for arg in ['proxy_url', 'proxy_port', 'proxy_user', 'proxy_pass']:
                 self.supportedArgs.addOptArg(arg)
 
     '''
@@ -57,7 +57,7 @@ class ConfigApp(admin.MConfigHandler):
         if confDict is not None:
             for stanza, settings in confDict.items():
                 for key, val in settings.items():
-                    if key in [ 'proxy_url'] and val in [None, '']:
+                    if key in ['proxy_url', 'proxy_port', 'proxy_user', 'proxy_pass'] and val in [None, '']:
                         val = ''
                     confInfo[stanza].append(key, val)
 
@@ -72,6 +72,15 @@ class ConfigApp(admin.MConfigHandler):
 
         if self.callerArgs.data['proxy_url'][0] in [None, '']:
             self.callerArgs.data['proxy_url'][0] = ''
+
+        if self.callerArgs.data['proxy_port'][0] in [None, '']:
+        self.callerArgs.data['proxy_port'][0] = ''
+
+        if self.callerArgs.data['proxy_user'][0] in [None, '']:
+        self.callerArgs.data['proxy_user'][0] = ''
+
+        if self.callerArgs.data['proxy_pass'][0] in [None, '']:
+        self.callerArgs.data['proxy_pass'][0] = ''
 
         self.writeConf('SplunkAppforAWSBilling', 'default', self.callerArgs.data)
 

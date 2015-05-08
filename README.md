@@ -211,7 +211,8 @@ Special thanks to Nilesh Khetia who's module I borrowed to make this one http://
     - all functions have been moved to classes
     - boto has been updated to 2.38.0
     - old reports are posted to splunk using splunklib index post
-    - proxy support is introduced but not implemented - coming soon!
+    - proxy support is introduced - a must for corporate network fun
+    - pivot tables on LinkedAccountId
     
     
 ### Examples

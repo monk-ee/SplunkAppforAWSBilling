@@ -1,11 +1,28 @@
 <setup>
     <block title="SplunkAppforAWSBilling Endpoint Setup" endpoint="SplunkAppforAWSBilling_setup/SplunkAppforAWSBilling_endpoint" entity="default">
         <input field="proxy_url">
-            <label>Proxy URL - Keep Blank if there is no proxy - If proxy is required, type the full URL - Example:
-                https://myproxyserver:8080
+            <label>Proxy URL - Keep Blank if there is no proxy - If proxy is required, type the URL - Example:
+                myproxyserver.com
             </label>
             <type>text</type>
         </input>
-
+        <input field="proxy_port">
+            <label>Proxy Port - Keep Blank, unless you have filled out Proxy URL - If proxy portis required, type just the port - Example:
+                8080
+            </label>
+            <type>text</type>
+        </input>
+        <input field="proxy_user">
+            <label>Proxy User - If proxy user is required, type the username - Example:
+                userName
+            </label>
+            <type>text</type>
+        </input>
+        <input field="proxy_pass">
+            <label>Proxy Password - If proxy user is required, you must have a password - Example:
+                myeasytorememberpassword
+            </label>
+            <type>text</type>
+        </input>
     </block>
 </setup>

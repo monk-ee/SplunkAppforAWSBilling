@@ -31,6 +31,7 @@ class FetchDetailedReport:
     splunk_home = ''
     app_home = ''
     report_date = ''
+    settings = ''
 
     def __init__(self):
         """
@@ -39,6 +40,8 @@ class FetchDetailedReport:
         """
         self.splunk_home = os.environ['SPLUNK_HOME']
         self.app_home = os.path.join(self.splunk_home, 'etc', 'apps', self.appname)
+        #get settings
+        self.settings = splunk.clilib.cli_common.getConfStanza(appname, "default")
         self.set_date()
         self.setup_logging()
         self.setup_config()
@@ -99,7 +102,13 @@ class FetchDetailedReport:
         """
         zipped_report = os.path.join(self.app_home ,'tmp' , str(key['account_number']) + '_detailed_billing.zip')
         try:
-            conn = S3Connection(key['aws_access_key'], key['aws_secret_key'])
+            conn = S3Connection(
+                key['aws_access_key'],
+                key['aws_secret_key'],
+                proxy=self.settings['proxy_url'],
+                proxy_port=self.settings['proxy_port'],
+                proxy_user=self.settings['proxy_user'],
+                proxy_pass=self.settings['proxy_pass'])
             s3_billing_report = str(key['account_number']) + "-aws-billing-detailed-line-items-with-resources-and-tags-" + self.report_date + ".csv.zip"
             bucket = conn.get_bucket(key['billing_bucket'])
             FileObject = Key(bucket)
