@@ -74,13 +74,13 @@ class ConfigApp(admin.MConfigHandler):
             self.callerArgs.data['proxy_url'][0] = ''
 
         if self.callerArgs.data['proxy_port'][0] in [None, '']:
-        self.callerArgs.data['proxy_port'][0] = ''
+            self.callerArgs.data['proxy_port'][0] = ''
 
         if self.callerArgs.data['proxy_user'][0] in [None, '']:
-        self.callerArgs.data['proxy_user'][0] = ''
+            self.callerArgs.data['proxy_user'][0] = ''
 
         if self.callerArgs.data['proxy_pass'][0] in [None, '']:
-        self.callerArgs.data['proxy_pass'][0] = ''
+            self.callerArgs.data['proxy_pass'][0] = ''
 
         self.writeConf('SplunkAppforAWSBilling', 'default', self.callerArgs.data)
 

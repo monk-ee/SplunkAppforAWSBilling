@@ -6,23 +6,27 @@
             </label>
             <type>text</type>
         </input>
+
         <input field="proxy_port">
-            <label>Proxy Port - Keep Blank, unless you have filled out Proxy URL - If proxy portis required, type just the port - Example:
+            <label>Proxy Port - Keep Blank, unless you have filled out Proxy URL - If proxy port is required, type just the port - Example:
                 8080
             </label>
             <type>text</type>
         </input>
+
         <input field="proxy_user">
             <label>Proxy User - If proxy user is required, type the username - Example:
                 userName
             </label>
             <type>text</type>
         </input>
+
         <input field="proxy_pass">
             <label>Proxy Password - If proxy user is required, you must have a password - Example:
                 myeasytorememberpassword
             </label>
             <type>text</type>
         </input>
+
     </block>
 </setup>
