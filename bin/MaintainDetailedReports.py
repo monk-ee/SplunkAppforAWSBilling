@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-"""maintain_detailed_reports.py: clean up old reports."""
+"""MaintainDetailedReports.py: clean up old reports."""
 
 __author__ = "monkee"
 __license__ = "GPLv3.0"

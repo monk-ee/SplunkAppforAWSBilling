@@ -53,7 +53,7 @@ try:
 except:
     import pickle
 
-class ProcessDetailedReport:
+class ProcessOlderReport:
     logger = ''
     appname = 'SplunkAppforAWSBilling'
     config = ''
@@ -292,4 +292,4 @@ if __name__ == "__main__":
 
 
     args = parser.parse_args()
-    pdr = ProcessDetailedReport(args)
+    por = ProcessOlderReport(args)

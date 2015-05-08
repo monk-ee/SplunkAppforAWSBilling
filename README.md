@@ -52,9 +52,13 @@ It provides a base for you to extend and articulate your own spending and usage 
 
 Any feedback, including requests for enhancement are most welcome. Email: magic.monkee.magic@gmail.com
 
-Splunk App for AWS Billing is hosted at GitHub
+Splunk App for AWS Billing is hosted at GitHub:
+
 Feel free to submit a pull request:
 [https://github.com/monk-ee/SplunkAppforAWSBilling](https://github.com/monk-ee/SplunkAppforAWSBilling)
+
+Also feel fre to raise any issues here:
+[https://github.com/monk-ee/SplunkAppforAWSBilling/issues](https://github.com/monk-ee/SplunkAppforAWSBilling/issues)
 
 ## Cost Models
 The application supports the straight Cost model as well as the Blended/Unblended Cost Model. Dashboards for both are provided; use the one that suits your billing settings.
@@ -79,9 +83,9 @@ You will need to ensure that you have set your billing preferences correctly.
 ## Setup and Configuration of the Splunk App
 The app is provided as an spl an can be installed using the GUI - feel free to unpack it if you want:
 
-It's file system location is [SPLUNK_HOME]/etc/apps/SplunkAppforAWSBilling.
+It's file system location is $SPLUNK_HOME/etc/apps/SplunkAppforAWSBilling.
 
-You will need to take the aws.yaml.example and put in your own configuration details then save it as aws.yaml in the [SPLUNK_HOME]/etc/apps/SplunkAppforAWSBilling/local directory.
+You will need to take the aws.yaml.example and put in your own configuration details then save it as aws.yaml in the $SPLUNK_HOME/etc/apps/SplunkAppforAWSBilling/local directory.
 
 For a single account use the following style of aws.yaml:
 
@@ -129,10 +133,10 @@ You can then use them in a search or to customize a dashboard like so:
 A script is provided to allow the system to clean up old csv files, it is disabled by default.
 
 You can enable it by navigating to Settings > Data Inputs > Scripts and clicking on enable for the the command
-"$SPLUNK_HOME/etc/apps/SplunkAppforAWSBilling/bin/maintain_detailed_reports.py".
+"$SPLUNK_HOME/etc/apps/SplunkAppforAWSBilling/bin/MaintainDetailedReports.py".
 
 ## Logs
-The error log file system location is [SPLUNK_HOME]/var/log/splunk/SplunkAppforAWSBilling.log.
+The error log file system location is $SPLUNK_HOME/var/log/splunk/SplunkAppforAWSBilling.log.
 
 ## Additional Tools
 
@@ -141,7 +145,7 @@ Located in the bin directory of the application are two tools for fetching and p
 They are designed to be run as Splunk CLI scripts:
 eg.
     
-    $SPLUNK_HOME/bin/splunk cmd python $SPLUNK_HOME/etc/apps/SplunkAppforAWSBilling/bin/fetch_older_report.py 2015 04
+    $SPLUNK_HOME/bin/splunk cmd python $SPLUNK_HOME/etc/apps/SplunkAppforAWSBilling/bin/FetchOlderReport.py 2015 04
     
 They are CLI only, so you will need to be able to navigate to the bin directory of the application in a shell or command
 session. They live in the $SPLUNK_HOME/etc/apps/SplunkAppforAWSBilling/bin directory.
@@ -150,7 +154,7 @@ It is best to disable the fetch_detailed_report while you import the older month
 file to download to.
 
 You can disable it by navigating to Settings > Data Inputs > Scripts and clicking on disable for the the command
-"$SPLUNK_HOME/etc/apps/SplunkAppforAWSBilling/bin/fetch_detailed_report.py".
+"$SPLUNK_HOME/etc/apps/SplunkAppforAWSBilling/bin/FetchDetailedReport.py".
 
 You run the fetch_older_report command with the year and month report you want (you can do this for multiple months, but not in parallel)
 You then run the process_older_report command with the same year and month with user credentials for a suitably privileged user.
@@ -159,7 +163,7 @@ The older events should have appeared in the index, be aware for big files this 
 re-enable the fetch_detailed_report script when you are done.
 
 ### Fetching
-#### usage: fetch_older_report.py [-h] [-d] year month
+#### usage: FetchOlderReport.py [-h] [-d] year month
 
 A utility for fetching/downloading older report files into SplunkAppforAWSBilling.
 
@@ -177,7 +181,7 @@ You don't need to stop Splunk for this script to run.
 
 
 ### Processing
-#### usage: process_older_report.py [-h] [-d] year month
+#### usage: ProcessOlderReport.py [-h] [-d] year month user password
 
 A utility for processing older report files into Splunk for processing. You will need to run the fetch script first with the appropriate date.
 
@@ -193,7 +197,7 @@ A utility for processing older report files into Splunk for processing. You will
         -p, --port          The port to post events to.
         -s, --serverport    The server to post events to.
 
-You don't need to stop splunk for this script to run.
+You don't need to stop Splunk for this script to run.
 
 ### Contributors
 
@@ -250,3 +254,8 @@ Search for Duplicate Record Id
 - v2.0 Indexes are not compatible with earlier versions of the app, you will have to rerun all your log data and flush the older indexes - the data has changed from csv items to JSON.
 - GST Items are thrown away - because of the currency conversion complexity. (I am considering adding these but with exclusion flags on the reports)
 - Any LineItem that does not have a RecordId is thrown away - because it is not charged to your bill
+
+### Troubleshooting
+
+In the $SPLUNK_HOME/etc/apps/SplunkAppforAWSBilling/local directory are the *.p files that keep track of processed records. If you find that you have got twisted or need to 
+reimport a file you may need to clear the aws-bill index or delete these files. They are basically sets of imported RecordIds - to avoid duplicates.

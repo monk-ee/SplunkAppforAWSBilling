@@ -2,10 +2,10 @@
 # -*- coding: utf-8 -*-
 
 """
-fetch_older_report.py: This module provides an interface to the billing report
+FetchOlderReport.py: This module provides an interface to the billing report
 in the amazon S3 billing bucket
 
-usage: fetch_older_report.py [-h] [-d] year month user password
+usage: FetchOlderReport.py [-h] [-d] year month user password
 
 A utility for fetching/downloading older report files into SplunkAppforAWSBilling.
 
@@ -13,7 +13,7 @@ Be very careful, do not fetch the current months data - you will cause a double 
 records in the splunk index.
 
 
-To be used in conjunction with process_older_report.py
+To be used in conjunction with ProcessOlderReport.py
 
 positional arguments:
     year          The year in this format: 2014 (YYYY)
