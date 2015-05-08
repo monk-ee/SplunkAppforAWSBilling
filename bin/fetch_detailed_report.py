@@ -35,7 +35,7 @@ class FetchDetailedReport:
 
     def __init__(self):
         """
-
+        set up some handy variables and start processing
         :return:
         """
         self.splunk_home = os.environ['SPLUNK_HOME']
@@ -50,7 +50,7 @@ class FetchDetailedReport:
 
     def set_date(self):
         """
-
+        set the date for this months report here
         :return:
         """
         dt = datetime.now()
