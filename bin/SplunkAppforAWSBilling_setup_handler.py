@@ -84,7 +84,7 @@ class ConfigApp(admin.MConfigHandler):
 
         self.writeConf('SplunkAppforAWSBilling', 'default', self.callerArgs.data)
 
-        input_1 = {'disabled': '0', 'index': 'aws-bill', 'interval': '300', 'source': 'SplunkAppforAWSBilling_Import',
+        input_1 = {'disabled': '0', 'index': 'aws-bill', 'interval': '10800', 'source': 'SplunkAppforAWSBilling_Import',
                    'sourcetype': 'SplunkAppforAWSBilling_Processor', 'passAuth': 'splunk-system-user'}
 
         INPUT_FILE = os.path.join(os.environ['SPLUNK_HOME'], 'etc', 'apps', 'SplunkAppforAWSBilling', 'bin', 'ProcessDetailedReport.py')
