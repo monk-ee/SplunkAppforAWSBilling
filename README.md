@@ -63,6 +63,30 @@ Also feel fre to raise any issues here:
 ## Cost Models
 The application supports the straight Cost model as well as the Blended/Unblended Cost Model. Dashboards for both are provided; use the one that suits your billing settings.
 
+## Keep in mind that blended rates apply only to Consolidated Billing customers.
+
+### Blended and Unblended Rates:
+
+The detailed billing report enables customers to perform detailed cost analyses on their usage. 
+AWS meters usage in hourly increments; for each product resource in use, a rate is applied for operations performed by usage type in that hour, with each operation comprising a 
+line item. The detailed billing report shows both blended and unblended rates for each line item. An unblended rate is the cost per hour for a product, usage type, and the 
+operation performed. A blended rate is an average rate calculated for identical instance usage in an Availability Zone for members of a Consolidated Billing family.
+
+### A Quiet Word about the detailed Billing Reports eg Why no Cost field?
+If you have a single AWS account and you don't use Consolidated billing your report only contains the Rate and Cost Fields.
+
+eg NON-CONSOLIDATED: Your search should look like this:
+
+    index=aws-bill | timechart sum(Cost) as $ by ItemDescription
+
+If you have have multiple AWS accounts and use Consolidated billing  your report contains BlendedRate, BlendedCost, UnBlendedRate and UnBlendedCost fields BUT not the Cost and Rate fields.
+
+eg CONSOLIDATED: Your search should look like this:
+    
+    index=aws-bill | timechart sum(BlendedCost) as $ by ItemDescription
+
+This means you need different searches and dashboards for the different billing reports eg a Consolidated OR a Single billing account report.
+
 ## Setup Amazon detailed billing
 
 v2.0 Indexes are not compatible with earlier versions of the app, you will have to rerun all your log data and flush the older indexes - the data has changed from csv items to JSON.
