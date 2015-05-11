@@ -21,6 +21,6 @@ modtime = 1352155335.218686000
 [views/AWS-Billing-Dashboard]
 access = read : [ * ], write : [ admin, power ]
 owner = nobody
-version = 5.0.4
+version = 2.0.5
 modtime = 1376539574.107076000
 
