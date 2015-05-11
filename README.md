@@ -17,7 +17,6 @@ It provides a base for you to extend and articulate your own spending and usage 
 * Amazon Simple Queue Service
 * Amazon Virtual Private Cloud
 
-
 ## Supports:
 * Custom Tags
 * Billing Projections
@@ -156,35 +155,41 @@ You can then use them in a search or to customize a dashboard like so:
 ## Maintenance
 A script is provided to allow the system to clean up old csv files, it is disabled by default.
 
-You can enable it by navigating to Settings > Data Inputs > Scripts and clicking on enable for the the command
+You can enable it by navigating to Settings > Data Inputs > Scripts and clicking on enable for the command
 "$SPLUNK_HOME/etc/apps/SplunkAppforAWSBilling/bin/MaintainDetailedReports.py".
 
 ## Logs
 The error log file system location is $SPLUNK_HOME/var/log/splunk/SplunkAppforAWSBilling.log.
 
-## Additional Tools
+## Additional Tools: Importing older Reports
 
 Located in the bin directory of the application are two tools for fetching and processing older reports. 
 
 They are designed to be run as Splunk CLI scripts:
 eg.
+
+Linux:
     
     $SPLUNK_HOME/bin/splunk cmd python $SPLUNK_HOME/etc/apps/SplunkAppforAWSBilling/bin/FetchOlderReport.py 2015 04
+    
+Windows:
+
+    $SPLUNK_HOME/bin/splunk.exe cmd python $SPLUNK_HOME/etc/apps/SplunkAppforAWSBilling/bin/FetchOlderReport.py 2015 04
     
 They are CLI only, so you will need to be able to navigate to the bin directory of the application in a shell or command
 session. They live in the $SPLUNK_HOME/etc/apps/SplunkAppforAWSBilling/bin directory.
 
-It is best to disable the fetch_detailed_report while you import the older months because they use the same temporary
+It is best to disable the FetchDetailedReport while you import the older months because they use the same temporary
 file to download to.
 
 You can disable it by navigating to Settings > Data Inputs > Scripts and clicking on disable for the the command
 "$SPLUNK_HOME/etc/apps/SplunkAppforAWSBilling/bin/FetchDetailedReport.py".
 
-You run the fetch_older_report command with the year and month report you want (you can do this for multiple months, but not in parallel)
-You then run the process_older_report command with the same year and month with user credentials for a suitably privileged user.
+You run the FetchOlderReport command with the year and month report you want (you can do this for multiple months, but not in parallel)
+You then run the ProcessOlderReport command with the same year and month with user credentials for a suitably privileged user.
 
 The older events should have appeared in the index, be aware for big files this can take a long time. Don't forget to 
-re-enable the fetch_detailed_report script when you are done.
+re-enable the FetchDetailedReport script when you are done.
 
 ### Fetching
 #### usage: FetchOlderReport.py [-h] [-d] year month
