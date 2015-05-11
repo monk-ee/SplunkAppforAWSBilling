@@ -1,0 +1,806 @@
+{
+  "modelName": "Costs",
+  "displayName": "Costs",
+  "description": "",
+  "objectSummary": {
+    "Event-Based": 6,
+    "Transaction-Based": 0,
+    "Search-Based": 0
+  },
+  "objects": [
+    {
+      "objectName": "LineItems",
+      "displayName": "LineItems",
+      "parentName": "BaseEvent",
+      "fields": [
+        {
+          "fieldName": "ItemDescription",
+          "owner": "LineItems",
+          "type": "string",
+          "required": false,
+          "multivalue": false,
+          "hidden": false,
+          "editable": true,
+          "displayName": "ItemDescription",
+          "comment": "",
+          "fieldSearch": ""
+        },
+        {
+          "fieldName": "Cost",
+          "owner": "LineItems",
+          "type": "number",
+          "required": false,
+          "multivalue": false,
+          "hidden": false,
+          "editable": true,
+          "displayName": "Cost",
+          "comment": "",
+          "fieldSearch": ""
+        },
+        {
+          "fieldName": "ProductName",
+          "owner": "LineItems",
+          "type": "string",
+          "required": false,
+          "multivalue": false,
+          "hidden": false,
+          "editable": true,
+          "displayName": "ProductName",
+          "comment": "",
+          "fieldSearch": ""
+        },
+        {
+          "fieldName": "user:Name",
+          "owner": "LineItems",
+          "type": "string",
+          "required": false,
+          "multivalue": false,
+          "hidden": false,
+          "editable": true,
+          "displayName": "user:Name",
+          "comment": "",
+          "fieldSearch": ""
+        },
+        {
+          "fieldName": "LinkedAccountId",
+          "owner": "LineItems",
+          "type": "number",
+          "required": false,
+          "multivalue": false,
+          "hidden": false,
+          "editable": true,
+          "displayName": "LinkedAccountId",
+          "comment": "",
+          "fieldSearch": ""
+        },
+        {
+          "fieldName": "UsageType",
+          "owner": "LineItems",
+          "type": "string",
+          "required": false,
+          "multivalue": false,
+          "hidden": false,
+          "editable": true,
+          "displayName": "UsageType",
+          "comment": "",
+          "fieldSearch": ""
+        },
+        {
+          "fieldName": "_time",
+          "owner": "BaseEvent",
+          "type": "timestamp",
+          "required": false,
+          "multivalue": false,
+          "hidden": false,
+          "editable": true,
+          "displayName": "_time",
+          "comment": "",
+          "fieldSearch": ""
+        },
+        {
+          "fieldName": "host",
+          "owner": "BaseEvent",
+          "type": "string",
+          "required": false,
+          "multivalue": false,
+          "hidden": false,
+          "editable": true,
+          "displayName": "host",
+          "comment": "",
+          "fieldSearch": ""
+        },
+        {
+          "fieldName": "source",
+          "owner": "BaseEvent",
+          "type": "string",
+          "required": false,
+          "multivalue": false,
+          "hidden": false,
+          "editable": true,
+          "displayName": "source",
+          "comment": "",
+          "fieldSearch": ""
+        },
+        {
+          "fieldName": "sourcetype",
+          "owner": "BaseEvent",
+          "type": "string",
+          "required": false,
+          "multivalue": false,
+          "hidden": false,
+          "editable": true,
+          "displayName": "sourcetype",
+          "comment": "",
+          "fieldSearch": ""
+        }
+      ],
+      "calculations": [],
+      "constraints": [
+        {
+          "search": "index=aws-bill",
+          "owner": "LineItems"
+        }
+      ],
+      "lineage": "LineItems"
+    },
+    {
+      "objectName": "ReservedInstance",
+      "displayName": "ReservedInstance",
+      "parentName": "LineItems",
+      "fields": [
+        {
+          "fieldName": "ItemDescription",
+          "owner": "LineItems",
+          "type": "string",
+          "required": false,
+          "multivalue": false,
+          "hidden": false,
+          "editable": true,
+          "displayName": "ItemDescription",
+          "comment": "",
+          "fieldSearch": ""
+        },
+        {
+          "fieldName": "Cost",
+          "owner": "LineItems",
+          "type": "number",
+          "required": false,
+          "multivalue": false,
+          "hidden": false,
+          "editable": true,
+          "displayName": "Cost",
+          "comment": "",
+          "fieldSearch": ""
+        },
+        {
+          "fieldName": "ProductName",
+          "owner": "LineItems",
+          "type": "string",
+          "required": false,
+          "multivalue": false,
+          "hidden": false,
+          "editable": true,
+          "displayName": "ProductName",
+          "comment": "",
+          "fieldSearch": ""
+        },
+        {
+          "fieldName": "user:Name",
+          "owner": "LineItems",
+          "type": "string",
+          "required": false,
+          "multivalue": false,
+          "hidden": false,
+          "editable": true,
+          "displayName": "user:Name",
+          "comment": "",
+          "fieldSearch": ""
+        },
+        {
+          "fieldName": "LinkedAccountId",
+          "owner": "LineItems",
+          "type": "number",
+          "required": false,
+          "multivalue": false,
+          "hidden": false,
+          "editable": true,
+          "displayName": "LinkedAccountId",
+          "comment": "",
+          "fieldSearch": ""
+        },
+        {
+          "fieldName": "UsageType",
+          "owner": "LineItems",
+          "type": "string",
+          "required": false,
+          "multivalue": false,
+          "hidden": false,
+          "editable": true,
+          "displayName": "UsageType",
+          "comment": "",
+          "fieldSearch": ""
+        },
+        {
+          "fieldName": "_time",
+          "owner": "BaseEvent",
+          "type": "timestamp",
+          "required": false,
+          "multivalue": false,
+          "hidden": false,
+          "editable": true,
+          "displayName": "_time",
+          "comment": "",
+          "fieldSearch": ""
+        },
+        {
+          "fieldName": "host",
+          "owner": "BaseEvent",
+          "type": "string",
+          "required": false,
+          "multivalue": false,
+          "hidden": false,
+          "editable": true,
+          "displayName": "host",
+          "comment": "",
+          "fieldSearch": ""
+        },
+        {
+          "fieldName": "source",
+          "owner": "BaseEvent",
+          "type": "string",
+          "required": false,
+          "multivalue": false,
+          "hidden": false,
+          "editable": true,
+          "displayName": "source",
+          "comment": "",
+          "fieldSearch": ""
+        },
+        {
+          "fieldName": "sourcetype",
+          "owner": "BaseEvent",
+          "type": "string",
+          "required": false,
+          "multivalue": false,
+          "hidden": false,
+          "editable": true,
+          "displayName": "sourcetype",
+          "comment": "",
+          "fieldSearch": ""
+        }
+      ],
+      "calculations": [],
+      "constraints": [
+        {
+          "search": "ReservedInstance=Y",
+          "owner": "LineItems.ReservedInstance"
+        }
+      ],
+      "lineage": "LineItems.ReservedInstance"
+    },
+    {
+      "objectName": "Name",
+      "displayName": "Name",
+      "parentName": "LineItems",
+      "fields": [
+        {
+          "fieldName": "ItemDescription",
+          "owner": "LineItems",
+          "type": "string",
+          "required": false,
+          "multivalue": false,
+          "hidden": false,
+          "editable": true,
+          "displayName": "ItemDescription",
+          "comment": "",
+          "fieldSearch": ""
+        },
+        {
+          "fieldName": "Cost",
+          "owner": "LineItems",
+          "type": "number",
+          "required": false,
+          "multivalue": false,
+          "hidden": false,
+          "editable": true,
+          "displayName": "Cost",
+          "comment": "",
+          "fieldSearch": ""
+        },
+        {
+          "fieldName": "ProductName",
+          "owner": "LineItems",
+          "type": "string",
+          "required": false,
+          "multivalue": false,
+          "hidden": false,
+          "editable": true,
+          "displayName": "ProductName",
+          "comment": "",
+          "fieldSearch": ""
+        },
+        {
+          "fieldName": "user:Name",
+          "owner": "LineItems",
+          "type": "string",
+          "required": false,
+          "multivalue": false,
+          "hidden": false,
+          "editable": true,
+          "displayName": "user:Name",
+          "comment": "",
+          "fieldSearch": ""
+        },
+        {
+          "fieldName": "LinkedAccountId",
+          "owner": "LineItems",
+          "type": "number",
+          "required": false,
+          "multivalue": false,
+          "hidden": false,
+          "editable": true,
+          "displayName": "LinkedAccountId",
+          "comment": "",
+          "fieldSearch": ""
+        },
+        {
+          "fieldName": "UsageType",
+          "owner": "LineItems",
+          "type": "string",
+          "required": false,
+          "multivalue": false,
+          "hidden": false,
+          "editable": true,
+          "displayName": "UsageType",
+          "comment": "",
+          "fieldSearch": ""
+        },
+        {
+          "fieldName": "_time",
+          "owner": "BaseEvent",
+          "type": "timestamp",
+          "required": false,
+          "multivalue": false,
+          "hidden": false,
+          "editable": true,
+          "displayName": "_time",
+          "comment": "",
+          "fieldSearch": ""
+        },
+        {
+          "fieldName": "host",
+          "owner": "BaseEvent",
+          "type": "string",
+          "required": false,
+          "multivalue": false,
+          "hidden": false,
+          "editable": true,
+          "displayName": "host",
+          "comment": "",
+          "fieldSearch": ""
+        },
+        {
+          "fieldName": "source",
+          "owner": "BaseEvent",
+          "type": "string",
+          "required": false,
+          "multivalue": false,
+          "hidden": false,
+          "editable": true,
+          "displayName": "source",
+          "comment": "",
+          "fieldSearch": ""
+        },
+        {
+          "fieldName": "sourcetype",
+          "owner": "BaseEvent",
+          "type": "string",
+          "required": false,
+          "multivalue": false,
+          "hidden": false,
+          "editable": true,
+          "displayName": "sourcetype",
+          "comment": "",
+          "fieldSearch": ""
+        }
+      ],
+      "calculations": [],
+      "constraints": [
+        {
+          "search": "user:Name!=\"\"",
+          "owner": "LineItems.Name"
+        }
+      ],
+      "lineage": "LineItems.Name"
+    },
+    {
+      "objectName": "Costs",
+      "displayName": "Costs",
+      "parentName": "LineItems",
+      "fields": [
+        {
+          "fieldName": "ItemDescription",
+          "owner": "LineItems",
+          "type": "string",
+          "required": false,
+          "multivalue": false,
+          "hidden": false,
+          "editable": true,
+          "displayName": "ItemDescription",
+          "comment": "",
+          "fieldSearch": ""
+        },
+        {
+          "fieldName": "Cost",
+          "owner": "LineItems",
+          "type": "number",
+          "required": false,
+          "multivalue": false,
+          "hidden": false,
+          "editable": true,
+          "displayName": "Cost",
+          "comment": "",
+          "fieldSearch": ""
+        },
+        {
+          "fieldName": "ProductName",
+          "owner": "LineItems",
+          "type": "string",
+          "required": false,
+          "multivalue": false,
+          "hidden": false,
+          "editable": true,
+          "displayName": "ProductName",
+          "comment": "",
+          "fieldSearch": ""
+        },
+        {
+          "fieldName": "user:Name",
+          "owner": "LineItems",
+          "type": "string",
+          "required": false,
+          "multivalue": false,
+          "hidden": false,
+          "editable": true,
+          "displayName": "user:Name",
+          "comment": "",
+          "fieldSearch": ""
+        },
+        {
+          "fieldName": "LinkedAccountId",
+          "owner": "LineItems",
+          "type": "number",
+          "required": false,
+          "multivalue": false,
+          "hidden": false,
+          "editable": true,
+          "displayName": "LinkedAccountId",
+          "comment": "",
+          "fieldSearch": ""
+        },
+        {
+          "fieldName": "UsageType",
+          "owner": "LineItems",
+          "type": "string",
+          "required": false,
+          "multivalue": false,
+          "hidden": false,
+          "editable": true,
+          "displayName": "UsageType",
+          "comment": "",
+          "fieldSearch": ""
+        },
+        {
+          "fieldName": "_time",
+          "owner": "BaseEvent",
+          "type": "timestamp",
+          "required": false,
+          "multivalue": false,
+          "hidden": false,
+          "editable": true,
+          "displayName": "_time",
+          "comment": "",
+          "fieldSearch": ""
+        },
+        {
+          "fieldName": "host",
+          "owner": "BaseEvent",
+          "type": "string",
+          "required": false,
+          "multivalue": false,
+          "hidden": false,
+          "editable": true,
+          "displayName": "host",
+          "comment": "",
+          "fieldSearch": ""
+        },
+        {
+          "fieldName": "source",
+          "owner": "BaseEvent",
+          "type": "string",
+          "required": false,
+          "multivalue": false,
+          "hidden": false,
+          "editable": true,
+          "displayName": "source",
+          "comment": "",
+          "fieldSearch": ""
+        },
+        {
+          "fieldName": "sourcetype",
+          "owner": "BaseEvent",
+          "type": "string",
+          "required": false,
+          "multivalue": false,
+          "hidden": false,
+          "editable": true,
+          "displayName": "sourcetype",
+          "comment": "",
+          "fieldSearch": ""
+        }
+      ],
+      "calculations": [],
+      "constraints": [
+        {
+          "search": "Cost!=0",
+          "owner": "LineItems.Costs"
+        }
+      ],
+      "lineage": "LineItems.Costs"
+    },
+    {
+      "objectName": "LinkedAccountId",
+      "displayName": "LinkedAccountId",
+      "parentName": "LineItems",
+      "fields": [
+        {
+          "fieldName": "ItemDescription",
+          "owner": "LineItems",
+          "type": "string",
+          "required": false,
+          "multivalue": false,
+          "hidden": false,
+          "editable": true,
+          "displayName": "ItemDescription",
+          "comment": "",
+          "fieldSearch": ""
+        },
+        {
+          "fieldName": "Cost",
+          "owner": "LineItems",
+          "type": "number",
+          "required": false,
+          "multivalue": false,
+          "hidden": false,
+          "editable": true,
+          "displayName": "Cost",
+          "comment": "",
+          "fieldSearch": ""
+        },
+        {
+          "fieldName": "ProductName",
+          "owner": "LineItems",
+          "type": "string",
+          "required": false,
+          "multivalue": false,
+          "hidden": false,
+          "editable": true,
+          "displayName": "ProductName",
+          "comment": "",
+          "fieldSearch": ""
+        },
+        {
+          "fieldName": "user:Name",
+          "owner": "LineItems",
+          "type": "string",
+          "required": false,
+          "multivalue": false,
+          "hidden": false,
+          "editable": true,
+          "displayName": "user:Name",
+          "comment": "",
+          "fieldSearch": ""
+        },
+        {
+          "fieldName": "UsageType",
+          "owner": "LineItems",
+          "type": "string",
+          "required": false,
+          "multivalue": false,
+          "hidden": false,
+          "editable": true,
+          "displayName": "UsageType",
+          "comment": "",
+          "fieldSearch": ""
+        },
+        {
+          "fieldName": "_time",
+          "owner": "BaseEvent",
+          "type": "timestamp",
+          "required": false,
+          "multivalue": false,
+          "hidden": false,
+          "editable": true,
+          "displayName": "_time",
+          "comment": "",
+          "fieldSearch": ""
+        },
+        {
+          "fieldName": "host",
+          "owner": "BaseEvent",
+          "type": "string",
+          "required": false,
+          "multivalue": false,
+          "hidden": false,
+          "editable": true,
+          "displayName": "host",
+          "comment": "",
+          "fieldSearch": ""
+        },
+        {
+          "fieldName": "source",
+          "owner": "BaseEvent",
+          "type": "string",
+          "required": false,
+          "multivalue": false,
+          "hidden": false,
+          "editable": true,
+          "displayName": "source",
+          "comment": "",
+          "fieldSearch": ""
+        },
+        {
+          "fieldName": "sourcetype",
+          "owner": "BaseEvent",
+          "type": "string",
+          "required": false,
+          "multivalue": false,
+          "hidden": false,
+          "editable": true,
+          "displayName": "sourcetype",
+          "comment": "",
+          "fieldSearch": ""
+        }
+      ],
+      "calculations": [],
+      "constraints": [
+        {
+          "search": "LinkedAccountId!=\"\"",
+          "owner": "LineItems.LinkedAccountId"
+        }
+      ],
+      "lineage": "LineItems.LinkedAccountId"
+    },
+    {
+      "objectName": "UsageType",
+      "displayName": "UsageType",
+      "parentName": "LineItems",
+      "fields": [
+        {
+          "fieldName": "ItemDescription",
+          "owner": "LineItems",
+          "type": "string",
+          "required": false,
+          "multivalue": false,
+          "hidden": false,
+          "editable": true,
+          "displayName": "ItemDescription",
+          "comment": "",
+          "fieldSearch": ""
+        },
+        {
+          "fieldName": "Cost",
+          "owner": "LineItems",
+          "type": "number",
+          "required": false,
+          "multivalue": false,
+          "hidden": false,
+          "editable": true,
+          "displayName": "Cost",
+          "comment": "",
+          "fieldSearch": ""
+        },
+        {
+          "fieldName": "ProductName",
+          "owner": "LineItems",
+          "type": "string",
+          "required": false,
+          "multivalue": false,
+          "hidden": false,
+          "editable": true,
+          "displayName": "ProductName",
+          "comment": "",
+          "fieldSearch": ""
+        },
+        {
+          "fieldName": "user:Name",
+          "owner": "LineItems",
+          "type": "string",
+          "required": false,
+          "multivalue": false,
+          "hidden": false,
+          "editable": true,
+          "displayName": "user:Name",
+          "comment": "",
+          "fieldSearch": ""
+        },
+        {
+          "fieldName": "LinkedAccountId",
+          "owner": "LineItems",
+          "type": "number",
+          "required": false,
+          "multivalue": false,
+          "hidden": false,
+          "editable": true,
+          "displayName": "LinkedAccountId",
+          "comment": "",
+          "fieldSearch": ""
+        },
+        {
+          "fieldName": "_time",
+          "owner": "BaseEvent",
+          "type": "timestamp",
+          "required": false,
+          "multivalue": false,
+          "hidden": false,
+          "editable": true,
+          "displayName": "_time",
+          "comment": "",
+          "fieldSearch": ""
+        },
+        {
+          "fieldName": "host",
+          "owner": "BaseEvent",
+          "type": "string",
+          "required": false,
+          "multivalue": false,
+          "hidden": false,
+          "editable": true,
+          "displayName": "host",
+          "comment": "",
+          "fieldSearch": ""
+        },
+        {
+          "fieldName": "source",
+          "owner": "BaseEvent",
+          "type": "string",
+          "required": false,
+          "multivalue": false,
+          "hidden": false,
+          "editable": true,
+          "displayName": "source",
+          "comment": "",
+          "fieldSearch": ""
+        },
+        {
+          "fieldName": "sourcetype",
+          "owner": "BaseEvent",
+          "type": "string",
+          "required": false,
+          "multivalue": false,
+          "hidden": false,
+          "editable": true,
+          "displayName": "sourcetype",
+          "comment": "",
+          "fieldSearch": ""
+        }
+      ],
+      "calculations": [],
+      "constraints": [
+        {
+          "search": "UsageType!=\"\"",
+          "owner": "LineItems.UsageType"
+        }
+      ],
+      "lineage": "LineItems.UsageType"
+    }
+  ],
+  "objectNameList": [
+    "LineItems",
+    "ReservedInstance",
+    "Name",
+    "Costs",
+    "LinkedAccountId",
+    "UsageType"
+  ]
+}
