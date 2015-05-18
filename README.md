@@ -132,6 +132,32 @@ For multiple accounts use the following style of aws.yaml:
           aws_secret_key    : AAAAAAAAAAAABBBBBBBBBBBBBBCC
 
 
+## S3 Bucket Policy
+
+Your bucket policy for the programmatic user (the user that accesses the bucket) should look something like this; as a minimum:
+
+    {
+    
+     "Version": "2012-10-17",
+    
+     "Statement": [{
+    
+         "Effect": "Allow",
+    
+         "Action": ["s3:ListBucket", "s3:GetObject", "s3:GetObjectVersion"],
+    
+         "Resource": [
+    
+             "arn:aws:s3:::billing-bucket",
+    
+             "arn:aws:s3:::billing-bucket/*"
+    
+         ]
+    
+       }]
+    
+    }
+
 ## The index
 The index is called aws-bill
 
@@ -277,6 +303,27 @@ Search for Duplicate Record Id
 - This Week vs. Last Week by Account
 - Total Invoiced Cost
 - Usage Type.
+
+### Billing and Cost Management
+
+dashboard
+- spend summary - include subscriptions
+- month-to-date spend by service
+- consolidated bill charges by service charges
+- bill details by account ****
+
+cost explorer
+- monthly spend by service view
+- monthly spend by linked account view
+- daily spend view
+
+Pivot
+- API Operation
+- Availability Zone
+- Linked Account
+- Purchase Option
+- Service
+- Tag
 
 ### Warning: Danger Will Robinson!!!
 
