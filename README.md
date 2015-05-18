@@ -157,6 +157,8 @@ Your bucket policy for the programmatic user (the user that accesses the bucket)
        }]
     
     }
+    
+The best practice for this is to create a new policy and user for this, NEVER EVER EVER EVER use your root credentials for this.
 
 ## The index
 The index is called aws-bill
