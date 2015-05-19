@@ -197,7 +197,18 @@ class ProcessOlderReport:
         else:
             #ok add us in dano
             self.position[product].add(newjson['RecordId'])
+            #lets check that the usagedates are set - otherwise we must fudge them
+            if newjson['UsageStartDate'] == '':
+                newjson = self.fudge_date(newjson)
             self.output_json(newjson)
+
+    def fudge_date(self, json):
+        #take the report date and make a month out of it - be smart about it
+        start_fudge = self.report_date + "-01 00:00:00"
+        end_fudge = self.report_date + "-01 01:00:00"
+        json['UsageStartDate'] = start_fudge
+        json['UsageEndDate'] = end_fudge
+        return json
 
     def parse(self, report):
         """

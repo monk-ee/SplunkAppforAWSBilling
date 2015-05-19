@@ -27,7 +27,7 @@
             <single>
                 <title>Current $ Spend (Today)</title>
                 <search>
-                    <query>index=aws-bill $payer$ $linked$ earliest=-0d@d| stats sum(BlendedCost) as dollar | eval cost = "$ " . tostring(round(dollar*exact(.02), 2), "commas")</query>
+                    <query>index=aws-bill $payer$ $linked$ earliest=-0d@d| stats sum(BlendedCost) as dollar | fieldformat dollar = "$ " . tostring(dollar,"commas")</query>
                 </search>
                 <option name="charting.chart">fillerGauge</option>
                 <option name="charting.chart.rangeValues">[0,15000,20000,25000]</option>
@@ -59,7 +59,7 @@
             <single>
                 <title>Current $ Spend (Week to Date)</title>
                 <search>
-                    <query>index=aws-bill $payer$ $linked$ earliest=-0week@week| stats sum(BlendedCost) as dollar | eval cost = "$ " . tostring(round(dollar*exact(.02), 2), "commas")</query>
+                    <query>index=aws-bill $payer$ $linked$ earliest=-0week@week| stats sum(BlendedCost) as dollar | fieldformat dollar = "$ " . tostring(dollar,"commas")</query>
                 </search>
                 <option name="charting.chart">fillerGauge</option>
                 <option name="charting.chart.rangeValues">[0,15000,20000,25000]</option>
@@ -91,7 +91,7 @@
             <single>
                 <title>Current $ Spend (Month to Date)</title>
                 <search>
-                    <query>index=aws-bill $payer$ $linked$ earliest=-0mon@mon| stats sum(BlendedCost) as dollar | eval cost = "$ " . tostring(round(dollar*exact(.02), 2), "commas")</query>
+                    <query>index=aws-bill $payer$ $linked$ earliest=-0mon@mon| stats sum(BlendedCost) as dollar | fieldformat dollar = "$ " . tostring(dollar,"commas")</query>
                 </search>
                 <option name="charting.chart">fillerGauge</option>
                 <option name="charting.chart.rangeValues">[0,15000,20000,25000]</option>
