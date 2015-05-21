@@ -188,7 +188,7 @@ class ProcessDetailedReport:
             #ok add us in dano
             self.position[product].add(newjson['RecordId'])
             #lets check that the usagedates are set - otherwise we must fudge them
-            if newjson['UsageStartDate'] == '':
+            if newjson['UsageStartDate'] not in newjson:
                 newjson = self.fudge_date(newjson)
             self.output_json(newjson)
 
