@@ -147,6 +147,8 @@ class ProcessOlderReport:
         :return:
         """
         for key in self.config['accounts']:
+            #reset positions and sets
+            self.position = {}
             self.process_file(key)
 
     def process_file(self, key):
