@@ -1,11 +1,11 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-"""maintain_detailed_reports.py: clean up old reports."""
+"""MaintainDetailedReports.py: clean up old reports."""
 
 __author__ = "monkee"
 __license__ = "GPLv3.0"
-__version__ = "2.0.4"
+__version__ = "2.0.5"
 __maintainer__ = "monk-ee"
 __email__ = "magic.monkee.magic@gmail.com"
 __status__ = "Production"

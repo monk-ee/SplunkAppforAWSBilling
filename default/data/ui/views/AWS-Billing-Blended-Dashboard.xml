@@ -1,110 +1,296 @@
-<?xml version='1.0' encoding='utf-8'?>
-<dashboard>
-  <label>AWS Billing Blended Cost Dashboard</label>
-  <row>
-    <chart>
-      <searchString>index=aws-bill BlendedCost !="" | timechart span=1mon sum(BlendedCost) as $</searchString>
-      <title>Monthly Blended Raw Costs ($)</title>
-      <earliestTime>-1y@y</earliestTime>
-      <latestTime>now</latestTime>
-      <option name="charting.chart">column</option>
-      <option name="charting.chart.stackMode">stacked</option>
-      <option name="charting.axisTitleY.text">$</option>
-      <option name="charting.axisTitleX.text">Months</option>
-    </chart>
-    <chart>
-      <searchString>index=aws-bill UnBlendedCost !="" | timechart span=1mon sum(UnBlendedCost) as $</searchString>
-      <title>Monthly UnBlended Raw Costs ($)</title>
-      <earliestTime>-1y@y</earliestTime>
-      <latestTime>now</latestTime>
-      <option name="charting.chart">column</option>
-      <option name="charting.chart.stackMode">stacked</option>
-      <option name="charting.axisTitleY.text">$</option>
-      <option name="charting.axisTitleX.text">Months</option>
-    </chart>
+<form>
+    <label>AWS Billing Blended Cost Dashboard</label>
+    <fieldset autoRun="false" submitButton="false">
+        <input type="dropdown" token="payer" searchWhenChanged="true">
+            <label>Select Payer Account:</label>
+            <prefix>PayerAccountId="</prefix>
+            <suffix>"</suffix>
+            <default>*</default>
+            <choice value="*">All</choice>
+            <populatingSearch fieldForValue="PayerAccountId" fieldForLabel="PayerAccountId">
+                <![CDATA[|inputlookup payer_account_id.csv]]>
+            </populatingSearch>
+        </input>
+        <input type="dropdown" token="linked" searchWhenChanged="true">
+            <label>Select Linked Account:</label>
+            <prefix>LinkedAccountId="</prefix>
+            <suffix>"</suffix>
+            <default>*</default>
+            <choice value="*">All</choice>
+            <populatingSearch fieldForValue="LinkedAccountId" fieldForLabel="LinkedAccountId">
+                <![CDATA[|inputlookup linked_account_id.csv]]>
+            </populatingSearch>
+        </input>
+    </fieldset>
+    <row>
+        <panel>
+            <single>
+                <title>Current $ Spend (Today)</title>
+                <search>
+                    <query>index=aws-bill $payer$ $linked$ earliest=-0d@d| stats sum(BlendedCost) as dollar | fieldformat dollar = "$ " . tostring(dollar,"commas")</query>
+                </search>
+                <option name="charting.chart">fillerGauge</option>
+                <option name="charting.chart.rangeValues">[0,15000,20000,25000]</option>
+                <option name="charting.gaugeColors">[0x84e900,0xffe800,0xbf3030]</option>
+                <option name="count">10</option>
+                <option name="displayRowNumbers">true</option>
+                <option name="charting.axisLabelsX.majorLabelStyle.overflowMode">ellipsisNone</option>
+                <option name="charting.axisLabelsX.majorLabelStyle.rotation">0</option>
+                <option name="charting.axisTitleX.visibility">visible</option>
+                <option name="charting.axisTitleY.visibility">visible</option>
+                <option name="charting.axisTitleY2.visibility">visible</option>
+                <option name="charting.axisX.scale">linear</option>
+                <option name="charting.axisY.scale">linear</option>
+                <option name="charting.axisY2.enabled">false</option>
+                <option name="charting.axisY2.scale">inherit</option>
+                <option name="charting.chart.bubbleMaximumSize">50</option>
+                <option name="charting.chart.bubbleMinimumSize">10</option>
+                <option name="charting.chart.bubbleSizeBy">area</option>
+                <option name="charting.chart.nullValueMode">gaps</option>
+                <option name="charting.chart.sliceCollapsingThreshold">0.01</option>
+                <option name="charting.chart.stackMode">default</option>
+                <option name="charting.chart.style">shiny</option>
+                <option name="charting.drilldown">all</option>
+                <option name="charting.layout.splitSeries">0</option>
+                <option name="charting.legend.labelStyle.overflowMode">ellipsisMiddle</option>
+                <option name="charting.legend.placement">right</option>
+                <option name="drilldown">none</option>
+            </single>
+            <single>
+                <title>Current $ Spend (Week to Date)</title>
+                <search>
+                    <query>index=aws-bill $payer$ $linked$ earliest=-0week@week| stats sum(BlendedCost) as dollar | fieldformat dollar = "$ " . tostring(dollar,"commas")</query>
+                </search>
+                <option name="charting.chart">fillerGauge</option>
+                <option name="charting.chart.rangeValues">[0,15000,20000,25000]</option>
+                <option name="charting.gaugeColors">[0x84e900,0xffe800,0xbf3030]</option>
+                <option name="count">10</option>
+                <option name="displayRowNumbers">true</option>
+                <option name="charting.axisLabelsX.majorLabelStyle.overflowMode">ellipsisNone</option>
+                <option name="charting.axisLabelsX.majorLabelStyle.rotation">0</option>
+                <option name="charting.axisTitleX.visibility">visible</option>
+                <option name="charting.axisTitleY.visibility">visible</option>
+                <option name="charting.axisTitleY2.visibility">visible</option>
+                <option name="charting.axisX.scale">linear</option>
+                <option name="charting.axisY.scale">linear</option>
+                <option name="charting.axisY2.enabled">false</option>
+                <option name="charting.axisY2.scale">inherit</option>
+                <option name="charting.chart.bubbleMaximumSize">50</option>
+                <option name="charting.chart.bubbleMinimumSize">10</option>
+                <option name="charting.chart.bubbleSizeBy">area</option>
+                <option name="charting.chart.nullValueMode">gaps</option>
+                <option name="charting.chart.sliceCollapsingThreshold">0.01</option>
+                <option name="charting.chart.stackMode">default</option>
+                <option name="charting.chart.style">shiny</option>
+                <option name="charting.drilldown">all</option>
+                <option name="charting.layout.splitSeries">0</option>
+                <option name="charting.legend.labelStyle.overflowMode">ellipsisMiddle</option>
+                <option name="charting.legend.placement">right</option>
+                <option name="drilldown">none</option>
+            </single>
+            <single>
+                <title>Current $ Spend (Month to Date)</title>
+                <search>
+                    <query>index=aws-bill $payer$ $linked$ earliest=-0mon@mon| stats sum(BlendedCost) as dollar | fieldformat dollar = "$ " . tostring(dollar,"commas")</query>
+                </search>
+                <option name="charting.chart">fillerGauge</option>
+                <option name="charting.chart.rangeValues">[0,15000,20000,25000]</option>
+                <option name="charting.gaugeColors">[0x84e900,0xffe800,0xbf3030]</option>
+                <option name="count">10</option>
+                <option name="displayRowNumbers">true</option>
+                <option name="charting.axisLabelsX.majorLabelStyle.overflowMode">ellipsisNone</option>
+                <option name="charting.axisLabelsX.majorLabelStyle.rotation">0</option>
+                <option name="charting.axisTitleX.visibility">visible</option>
+                <option name="charting.axisTitleY.visibility">visible</option>
+                <option name="charting.axisTitleY2.visibility">visible</option>
+                <option name="charting.axisX.scale">linear</option>
+                <option name="charting.axisY.scale">linear</option>
+                <option name="charting.axisY2.enabled">false</option>
+                <option name="charting.axisY2.scale">inherit</option>
+                <option name="charting.chart.bubbleMaximumSize">50</option>
+                <option name="charting.chart.bubbleMinimumSize">10</option>
+                <option name="charting.chart.bubbleSizeBy">area</option>
+                <option name="charting.chart.nullValueMode">gaps</option>
+                <option name="charting.chart.sliceCollapsingThreshold">0.01</option>
+                <option name="charting.chart.stackMode">default</option>
+                <option name="charting.chart.style">shiny</option>
+                <option name="charting.drilldown">all</option>
+                <option name="charting.layout.splitSeries">0</option>
+                <option name="charting.legend.labelStyle.overflowMode">ellipsisMiddle</option>
+                <option name="charting.legend.placement">right</option>
+                <option name="drilldown">none</option>
+            </single>
+            <single>
+                <title>Current $ Spend (Year to Date)</title>
+                <search>
+                    <query>index=aws-bill $payer$ $linked$ earliest=-0y@y| stats sum(BlendedCost)</query>
+                </search>
+                <option name="charting.chart">fillerGauge</option>
+                <option name="charting.chart.rangeValues">[0,15000,20000,25000]</option>
+                <option name="charting.gaugeColors">[0x84e900,0xffe800,0xbf3030]</option>
+                <option name="count">10</option>
+                <option name="displayRowNumbers">true</option>
+                <option name="charting.axisLabelsX.majorLabelStyle.overflowMode">ellipsisNone</option>
+                <option name="charting.axisLabelsX.majorLabelStyle.rotation">0</option>
+                <option name="charting.axisTitleX.visibility">visible</option>
+                <option name="charting.axisTitleY.visibility">visible</option>
+                <option name="charting.axisTitleY2.visibility">visible</option>
+                <option name="charting.axisX.scale">linear</option>
+                <option name="charting.axisY.scale">linear</option>
+                <option name="charting.axisY2.enabled">false</option>
+                <option name="charting.axisY2.scale">inherit</option>
+                <option name="charting.chart.bubbleMaximumSize">50</option>
+                <option name="charting.chart.bubbleMinimumSize">10</option>
+                <option name="charting.chart.bubbleSizeBy">area</option>
+                <option name="charting.chart.nullValueMode">gaps</option>
+                <option name="charting.chart.sliceCollapsingThreshold">0.01</option>
+                <option name="charting.chart.stackMode">default</option>
+                <option name="charting.chart.style">shiny</option>
+                <option name="charting.drilldown">all</option>
+                <option name="charting.layout.splitSeries">0</option>
+                <option name="charting.legend.labelStyle.overflowMode">ellipsisMiddle</option>
+                <option name="charting.legend.placement">right</option>
+                <option name="drilldown">none</option>
+            </single>
+        </panel>
     </row>
     <row>
-       <chart>
-      <searchString>index=aws-bill ProductName !="" |eval date_hour=strftime(_time, "%H") | search (date_hour&gt;=7 AND date_hour&lt;=17) |timechart sum(BlendedCost) as $ by ProductName</searchString>
-      <title>Last Month Daytime Blended Costs ($)</title>
-      <earliestTime>-1@month</earliestTime>
-      <latestTime>now</latestTime>
-      <option name="charting.chart">column</option>
-      <option name="charting.chart.stackMode">stacked</option>
-      <option name="charting.axisTitleY.text">$</option>
-      <option name="charting.axisTitleX.text">Days</option>
-    </chart>
-          <chart>
-      <searchString>index=aws-bill ProductName !="" |eval date_hour=strftime(_time, "%H") | search (date_hour$gt;=18 AND date_hour&lt;=23) OR (date_hour&gt;=0 AND date_hour&lt;=6) |timechart sum(BlendedCost) as $ by ProductName</searchString>
-      <title>Last Month Nighttime Blended Costs ($)</title>
-      <earliestTime>-1@month</earliestTime>
-      <latestTime>now</latestTime>
-      <option name="charting.chart">column</option>
-      <option name="charting.chart.stackMode">stacked</option>
-      <option name="charting.axisTitleY.text">$</option>
-      <option name="charting.axisTitleX.text">Days</option>
-    </chart>
+        <panel>
+            <chart>
+                <searchString>index=aws-bill BlendedCost !="" $payer$ $linked$| timechart span=1mon sum(BlendedCost) as $</searchString>
+                <title>Blended Raw Costs by Month</title>
+                <earliestTime>-1y@y</earliestTime>
+                <latestTime>now</latestTime>
+                <option name="charting.chart">column</option>
+                <option name="charting.chart.stackMode">stacked</option>
+                <option name="charting.axisTitleY.text">$</option>
+                <option name="charting.axisTitleX.text">Months</option>
+            </chart>
+        </panel>
+        <panel>
+            <chart>
+                <title>UnBlended Raw Costs by Month</title>
+                <search>
+                    <query>index=aws-bill UnBlendedCost !="" $payer$ $linked$ | timechart span=1mon sum(UnBlendedCost) as $</query>
+                    <earliest>-1y@y</earliest>
+                    <latest>now</latest>
+                </search>
+                <option name="charting.chart">column</option>
+                <option name="charting.chart.stackMode">stacked</option>
+                <option name="charting.axisTitleY.text">$</option>
+                <option name="charting.axisTitleX.text">Months</option>
+                <option name="charting.axisLabelsX.majorLabelStyle.overflowMode">ellipsisNone</option>
+                <option name="charting.axisLabelsX.majorLabelStyle.rotation">0</option>
+                <option name="charting.axisTitleX.visibility">visible</option>
+                <option name="charting.axisTitleY.visibility">visible</option>
+                <option name="charting.axisTitleY2.visibility">visible</option>
+                <option name="charting.axisX.scale">linear</option>
+                <option name="charting.axisY.scale">linear</option>
+                <option name="charting.axisY2.enabled">false</option>
+                <option name="charting.axisY2.scale">inherit</option>
+                <option name="charting.chart.bubbleMaximumSize">50</option>
+                <option name="charting.chart.bubbleMinimumSize">10</option>
+                <option name="charting.chart.bubbleSizeBy">area</option>
+                <option name="charting.chart.nullValueMode">gaps</option>
+                <option name="charting.chart.sliceCollapsingThreshold">0.01</option>
+                <option name="charting.chart.style">shiny</option>
+                <option name="charting.drilldown">all</option>
+                <option name="charting.layout.splitSeries">0</option>
+                <option name="charting.legend.labelStyle.overflowMode">ellipsisMiddle</option>
+                <option name="charting.legend.placement">right</option>
+            </chart>
+        </panel>
     </row>
     <row>
-    <chart>
-      <searchString>index=aws-bill | timechart span=1day sum(BlendedCost) as $ by ProductName</searchString>
-      <title>Blended Costs By AWS Product</title>
-      <earliestTime>-7d@h</earliestTime>
-      <latestTime>now</latestTime>
-      <option name="charting.chart">column</option>
-      <option name="charting.chart.nullValueMode">gaps</option>
-      <option name="charting.chart.stackMode">stacked</option>
-      <option name="charting.layout.splitSeries">false</option>
-      <option name="charting.legend.placement">right</option>
-      <option name="charting.secondaryAxis.maximumNumber">""</option>
-      <option name="charting.secondaryAxis.minimumNumber">""</option>
-      <option name="charting.axisTitleY.text">$</option>
-      <option name="charting.axisTitleX.text">Days</option>
-      <option name="count">50</option>
-      <option name="displayRowNumbers">true</option>
-      <option name="drilldown">all</option>
-    </chart>
-  </row>
-
-  <row>
-    <chart>
-      <searchString>index=aws-bill | stats sum(BlendedCost)</searchString>
-      <title>Current $ Spend</title>
-      <option name="charting.chart">radialGauge</option>
-      <option name="charting.chart.rangeValues">[0,15000,20000,25000]</option>
-      <option name="charting.gaugeColors">[0x84e900,0xffe800,0xbf3030]</option>
-      <option name="count">10</option>
-      <option name="displayRowNumbers">true</option>
-    </chart>
-    <chart>
-      <searchString>index=aws-bill | stats count(BlendedCost)</searchString>
-      <title>Billing Items</title>
-      <option name="charting.chart">radialGauge</option>
-      <option name="charting.chart.rangeValues">[0,300000,400000]</option>
-      <option name="charting.gaugeColors">[0x84e900,0xffe800,0xbf3030]</option>
-      <option name="count">10</option>
-      <option name="displayRowNumbers">true</option>
-    </chart>
-    <chart>
-      <searchString>index=aws-bill | stats sum(UsageQuantity)</searchString>
-      <title>Usage Quantity</title>
-      <option name="charting.chart">radialGauge</option>
-      <option name="charting.chart.rangeValues">[0,20000000,400000000,800000000]</option>
-      <option name="charting.gaugeColors">[0x84e900,0xffe800,0xbf3030]</option>
-      <option name="count">10</option>
-      <option name="displayRowNumbers">true</option>
-    </chart>
-  </row>
-  <row>
-          <chart>
-      <searchString>index=aws-bill AvailabilityZone!="" | timechart sum(BlendedCost) as $ by AvailabilityZone</searchString>
-      <title>Blended Costs by Availability Zone</title>
-      <earliestTime>-28d</earliestTime>
-      <latestTime>now</latestTime>
-      <option name="charting.chart">column</option>
-      <option name="charting.axisTitleY.text">$</option>
-      <option name="charting.axisTitleX.text">Days</option>
-    </chart>
+        <panel>
+            <chart>
+                <title>Last 7 Days Blended Costs by Product Name</title>
+                <search>
+                    <query>index=aws-bill ProductName !="" $payer$ $linked$  |   timechart  span="1d" sum(BlendedCost) as $ by ProductName</query>
+                    <earliest>-7day@day</earliest>
+                    <latest>now</latest>
+                </search>
+                <option name="charting.chart">column</option>
+                <option name="charting.chart.stackMode">stacked</option>
+                <option name="charting.axisTitleY.text">$</option>
+                <option name="charting.axisTitleX.text">Days</option>
+                <option name="charting.axisLabelsX.majorLabelStyle.overflowMode">ellipsisNone</option>
+                <option name="charting.axisLabelsX.majorLabelStyle.rotation">0</option>
+                <option name="charting.axisTitleX.visibility">visible</option>
+                <option name="charting.axisTitleY.visibility">visible</option>
+                <option name="charting.axisTitleY2.visibility">visible</option>
+                <option name="charting.axisX.scale">linear</option>
+                <option name="charting.axisY.scale">linear</option>
+                <option name="charting.axisY2.enabled">false</option>
+                <option name="charting.axisY2.scale">inherit</option>
+                <option name="charting.chart.bubbleMaximumSize">50</option>
+                <option name="charting.chart.bubbleMinimumSize">10</option>
+                <option name="charting.chart.bubbleSizeBy">area</option>
+                <option name="charting.chart.nullValueMode">gaps</option>
+                <option name="charting.chart.sliceCollapsingThreshold">0.01</option>
+                <option name="charting.chart.style">shiny</option>
+                <option name="charting.drilldown">all</option>
+                <option name="charting.layout.splitSeries">0</option>
+                <option name="charting.legend.labelStyle.overflowMode">ellipsisMiddle</option>
+                <option name="charting.legend.placement">right</option>
+            </chart>
+        </panel>
     </row>
-
-</dashboard>
+    <row>
+        <panel>
+            <chart>
+                <searchString>index=aws-bill $payer$ $linked$| timechart span=1day sum(BlendedCost) as $ by UsageType</searchString>
+                <title>Last 7 Days Blended Costs By Usage Type</title>
+                <earliestTime>-7d@h</earliestTime>
+                <latestTime>now</latestTime>
+                <option name="charting.chart">column</option>
+                <option name="charting.chart.nullValueMode">gaps</option>
+                <option name="charting.chart.stackMode">stacked</option>
+                <option name="charting.layout.splitSeries">false</option>
+                <option name="charting.legend.placement">right</option>
+                <option name="charting.secondaryAxis.maximumNumber">""</option>
+                <option name="charting.secondaryAxis.minimumNumber">""</option>
+                <option name="charting.axisTitleY.text">$</option>
+                <option name="charting.axisTitleX.text">Days</option>
+                <option name="count">50</option>
+                <option name="displayRowNumbers">true</option>
+                <option name="drilldown">all</option>
+            </chart>
+        </panel>
+    </row>
+    <row>
+        <panel>
+            <chart>
+                <searchString>index=aws-bill $payer$ $linked$| timechart span=1day sum(BlendedCost) as $ by ItemDescription</searchString>
+                <title>Last 7 Days Blended Costs By Item Description</title>
+                <earliestTime>-7d@h</earliestTime>
+                <latestTime>now</latestTime>
+                <option name="charting.chart">column</option>
+                <option name="charting.chart.nullValueMode">gaps</option>
+                <option name="charting.chart.stackMode">stacked</option>
+                <option name="charting.layout.splitSeries">false</option>
+                <option name="charting.legend.placement">right</option>
+                <option name="charting.secondaryAxis.maximumNumber">""</option>
+                <option name="charting.secondaryAxis.minimumNumber">""</option>
+                <option name="charting.axisTitleY.text">$</option>
+                <option name="charting.axisTitleX.text">Days</option>
+                <option name="count">50</option>
+                <option name="displayRowNumbers">true</option>
+                <option name="drilldown">all</option>
+            </chart>
+        </panel>
+    </row>
+    <row>
+        <panel>
+            <chart>
+                <searchString>index=aws-bill AvailabilityZone!="" $payer$ $linked$ | timechart sum(BlendedCost) as $ by AvailabilityZone</searchString>
+                <title>Blended Costs by Availability Zone (Month to Date)</title>
+                <earliestTime>-0mon@mon</earliestTime>
+                <latestTime>now</latestTime>
+                <option name="charting.chart">column</option>
+                <option name="charting.axisTitleY.text">$</option>
+                <option name="charting.axisTitleX.text">Days</option>
+            </chart>
+        </panel>
+    </row>
+</form>

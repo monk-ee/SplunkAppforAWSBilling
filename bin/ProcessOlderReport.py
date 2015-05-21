@@ -28,7 +28,7 @@
 
 __author__ = "monkee"
 __license__ = "GPLv3.0"
-__version__ = "2.0.4"
+__version__ = "2.0.5"
 __maintainer__ = "monk-ee"
 __email__ = "magic.monkee.magic@gmail.com"
 __status__ = "Production"
@@ -53,7 +53,7 @@ try:
 except:
     import pickle
 
-class ProcessDetailedReport:
+class ProcessOlderReport:
     logger = ''
     appname = 'SplunkAppforAWSBilling'
     config = ''
@@ -147,6 +147,8 @@ class ProcessDetailedReport:
         :return:
         """
         for key in self.config['accounts']:
+            #reset positions and sets
+            self.position = {}
             self.process_file(key)
 
     def process_file(self, key):
@@ -197,7 +199,18 @@ class ProcessDetailedReport:
         else:
             #ok add us in dano
             self.position[product].add(newjson['RecordId'])
+            #lets check that the usagedates are set - otherwise we must fudge them
+            if newjson['UsageStartDate'] not in newjson:
+                newjson = self.fudge_date(newjson)
             self.output_json(newjson)
+
+    def fudge_date(self, json):
+        #take the report date and make a month out of it - be smart about it
+        start_fudge = self.report_date + "-01 00:00:00"
+        end_fudge = self.report_date + "-01 01:00:00"
+        json['UsageStartDate'] = start_fudge
+        json['UsageEndDate'] = end_fudge
+        return json
 
     def parse(self, report):
         """
@@ -245,7 +258,8 @@ class ProcessDetailedReport:
             else:
                 count = 0
                 for col in headers:
-                    newjson[col] = row[count]
+                    if row[count] != '':
+                        newjson[col] = row[count]
                     count=count+1
                 self.game_set_and_match(report, newjson)
         self.write_position(report)
@@ -292,4 +306,4 @@ if __name__ == "__main__":
 
 
     args = parser.parse_args()
-    pdr = ProcessDetailedReport(args)
+    por = ProcessOlderReport(args)

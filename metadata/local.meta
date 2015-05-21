@@ -21,6 +21,21 @@ modtime = 1352155335.218686000
 [views/AWS-Billing-Dashboard]
 access = read : [ * ], write : [ admin, power ]
 owner = nobody
-version = 5.0.4
+version = 5.0
 modtime = 1376539574.107076000
 
+[datamodels/BlendedCosts]
+version = 6.2.3
+modtime = 1431317407.581152000
+
+[models/BlendedCosts]
+version = 6.2.3
+modtime = 1431317407.586655000
+
+[datamodels/Costs]
+version = 6.2.3
+modtime = 1431317407.581152000
+
+[models/Costs]
+version = 6.2.3
+modtime = 1431317407.586655000
