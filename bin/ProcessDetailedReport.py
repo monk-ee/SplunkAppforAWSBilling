@@ -246,7 +246,8 @@ class ProcessDetailedReport:
             else:
                 count = 0
                 for col in headers:
-                    newjson[col] = row[count]
+                    if row[count] != '':
+                        newjson[col] = row[count]
                     count=count+1
                 self.game_set_and_match(report, newjson)
         self.write_position(report)
