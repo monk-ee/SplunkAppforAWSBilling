@@ -1,6 +1,6 @@
 <nav>
     <view name="flashtimeline" default='true' />
-    <collection label="Dashboards">
+    <collection label="Consolidated Dashboards">
         <view source="unclassified" match="dashboard"/>
         <divider />
     </collection>

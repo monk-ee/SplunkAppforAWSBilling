@@ -1,4 +1,4 @@
-SplunkAppforAWSBilling v2.0.5
+SplunkAppforAWSBilling v2.0.6
 =============================
 
 Splunk App for AWS Billing allows you to collect Detailed Billing data from which in-depth analysis of usage patterns and spending becomes available for Amazon Web Services environment.
@@ -62,7 +62,11 @@ Also feel fre to raise any issues here:
 ## Cost Models
 The application supports the straight Cost model as well as the Blended/Unblended Cost Model. Dashboards for both are provided; use the one that suits your billing settings.
 
-## Keep in mind that blended rates apply only to Consolidated Billing customers.
+From Amazon's own documentation:
+
+    Keep in mind that blended rates apply only to Consolidated Billing customers.
+
+http://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/con-bill-blended-rates.html
 
 ### Blended and Unblended Rates:
 
@@ -275,14 +279,17 @@ Special thanks to Nilesh Khetia who's module I borrowed to make this one http://
     - proxy support is introduced - a must for corporate network fun
     - pivot tables on LinkedAccountId
     
+2.0.6
+    - automated history fetching - up to 12 months
+    - better handling for items that only have a start date
     
 ### Examples
-Here are some example searches, I hope you find them useful:
+Here are some consolidated billing example searches, I hope you find them useful:
 
     index=aws-bill | timechart sum(BlendedCost) as $ by ItemDescription
     index=aws-bill BlendedCost !="" | timechart span=1day sum(BlendedCost) as $ by ProductName useother=f
     
-Search for Duplicate Record Id
+Search for Duplicate Record Id - to see if the import has gone crazy.
 
     index=aws-bill | stats count by RecordId | where count > 1
     

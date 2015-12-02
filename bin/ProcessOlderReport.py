@@ -28,7 +28,7 @@
 
 __author__ = "monkee"
 __license__ = "GPLv3.0"
-__version__ = "2.0.5"
+__version__ = "2.0.6"
 __maintainer__ = "monk-ee"
 __email__ = "magic.monkee.magic@gmail.com"
 __status__ = "Production"
@@ -200,9 +200,12 @@ class ProcessOlderReport:
             #lets check that the usagedates are set - otherwise we must fudge them
             if newjson['UsageStartDate'] == '':
                 newjson = self.fudge_date(newjson)
+            else:
+                print(newjson['UsageStartDate'])
             self.output_json(newjson)
 
     def fudge_date(self, json):
+        print("fudgin")
         #take the report date and make a month out of it - be smart about it
         start_fudge = self.report_date + "-01 00:00:00"
         end_fudge = self.report_date + "-01 01:00:00"
