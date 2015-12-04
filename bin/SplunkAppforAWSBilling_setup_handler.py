@@ -2,7 +2,7 @@
 __author__ = 'Monkee Magic <magic.monkee.magic@gmail.com>'
 __author__ = "monkee"
 __license__ = "GPLv3.0"
-__version__ = "2.0.4"
+__version__ = "2.0.6"
 __maintainer__ = "monk-ee"
 __email__ = "magic.monkee.magic@gmail.com"
 __status__ = "Production"
@@ -34,7 +34,7 @@ class ConfigApp(admin.MConfigHandler):
 
     def setup(self):
         if self.requestedAction == admin.ACTION_EDIT:
-            for arg in ['proxy_url']:
+            for arg in ['proxy_url', 'proxy_port', 'proxy_user', 'proxy_pass']:
                 self.supportedArgs.addOptArg(arg)
 
     '''
@@ -57,7 +57,7 @@ class ConfigApp(admin.MConfigHandler):
         if confDict is not None:
             for stanza, settings in confDict.items():
                 for key, val in settings.items():
-                    if key in [ 'proxy_url'] and val in [None, '']:
+                    if key in ['proxy_url', 'proxy_port', 'proxy_user', 'proxy_pass'] and val in [None, '']:
                         val = ''
                     confInfo[stanza].append(key, val)
 
@@ -73,12 +73,21 @@ class ConfigApp(admin.MConfigHandler):
         if self.callerArgs.data['proxy_url'][0] in [None, '']:
             self.callerArgs.data['proxy_url'][0] = ''
 
+        if self.callerArgs.data['proxy_port'][0] in [None, '']:
+            self.callerArgs.data['proxy_port'][0] = ''
+
+        if self.callerArgs.data['proxy_user'][0] in [None, '']:
+            self.callerArgs.data['proxy_user'][0] = ''
+
+        if self.callerArgs.data['proxy_pass'][0] in [None, '']:
+            self.callerArgs.data['proxy_pass'][0] = ''
+
         self.writeConf('SplunkAppforAWSBilling', 'default', self.callerArgs.data)
 
-        input_1 = {'disabled': '0', 'index': 'aws-bill', 'interval': '300', 'source': 'SplunkAppforAWSBilling_Import',
+        input_1 = {'disabled': '0', 'index': 'aws-bill', 'interval': '10800', 'source': 'SplunkAppforAWSBilling_Import',
                    'sourcetype': 'SplunkAppforAWSBilling_Processor', 'passAuth': 'splunk-system-user'}
 
-        INPUT_FILE = os.path.join(os.environ['SPLUNK_HOME'], 'etc', 'apps', 'SplunkAppforAWSBilling', 'bin', 'process_detailed_report.py')
+        INPUT_FILE = os.path.join(os.environ['SPLUNK_HOME'], 'etc', 'apps', 'SplunkAppforAWSBilling', 'bin', 'ProcessDetailedReport.py')
         INPUT_FILE = 'script://' + INPUT_FILE
         self.writeConf('inputs', INPUT_FILE, input_1)
 

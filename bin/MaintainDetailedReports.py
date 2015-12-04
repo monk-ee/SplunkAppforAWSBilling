@@ -1,11 +1,11 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-"""maintain_detailed_reports.py: clean up old reports."""
+"""MaintainDetailedReports.py: clean up old reports."""
 
 __author__ = "monkee"
 __license__ = "GPLv3.0"
-__version__ = "2.0.4"
+__version__ = "2.0.6"
 __maintainer__ = "monk-ee"
 __email__ = "magic.monkee.magic@gmail.com"
 __status__ = "Production"
@@ -42,19 +42,24 @@ class MaintainDetailedReports:
         """
         self.splunk_home = os.environ['SPLUNK_HOME']
         self.app_home = os.path.join(self.splunk_home, 'etc', 'apps', self.appname)
-        self.set_date()
         self.setup_logging()
         self.setup_config()
         self.process_files()
 
 
-    def set_date(self):
+    def set_date(self, date):
         """
-        We calculate the month we are in just here.
+        set the date for this months report here
         :return:
         """
-        dt = datetime.now()
-        self.report_date = dt.strftime("%Y-%m")
+        self.report_date = date.strftime("%Y-%m")
+
+    def monthdelta(self, date, delta):
+        m, y = (date.month+delta) % 12, date.year + ((date.month)+delta-1) // 12
+        if not m: m = 12
+        d = min(date.day, [31,
+                           29 if y%4==0 and not y%400==0 else 28,31,30,31,30,31,31,30,31,30,31][m-1])
+        return date.replace(day=d,month=m, year=y)
 
     # Define the logging function
     def setup_logging(self):
@@ -96,16 +101,19 @@ class MaintainDetailedReports:
         :return:
         """
         for key in self.config['accounts']:
-            self.process_file(key)
+            for month in range(-24, -12):
+                self.set_date(self.monthdelta(datetime.now(), month))
+                self.process_file(key)
 
     def process_file(self, key):
         #now set detailed billing file
         BILLINGREPORTZIPFILE = os.path.join(path, 'etc', 'apps', 'SplunkAppforAWSBilling', 'tmp',
-                                            str(key['account_number']) + 'detailed_billing.zip')
+                                            str(key['account_number']) + '_' + self.report_date + '_'
+                                            + 'detailed_billing.zip')
 
         #old file names
         oldBillingFileName = str(key[
-            'account_number']) + "-aws-billing-detailed-line-items-with-resources-and-tags-" + subtract_one_month_datefilename() + ".csv"
+            'account_number']) + "-aws-billing-detailed-line-items-with-resources-and-tags-" + self.report_date + ".csv"
 
         #now path it
         BILLINGREPORTCSVOLDFILE = os.path.join(path, 'etc', 'apps', 'SplunkAppforAWSBilling', 'csv',oldBillingFileName)
@@ -113,6 +121,7 @@ class MaintainDetailedReports:
         #now delete them try catch
         try:
             os.remove(BILLINGREPORTCSVOLDFILE)
+            os.remove(BILLINGREPORTZIPFILE)
         except OSError:
             pass
 

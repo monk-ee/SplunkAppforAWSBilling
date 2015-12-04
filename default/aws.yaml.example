@@ -3,4 +3,5 @@ accounts:
    billing_bucket :
    aws_access_key :
    aws_secret_key :
-
+settings:
+ - history: 12

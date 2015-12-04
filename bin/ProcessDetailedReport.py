@@ -24,11 +24,13 @@
 
     This file branches as of ab16476f08071f9da1492f8df5a459374586a452 to output a yaml format rather than lines from
     the csv.
+    The dashboards will need to understand estimated versus actual
+
 """
 
 __author__ = "monkee"
 __license__ = "GPLv3.0"
-__version__ = "2.0.4"
+__version__ = "2.0.6"
 __maintainer__ = "monk-ee"
 __email__ = "magic.monkee.magic@gmail.com"
 __status__ = "Production"
@@ -36,15 +38,11 @@ __status__ = "Production"
 
 import yaml
 import csv
-from splunk_utilities import *
-import splunk.clilib.cli_common
 import logging, logging.handlers
 import splunk
 from datetime import datetime
 import os
 import json
-import splunklib.client as client
-import argparse
 import base64
 
 #we would rather use cpickle but if it's not there that is ok too
@@ -52,6 +50,7 @@ try:
     import cPickle as pickle
 except:
     import pickle
+
 
 class ProcessDetailedReport:
     logger = ''
@@ -62,30 +61,32 @@ class ProcessDetailedReport:
     report_date = ''
     linenumber = 0
     position = {}
-    service = ""
-    index= ""
 
-    def __init__(self, obj):
+    def __init__(self):
         """
         Set some class variables for later use and kick off the processing chain
         :return:
         """
         self.splunk_home = os.environ['SPLUNK_HOME']
         self.app_home = os.path.join(self.splunk_home, 'etc', 'apps', self.appname)
-        self.set_date(obj)
         self.setup_logging()
         self.setup_config()
-        self.connect_to_splunk(obj)
         self.process_files()
 
 
-    def set_date(self, arg):
+    def set_date(self, date):
         """
-        sets a manual date
-        :param arg:
+        set the date for this months report here
         :return:
         """
-        self.report_date = str(arg.year) + '-' + str(arg.month).zfill(2)
+        self.report_date = date.strftime("%Y-%m")
+
+    def monthdelta(self, date, delta):
+        m, y = (date.month+delta) % 12, date.year + ((date.month)+delta-1) // 12
+        if not m: m = 12
+        d = min(date.day, [31,
+                           29 if y%4==0 and not y%400==0 else 28,31,30,31,30,31,31,30,31,30,31][m-1])
+        return date.replace(day=d,month=m, year=y)
 
     # Define the logging function
     def setup_logging(self):
@@ -109,7 +110,8 @@ class ProcessDetailedReport:
 
     def filesafe(self, name):
         """
-
+        just pulled this out because i was not sure the best way to make a filename safe
+        this could be anything really - i chose this way
         :param name:
         :return:
         """
@@ -128,26 +130,15 @@ class ProcessDetailedReport:
             self.logger.error("Failed to load configuration file aws.yaml: " + str(err))
             raise SystemExit
 
-    def connect_to_splunk(self, arg):
-        # Create a Service instance and log in
-        try:
-            self.service = client.connect(
-                host=str(arg.serverhost),
-                port=str(arg.port),
-                username=str(arg.user),
-                password=str(arg.password))
-            self.index = self.service.indexes["aws-bill"]
-        except IOError, err:
-            self.logger.error("Failed to connect to splunk server and connect to index: " + str(err))
-            raise SystemExit
-
     def process_files(self):
         """
         Adding some support for multiple files and accounts - for aggregation
         :return:
         """
         for key in self.config['accounts']:
-            self.process_file(key)
+            for month in range(-12, 0):
+                self.set_date(self.monthdelta(datetime.now(), month))
+                self.process_file(key)
 
     def process_file(self, key):
         """
@@ -178,7 +169,9 @@ class ProcessDetailedReport:
 
     def game_set_and_match(self, report, newjson):
         """
-
+        this method does all the hard work of tracking whether a record has been imported or not
+        we keep sets of recordid's around to do a comparison on - seems the only way to do it
+        with some sanity
         :param report:
         :param newjson:
         :return:
@@ -197,6 +190,15 @@ class ProcessDetailedReport:
         else:
             #ok add us in dano
             self.position[product].add(newjson['RecordId'])
+            #lets check that the usagedates are set - otherwise we must fudge them
+            #there seems to be an issue around this to do with the usage start date
+            # really existing UsageStartDate 'fudge' misfiring #5
+            #it also seems that the amazon format ensures this is no longer so
+            #disabling this for now
+            if newjson['UsageStartDate'] == '':
+                self.logger.error("MERROR - This field should never be blank here! Check Record Line: " +
+                                  str(newjson['RecordId']))
+                return
             self.output_json(newjson)
 
     def parse(self, report):
@@ -238,7 +240,7 @@ class ProcessDetailedReport:
             elif row[5] == "":
                 #ha this breaks lots of stuff to do with my set logic - so no no no
                 continue
-            elif row[4] =="":
+            elif row[4] == "":
                 #so these are calculated aws support costs but not used unless you have broken the thresholds
                 #then they get recordids because they are chargeable - throw them away if they are blank
                 continue
@@ -252,13 +254,11 @@ class ProcessDetailedReport:
 
     def output_json(self, newjson):
         """
-
+        just pushed this out to a method that can be modified independently
         :param newjson:
         :return:
         """
-        self.index.submit(json.dumps(newjson, encoding="utf-8", ensure_ascii=True), \
-                          sourcetype="SplunkAppforAWSBilling_Processor", \
-                          source="SplunkAppforAWSBilling_Import", host="local")
+        print(json.dumps(newjson, encoding="utf-8", ensure_ascii=True))
 
 
     def write_position(self, report):
@@ -274,22 +274,8 @@ class ProcessDetailedReport:
                 pickle.dump( self.position[product], open( abs_file_path, "wb" ) )
             except IOError, err:
                 self.logger.error("ERROR - Position could not be written; this is bad because we now get \
-                                      duplicates : " + str(err))
+                                  duplicates : " + str(err))
                 raise SystemExit
 
-
-
 if __name__ == "__main__":
-    #grab the arguments when the script is ran
-    parser = argparse.ArgumentParser(description='A utility for processing older report files into splunk for processing. Be very careful, do not process this months data - you will cause a double up of records in the splunk index.')
-    parser.add_argument('-d', '--dryrun', action='store_true', default=False, help='Fake runs for testing purposes.')
-    parser.add_argument('-s', '--serverhost', default="localhost", help='Host name of splunk server.')
-    parser.add_argument('-p', '--port', default="8089", help='Port of splunk server.')
-    parser.add_argument('year', type=int, help='The year in this format: 2014 (YYYY)')
-    parser.add_argument('month', type=int, help='The month in this format: 05 (MM)')
-    parser.add_argument('user', type=str, help='Your username.')
-    parser.add_argument('password', type=str, help='Your password.')
-
-
-    args = parser.parse_args()
-    pdr = ProcessDetailedReport(args)
+    pdr = ProcessDetailedReport()

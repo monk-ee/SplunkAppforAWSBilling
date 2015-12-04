@@ -24,13 +24,11 @@
 
     This file branches as of ab16476f08071f9da1492f8df5a459374586a452 to output a yaml format rather than lines from
     the csv.
-    The dashboards will need to understand estimated versus actual
-
 """
 
 __author__ = "monkee"
 __license__ = "GPLv3.0"
-__version__ = "2.0.4"
+__version__ = "2.0.6"
 __maintainer__ = "monk-ee"
 __email__ = "magic.monkee.magic@gmail.com"
 __status__ = "Production"
@@ -45,6 +43,8 @@ import splunk
 from datetime import datetime
 import os
 import json
+import splunklib.client as client
+import argparse
 import base64
 
 #we would rather use cpickle but if it's not there that is ok too
@@ -53,8 +53,7 @@ try:
 except:
     import pickle
 
-
-class ProcessDetailedReport:
+class ProcessOlderReport:
     logger = ''
     appname = 'SplunkAppforAWSBilling'
     config = ''
@@ -63,27 +62,30 @@ class ProcessDetailedReport:
     report_date = ''
     linenumber = 0
     position = {}
+    service = ""
+    index= ""
 
-    def __init__(self):
+    def __init__(self, obj):
         """
         Set some class variables for later use and kick off the processing chain
         :return:
         """
         self.splunk_home = os.environ['SPLUNK_HOME']
         self.app_home = os.path.join(self.splunk_home, 'etc', 'apps', self.appname)
-        self.set_date()
+        self.set_date(obj)
         self.setup_logging()
         self.setup_config()
+        self.connect_to_splunk(obj)
         self.process_files()
 
 
-    def set_date(self):
+    def set_date(self, arg):
         """
-        We calculate the month we are in just here.
+        sets a manual date
+        :param arg:
         :return:
         """
-        dt = datetime.now()
-        self.report_date = dt.strftime("%Y-%m")
+        self.report_date = str(arg.year) + '-' + str(arg.month).zfill(2)
 
     # Define the logging function
     def setup_logging(self):
@@ -107,8 +109,7 @@ class ProcessDetailedReport:
 
     def filesafe(self, name):
         """
-        just pulled this out because i was not sure the best way to make a filename safe
-        this could be anything really - i chose this way
+
         :param name:
         :return:
         """
@@ -125,6 +126,19 @@ class ProcessDetailedReport:
             self.config =  yaml.load(config)
         except IOError, err:
             self.logger.error("Failed to load configuration file aws.yaml: " + str(err))
+            raise SystemExit
+
+    def connect_to_splunk(self, arg):
+        # Create a Service instance and log in
+        try:
+            self.service = client.connect(
+                host=str(arg.serverhost),
+                port=str(arg.port),
+                username=str(arg.user),
+                password=str(arg.password))
+            self.index = self.service.indexes["aws-bill"]
+        except IOError, err:
+            self.logger.error("Failed to connect to splunk server and connect to index: " + str(err))
             raise SystemExit
 
     def process_files(self):
@@ -164,9 +178,7 @@ class ProcessDetailedReport:
 
     def game_set_and_match(self, report, newjson):
         """
-        this method does all the hard work of tracking whether a record has been imported or not
-        we keep sets of recordid's around to do a comparison on - seems the only way to do it
-        with some sanity
+
         :param report:
         :param newjson:
         :return:
@@ -185,7 +197,21 @@ class ProcessDetailedReport:
         else:
             #ok add us in dano
             self.position[product].add(newjson['RecordId'])
+            #lets check that the usagedates are set - otherwise we must fudge them
+            if newjson['UsageStartDate'] == '':
+                newjson = self.fudge_date(newjson)
+            else:
+                print(newjson['UsageStartDate'])
             self.output_json(newjson)
+
+    def fudge_date(self, json):
+        print("fudgin")
+        #take the report date and make a month out of it - be smart about it
+        start_fudge = self.report_date + "-01 00:00:00"
+        end_fudge = self.report_date + "-01 01:00:00"
+        json['UsageStartDate'] = start_fudge
+        json['UsageEndDate'] = end_fudge
+        return json
 
     def parse(self, report):
         """
@@ -240,11 +266,13 @@ class ProcessDetailedReport:
 
     def output_json(self, newjson):
         """
-        just pushed this out to a method that can be modified independently
+
         :param newjson:
         :return:
         """
-        print(json.dumps(newjson, encoding="utf-8", ensure_ascii=True))
+        self.index.submit(json.dumps(newjson, encoding="utf-8", ensure_ascii=True), \
+                          sourcetype="SplunkAppforAWSBilling_Processor", \
+                          source="SplunkAppforAWSBilling_Import", host="local")
 
 
     def write_position(self, report):
@@ -260,8 +288,22 @@ class ProcessDetailedReport:
                 pickle.dump( self.position[product], open( abs_file_path, "wb" ) )
             except IOError, err:
                 self.logger.error("ERROR - Position could not be written; this is bad because we now get \
-                                  duplicates : " + str(err))
+                                      duplicates : " + str(err))
                 raise SystemExit
 
+
+
 if __name__ == "__main__":
-    pdr = ProcessDetailedReport()
+    #grab the arguments when the script is ran
+    parser = argparse.ArgumentParser(description='A utility for processing older report files into splunk for processing. Be very careful, do not process this months data - you will cause a double up of records in the splunk index.')
+    parser.add_argument('-d', '--dryrun', action='store_true', default=False, help='Fake runs for testing purposes.')
+    parser.add_argument('-s', '--serverhost', default="localhost", help='Host name of splunk server.')
+    parser.add_argument('-p', '--port', default="8089", help='Port of splunk server.')
+    parser.add_argument('year', type=int, help='The year in this format: 2014 (YYYY)')
+    parser.add_argument('month', type=int, help='The month in this format: 05 (MM)')
+    parser.add_argument('user', type=str, help='Your username.')
+    parser.add_argument('password', type=str, help='Your password.')
+
+
+    args = parser.parse_args()
+    por = ProcessOlderReport(args)

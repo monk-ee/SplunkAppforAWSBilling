@@ -2,10 +2,10 @@
 # -*- coding: utf-8 -*-
 
 """
-fetch_older_report.py: This module provides an interface to the billing report
+FetchOlderReport.py: This module provides an interface to the billing report
 in the amazon S3 billing bucket
 
-usage: fetch_older_report.py [-h] [-d] year month
+usage: FetchOlderReport.py [-h] [-d] year month user password
 
 A utility for fetching/downloading older report files into SplunkAppforAWSBilling.
 
@@ -13,20 +13,24 @@ Be very careful, do not fetch the current months data - you will cause a double 
 records in the splunk index.
 
 
-To be used in conjunction with process_older_report.py
+To be used in conjunction with ProcessOlderReport.py
 
 positional arguments:
-  year          The year in this format: 2014 (YYYY)
-  month         The month in this format: 05 (MM)
+    year          The year in this format: 2014 (YYYY)
+    month         The month in this format: 05 (MM)
+    user          The username for a splunk user.
+    password      The password for a splunk user
 
 optional arguments:
-  -h, --help    show this help message and exit
-  -d, --dryrun  Fake runs for testing purposes.
+    -h, --help    show this help message and exit
+    -d, --dryrun  Fake runs for testing purposes.
+    -p, --port          The port to post events to.
+    -s, --serverport    The server to post events to.
   """
 
 __author__ = "monkee"
 __license__ = "GPLv3.0"
-__version__ = "2.0.4"
+__version__ = "2.0.6"
 __maintainer__ = "monk-ee"
 __email__ = "magic.monkee.magic@gmail.com"
 __status__ = "Production"
@@ -51,6 +55,7 @@ class FetchOlderReport:
     splunk_home = ''
     app_home = ''
     report_date = ''
+    settings = ''
 
     def __init__(self, obj):
         """
@@ -60,10 +65,13 @@ class FetchOlderReport:
         """
         self.splunk_home = os.environ['SPLUNK_HOME']
         self.app_home = os.path.join(self.splunk_home, 'etc', 'apps', self.appname)
+        #get settings
+        self.settings = splunk.clilib.cli_common.getConfStanza(appname, "default")
         self.set_date(obj)
         self.setup_logging()
         self.setup_config()
         self.process_files()
+
 
     def set_date(self, arg):
         """
@@ -125,7 +133,13 @@ class FetchOlderReport:
         """
         zipped_report = os.path.join(self.app_home, 'tmp', str(key['account_number']) + '_detailed_billing.zip')
         try:
-            conn = S3Connection(key['aws_access_key'], key['aws_secret_key'])
+            conn = S3Connection(
+                key['aws_access_key'],
+                key['aws_secret_key'],
+                proxy=self.settings['proxy_url'],
+                proxy_port=self.settings['proxy_port'],
+                proxy_user=self.settings['proxy_user'],
+                proxy_pass=self.settings['proxy_pass'])
             s3_billing_report = str(key[
                 'account_number']) + "-aws-billing-detailed-line-items-with-resources-and-tags-" + self.report_date + ".csv.zip"
             bucket = conn.get_bucket(key['billing_bucket'])
