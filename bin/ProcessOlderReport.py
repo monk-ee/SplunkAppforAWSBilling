@@ -147,6 +147,8 @@ class ProcessOlderReport:
         :return:
         """
         for key in self.config['accounts']:
+            #reset positions and sets
+            self.position = {}
             self.process_file(key)
 
     def process_file(self, key):
@@ -198,7 +200,7 @@ class ProcessOlderReport:
             #ok add us in dano
             self.position[product].add(newjson['RecordId'])
             #lets check that the usagedates are set - otherwise we must fudge them
-            if newjson['UsageStartDate'] == '':
+            if newjson['UsageStartDate'] not in newjson:
                 newjson = self.fudge_date(newjson)
             else:
                 print(newjson['UsageStartDate'])
@@ -259,7 +261,8 @@ class ProcessOlderReport:
             else:
                 count = 0
                 for col in headers:
-                    newjson[col] = row[count]
+                    if row[count] != '':
+                        newjson[col] = row[count]
                     count=count+1
                 self.game_set_and_match(report, newjson)
         self.write_position(report)

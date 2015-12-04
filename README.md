@@ -195,73 +195,6 @@ It will delete all zips and csvs older than a year.
 ## Logs
 The error log file system location is $SPLUNK_HOME/var/log/splunk/SplunkAppforAWSBilling.log.
 
-## Additional Tools: Importing older Reports *****Warning Obsolete don't use******************
-
-Located in the bin directory of the application are two tools for fetching and processing older reports. 
-
-They are designed to be run as Splunk CLI scripts:
-eg.
-
-Linux:
-    
-    $SPLUNK_HOME/bin/splunk cmd python $SPLUNK_HOME/etc/apps/SplunkAppforAWSBilling/bin/FetchOlderReport.py 2015 04
-    
-Windows:
-
-    $SPLUNK_HOME/bin/splunk.exe cmd python $SPLUNK_HOME/etc/apps/SplunkAppforAWSBilling/bin/FetchOlderReport.py 2015 04
-    
-They are CLI only, so you will need to be able to navigate to the bin directory of the application in a shell or command
-session. They live in the $SPLUNK_HOME/etc/apps/SplunkAppforAWSBilling/bin directory.
-
-It is best to disable the FetchDetailedReport while you import the older months because they use the same temporary
-file to download to.
-
-You can disable it by navigating to Settings > Data Inputs > Scripts and clicking on disable for the the command
-"$SPLUNK_HOME/etc/apps/SplunkAppforAWSBilling/bin/FetchDetailedReport.py".
-
-You run the FetchOlderReport command with the year and month report you want (you can do this for multiple months, but not in parallel)
-You then run the ProcessOlderReport command with the same year and month with user credentials for a suitably privileged user.
-
-The older events should have appeared in the index, be aware for big files this can take a long time. Don't forget to 
-re-enable the FetchDetailedReport script when you are done.
-
-### Fetching *****Warning Obsolete don't use******************
-#### usage: FetchOlderReport.py [-h] [-d] year month
-
-A utility for fetching/downloading older report files into SplunkAppforAWSBilling.
-
-To be used in conjunction with process_older_report.py
-
-    positional arguments:
-        year          The year in this format: 2014 (YYYY)
-        month         The month in this format: 05 (MM)
-
-    optional arguments:
-        -h, --help    show this help message and exit
-        -d, --dryrun  Fake runs for testing purposes.
-        
-You don't need to stop Splunk for this script to run.
-
-
-### Processing *****Warning Obsolete don't use******************
-#### usage: ProcessOlderReport.py [-h] [-d] year month user password
-
-A utility for processing older report files into Splunk for processing. You will need to run the fetch script first with the appropriate date.
-
-    positional arguments:
-        year          The year in this format: 2014 (YYYY)
-        month         The month in this format: 05 (MM)
-        user          The username for a splunk user.
-        password      The password for a splunk user
-
-    optional arguments:
-        -h, --help          show this help message and exit
-        -d, --dryrun        Fake runs for testing purposes
-        -p, --port          The port to post events to.
-        -s, --serverport    The server to post events to.
-
-You don't need to stop Splunk for this script to run.
-
 ### Contributors
 
 Special thanks to Nilesh Khetia who's module I borrowed to make this one http://answers.splunk.com/users/114849/nkhetia
@@ -357,3 +290,4 @@ In the $SPLUNK_HOME/etc/apps/SplunkAppforAWSBilling/local directory are the *.p 
 reimport a file you may need to clear the aws-bill index or delete these files. 
 
 They are basically sets of imported RecordIds - to avoid duplicates.
+

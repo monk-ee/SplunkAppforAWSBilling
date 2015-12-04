@@ -137,6 +137,8 @@ class ProcessDetailedReport:
         """
         for key in self.config['accounts']:
             for month in range(-12, 0):
+                #reset positions and sets
+                self.position = {}
                 self.set_date(self.monthdelta(datetime.now(), month))
                 self.process_file(key)
 
@@ -190,7 +192,6 @@ class ProcessDetailedReport:
         else:
             #ok add us in dano
             self.position[product].add(newjson['RecordId'])
-            #lets check that the usagedates are set - otherwise we must fudge them
             #there seems to be an issue around this to do with the usage start date
             # really existing UsageStartDate 'fudge' misfiring #5
             #it also seems that the amazon format ensures this is no longer so
@@ -199,6 +200,7 @@ class ProcessDetailedReport:
                 self.logger.error("MERROR - This field should never be blank here! Check Record Line: " +
                                   str(newjson['RecordId']))
                 return
+
             self.output_json(newjson)
 
     def parse(self, report):
@@ -247,7 +249,8 @@ class ProcessDetailedReport:
             else:
                 count = 0
                 for col in headers:
-                    newjson[col] = row[count]
+                    if row[count] != '':
+                        newjson[col] = row[count]
                     count=count+1
                 self.game_set_and_match(report, newjson)
         self.write_position(report)
