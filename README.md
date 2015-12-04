@@ -280,6 +280,7 @@ Special thanks to Nilesh Khetia who's module I borrowed to make this one http://
     - pivot tables on LinkedAccountId
     
 2.0.6
+
     - automated history fetching - up to 12 months
     - better handling for items that only have a start date
     

@@ -22,6 +22,7 @@ import logging, logging.handlers
 import splunk
 import os
 from datetime import datetime,timedelta
+import hashlib
 
 
 class FetchDetailedReport:
@@ -48,13 +49,19 @@ class FetchDetailedReport:
         self.process_files()
 
 
-    def set_date(self):
+    def set_date(self, date):
         """
         set the date for this months report here
         :return:
         """
-        dt = datetime.now()
-        self.report_date = dt.strftime("%Y-%m")
+        self.report_date = date.strftime("%Y-%m")
+
+    def monthdelta(seflf, date, delta):
+        m, y = (date.month+delta) % 12, date.year + ((date.month)+delta-1) // 12
+        if not m: m = 12
+        d = min(date.day, [31,
+                           29 if y%4==0 and not y%400==0 else 28,31,30,31,30,31,31,30,31,30,31][m-1])
+        return date.replace(day=d,month=m, year=y)
 
     # Define the logging function
     def setup_logging(self):
@@ -87,20 +94,45 @@ class FetchDetailedReport:
 
     def process_files(self):
         """
-
+        OK so here is the mod, at this point I am going to go and get 12 months worth of files
         :return:
         """
         for key in self.config['accounts']:
-            self.fetch_file(key)
+            #so here we look back at least 12 months
+            #calculate now back to the history
+            for month in range(-12, 0):
+                self.set_date(self.monthdelta(datetime.now(),month))
+                self.fetch_file(key)
 
 
     def fetch_file(self, key):
         """
+        @todo I want to check the etag header so i dont download files i already have
+        for key_val in rs_keys:
+            print key_val, key_val.etag
 
+        so at this point we will need to have individual zip files so we can check md5sum and ensure we dont keep
+        pulling down the same file unnecessarily - this could get quite big - but hey
         :param key:
         :return:
         """
-        zipped_report = os.path.join(self.app_home ,'tmp' , str(key['account_number']) + '_detailed_billing.zip')
+        zipped_report = os.path.join(self.app_home ,'tmp' , str(key['account_number']) + '_'
+                                     + str(self.report_date) + '_' + 'detailed_billing.zip')
+
+        """
+        check file exists; if so calculate it's md5sum
+        """
+        filemd5sum = None
+        try:
+            hash = hashlib.md5()
+            with open(zipped_report, "rb") as f:
+                for chunk in iter(lambda: f.read(4096), b""):
+                    hash.update(chunk)
+            filemd5sum = hash.hexdigest()
+        except:
+            self.logger.error("File may not exist, or permissions could be wrong. This is Ok if the file really "
+                              "doesn't exist")
+
         try:
             conn = S3Connection(
                 key['aws_access_key'],
@@ -109,25 +141,43 @@ class FetchDetailedReport:
                 proxy_port=self.settings['proxy_port'],
                 proxy_user=self.settings['proxy_user'],
                 proxy_pass=self.settings['proxy_pass'])
-            s3_billing_report = str(key['account_number']) + "-aws-billing-detailed-line-items-with-resources-and-tags-" + self.report_date + ".csv.zip"
+            s3_billing_report = str(key['account_number']) \
+                                + "-aws-billing-detailed-line-items-with-resources-and-tags-" \
+                                + str(self.report_date) + ".csv.zip"
             bucket = conn.get_bucket(key['billing_bucket'])
-            FileObject = Key(bucket)
-            FileObject.key = s3_billing_report
-            FileObject.get_contents_to_filename(zipped_report)
+            """
+            I think it is here that I can check the md5 sum
+            """
+            etag = None
+            try:
+                #oh bugger using try catch for flow control - yuck
+                file_key = bucket.get_key(s3_billing_report)
+                etag = file_key.etag
+            except:
+                pass
+
+            if filemd5sum is not None and filemd5sum == etag:
+                #stop here - we already have this file we can forget continuing wasting bandwidth
+                return
+            else:
+                FileObject.get_contents_to_filename(zipped_report)
+                FileObject = Key(bucket)
+                FileObject.key = s3_billing_report
+                # wunzip the file
+                try:
+                    zip = zipfile.ZipFile(zipped_report, mode='r')
+                    for subfile in zip.namelist():
+                        zip.extract(subfile, os.path.join(self.app_home, 'csv'))
+                except Exception, err:
+                    self.logger.error("Could not unzip report archive: " + str(err))
+                    raise SystemExit
         except boto.exception.S3ResponseError, emsg:
             self.logger.error("Failed to get file from s3: " + str(emsg))
             raise SystemExit
         except Exception, err:
             self.logger.error("No idea why this went wrong: " + str(err))
             raise SystemExit
-        # wunzip the file
-        try:
-            zip = zipfile.ZipFile(zipped_report, mode='r')
-            for subfile in zip.namelist():
-                zip.extract(subfile, os.path.join(self.app_home, 'csv'))
-        except Exception, err:
-            self.logger.error("Could not unzip report archive: " + str(err))
-            raise SystemExit
+
 
 if __name__ == "__main__":
     fdr = FetchDetailedReport()
