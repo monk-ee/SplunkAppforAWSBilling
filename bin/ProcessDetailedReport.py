@@ -198,24 +198,10 @@ class ProcessDetailedReport:
             #it also seems that the amazon format ensures this is no longer so
             #disabling this for now
             if newjson['UsageStartDate'] == '':
-                #newjson = self.fudge_date(newjson)
                 self.logger.error("MERROR - This field should never be blank here! Check Record Line: " +
                                   str(newjson['RecordId']))
                 return
             self.output_json(newjson)
-
-    def fudge_date(self, json):
-        """
-        this function needs to be pulled out it is no longer called
-        :param json:
-        :return:
-        """
-        #take the report date and make a month out of it - be smart about it
-        start_fudge = self.report_date + "-01 00:00:00"
-        end_fudge = self.report_date + "-01 01:00:00"
-        json['UsageStartDate'] = start_fudge
-        json['UsageEndDate'] = end_fudge
-        return json
 
     def parse(self, report):
         """
