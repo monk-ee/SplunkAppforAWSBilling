@@ -48,7 +48,6 @@ class FetchDetailedReport:
         self.setup_config()
         self.process_files()
 
-
     def set_date(self, date):
         """
         set the date for this months report here
@@ -56,7 +55,7 @@ class FetchDetailedReport:
         """
         self.report_date = date.strftime("%Y-%m")
 
-    def monthdelta(seflf, date, delta):
+    def monthdelta(self, date, delta):
         m, y = (date.month+delta) % 12, date.year + ((date.month)+delta-1) // 12
         if not m: m = 12
         d = min(date.day, [31,
@@ -77,7 +76,6 @@ class FetchDetailedReport:
         self.logger.addHandler(splunk_log_handler)
         splunk.setupSplunkLogger(self.logger, LOGGING_DEFAULT_CONFIG_FILE, LOGGING_LOCAL_CONFIG_FILE, LOGGING_STANZA_NAME)
 
-
     def setup_config(self):
         """
 
@@ -91,7 +89,6 @@ class FetchDetailedReport:
             self.logger.error("Failed to load configuration file aws.yaml: " + str(err))
             raise SystemExit
 
-
     def process_files(self):
         """
         OK so here is the mod, at this point I am going to go and get 12 months worth of files
@@ -103,7 +100,6 @@ class FetchDetailedReport:
             for month in range(-12, 0):
                 self.set_date(self.monthdelta(datetime.now(),month))
                 self.fetch_file(key)
-
 
     def fetch_file(self, key):
         """
