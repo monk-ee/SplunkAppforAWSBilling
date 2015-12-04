@@ -205,6 +205,11 @@ class ProcessDetailedReport:
             self.output_json(newjson)
 
     def fudge_date(self, json):
+        """
+        this function needs to be pulled out it is no longer called
+        :param json:
+        :return:
+        """
         #take the report date and make a month out of it - be smart about it
         start_fudge = self.report_date + "-01 00:00:00"
         end_fudge = self.report_date + "-01 01:00:00"
