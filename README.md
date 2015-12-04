@@ -349,4 +349,6 @@ Pivot
 ### Troubleshooting
 
 In the $SPLUNK_HOME/etc/apps/SplunkAppforAWSBilling/local directory are the *.p files that keep track of processed records. If you find that you have got twisted or need to 
-reimport a file you may need to clear the aws-bill index or delete these files. They are basically sets of imported RecordIds - to avoid duplicates.
+reimport a file you may need to clear the aws-bill index or delete these files. 
+
+They are basically sets of imported RecordIds - to avoid duplicates.
