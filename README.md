@@ -190,6 +190,8 @@ A script is provided to allow the system to clean up old csv files, it is disabl
 You can enable it by navigating to Settings > Data Inputs > Scripts and clicking on enable for the command
 "$SPLUNK_HOME/etc/apps/SplunkAppforAWSBilling/bin/MaintainDetailedReports.py".
 
+It will delete all zips and csvs older than a year.
+
 ## Logs
 The error log file system location is $SPLUNK_HOME/var/log/splunk/SplunkAppforAWSBilling.log.
 
@@ -290,6 +292,7 @@ Special thanks to Nilesh Khetia who's module I borrowed to make this one http://
     - fix for UsageStartDate 'fudge' misfiring Issue #5 https://github.com/monk-ee/SplunkAppforAWSBilling/issues/5
     - fix for Double Indexed Items - Remove KVMODE  Issue #6 https://github.com/monk-ee/SplunkAppforAWSBilling/issues/6
     - be aware the application needs more space as it gets a years worth of data and unzips it
+    - maintenance script will clean up files older than a year (but it is still disabled by default)
     
 ### Examples
 Here are some consolidated billing example searches, I hope you find them useful:
