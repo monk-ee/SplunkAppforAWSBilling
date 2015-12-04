@@ -148,6 +148,9 @@ class FetchDetailedReport:
                 #oh bugger using try catch for flow control - yuck
                 file_key = bucket.get_key(s3_billing_report)
                 etag = file_key.etag
+                #the etag seems to contain quotes for some reason
+                if etag.startswith('"') and etag.endswith('"'):
+                    etag = etag[1:-1]
             except:
                 pass
 

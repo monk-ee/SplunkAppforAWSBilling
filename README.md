@@ -193,7 +193,7 @@ You can enable it by navigating to Settings > Data Inputs > Scripts and clicking
 ## Logs
 The error log file system location is $SPLUNK_HOME/var/log/splunk/SplunkAppforAWSBilling.log.
 
-## Additional Tools: Importing older Reports
+## Additional Tools: Importing older Reports *****Warning Obsolete don't use******************
 
 Located in the bin directory of the application are two tools for fetching and processing older reports. 
 
