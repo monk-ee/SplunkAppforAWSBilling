@@ -38,8 +38,6 @@ __status__ = "Production"
 
 import yaml
 import csv
-from splunk_utilities import *
-import splunk.clilib.cli_common
 import logging, logging.handlers
 import splunk
 from datetime import datetime

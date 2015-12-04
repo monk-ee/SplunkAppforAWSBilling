@@ -289,6 +289,7 @@ Special thanks to Nilesh Khetia who's module I borrowed to make this one http://
     - the raw data files are unzipped on the system
     - fix for UsageStartDate 'fudge' misfiring Issue #5 https://github.com/monk-ee/SplunkAppforAWSBilling/issues/5
     - fix for Double Indexed Items - Remove KVMODE  Issue #6 https://github.com/monk-ee/SplunkAppforAWSBilling/issues/6
+    - be aware the application needs more space as it gets a years worth of data and unzips it
     
 ### Examples
 Here are some consolidated billing example searches, I hope you find them useful:

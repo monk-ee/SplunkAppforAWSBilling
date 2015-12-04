@@ -101,7 +101,7 @@ class MaintainDetailedReports:
     def process_file(self, key):
         #now set detailed billing file
         BILLINGREPORTZIPFILE = os.path.join(path, 'etc', 'apps', 'SplunkAppforAWSBilling', 'tmp',
-                                            str(key['account_number']) + 'detailed_billing.zip')
+                                            str(key['account_number']) + '_' +  'detailed_billing.zip')
 
         #old file names
         oldBillingFileName = str(key[
