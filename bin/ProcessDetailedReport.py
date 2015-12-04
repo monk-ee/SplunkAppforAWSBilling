@@ -193,8 +193,15 @@ class ProcessDetailedReport:
             #ok add us in dano
             self.position[product].add(newjson['RecordId'])
             #lets check that the usagedates are set - otherwise we must fudge them
+            #there seems to be an issue around this to do with the usage start date
+            # really existing UsageStartDate 'fudge' misfiring #5
+            #it also seems that the amazon format ensures this is no longer so
+            #disabling this for now
             if newjson['UsageStartDate'] == '':
-                newjson = self.fudge_date(newjson)
+                #newjson = self.fudge_date(newjson)
+                self.logger.error("MERROR - This field should never be blank here! Check Record Line: " +
+                                  str(newjson['RecordId']))
+                return
             self.output_json(newjson)
 
     def fudge_date(self, json):
@@ -244,7 +251,7 @@ class ProcessDetailedReport:
             elif row[5] == "":
                 #ha this breaks lots of stuff to do with my set logic - so no no no
                 continue
-            elif row[4] =="":
+            elif row[4] == "":
                 #so these are calculated aws support costs but not used unless you have broken the thresholds
                 #then they get recordids because they are chargeable - throw them away if they are blank
                 continue
