@@ -43,17 +43,16 @@ class FetchDetailedReport:
         self.app_home = os.path.join(self.splunk_home, 'etc', 'apps', self.appname)
         #get settings
         self.settings = splunk.clilib.cli_common.getConfStanza(appname, "default")
-        self.set_date()
         self.setup_logging()
         self.setup_config()
         self.process_files()
 
-    def set_date(self, date):
+    def set_date(self, dt):
         """
         set the date for this months report here
         :return:
         """
-        self.report_date = date.strftime("%Y-%m")
+        self.report_date = dt.strftime("%Y-%m")
 
     def monthdelta(self, date, delta):
         m, y = (date.month+delta) % 12, date.year + ((date.month)+delta-1) // 12

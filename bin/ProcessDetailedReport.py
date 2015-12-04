@@ -71,19 +71,24 @@ class ProcessDetailedReport:
         """
         self.splunk_home = os.environ['SPLUNK_HOME']
         self.app_home = os.path.join(self.splunk_home, 'etc', 'apps', self.appname)
-        self.set_date()
         self.setup_logging()
         self.setup_config()
         self.process_files()
 
 
-    def set_date(self):
+    def set_date(self, date):
         """
-        We calculate the month we are in just here.
+        set the date for this months report here
         :return:
         """
-        dt = datetime.now()
-        self.report_date = dt.strftime("%Y-%m")
+        self.report_date = date.strftime("%Y-%m")
+
+    def monthdelta(self, date, delta):
+        m, y = (date.month+delta) % 12, date.year + ((date.month)+delta-1) // 12
+        if not m: m = 12
+        d = min(date.day, [31,
+                           29 if y%4==0 and not y%400==0 else 28,31,30,31,30,31,31,30,31,30,31][m-1])
+        return date.replace(day=d,month=m, year=y)
 
     # Define the logging function
     def setup_logging(self):
@@ -133,7 +138,9 @@ class ProcessDetailedReport:
         :return:
         """
         for key in self.config['accounts']:
-            self.process_file(key)
+            for month in range(-12, 0):
+                self.set_date(self.monthdelta(datetime.now(), month))
+                self.process_file(key)
 
     def process_file(self, key):
         """
