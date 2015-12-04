@@ -160,9 +160,9 @@ class FetchDetailedReport:
                 #stop here - we already have this file we can forget continuing wasting bandwidth
                 return
             else:
-                FileObject.get_contents_to_filename(zipped_report)
                 FileObject = Key(bucket)
                 FileObject.key = s3_billing_report
+                FileObject.get_contents_to_filename(zipped_report)
                 # wunzip the file
                 try:
                     zip = zipfile.ZipFile(zipped_report, mode='r')
