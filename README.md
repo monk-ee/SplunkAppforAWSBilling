@@ -47,7 +47,7 @@ You will need to fill in the following pieces of information in the local direct
 ## Overview
 Splunk App for AWS Billing allows you to collect Detailed Billing data from which in-depth analysis of usage patterns and spending becomes available for Amazon Web Services environment.
 
-It provides a base for you to extend and articulate your own spending and usage patterns. It converts your billing line items into JSON which is imported and can be processed in SPlunk.
+It provides a base for you to extend and articulate your own spending and usage patterns. It converts your billing line items into JSON which is imported and can be processed in Splunk.
 
 Any feedback, including requests for enhancement are most welcome. Email: magic.monkee.magic@gmail.com
 
@@ -223,7 +223,7 @@ You then run the ProcessOlderReport command with the same year and month with us
 The older events should have appeared in the index, be aware for big files this can take a long time. Don't forget to 
 re-enable the FetchDetailedReport script when you are done.
 
-### Fetching
+### Fetching *****Warning Obsolete don't use******************
 #### usage: FetchOlderReport.py [-h] [-d] year month
 
 A utility for fetching/downloading older report files into SplunkAppforAWSBilling.
@@ -241,7 +241,7 @@ To be used in conjunction with process_older_report.py
 You don't need to stop Splunk for this script to run.
 
 
-### Processing
+### Processing *****Warning Obsolete don't use******************
 #### usage: ProcessOlderReport.py [-h] [-d] year month user password
 
 A utility for processing older report files into Splunk for processing. You will need to run the fetch script first with the appropriate date.
@@ -281,8 +281,13 @@ Special thanks to Nilesh Khetia who's module I borrowed to make this one http://
     
 2.0.6
 
-    - automated history fetching - up to 12 months
-    - better handling for items that only have a start date
+    - automated history fetching - last 12 months
+    - automated report processing - last 12 months
+    - no date fudging
+    - checksums of s3 billing reports are checked so only changed files are downloaded
+    - all original zip files are downloaded locally
+    - the raw data files are unzipped on the system
+    - fix for Issue #5 https://github.com/monk-ee/SplunkAppforAWSBilling/issues/5
     
 ### Examples
 Here are some consolidated billing example searches, I hope you find them useful:
