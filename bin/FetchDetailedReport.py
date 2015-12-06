@@ -6,7 +6,7 @@ in the amazon S3 billing bucket."""
 
 __author__ = "monkee"
 __license__ = "GPLv3.0"
-__version__ = "2.0.7"
+__version__ = "2.0.8"
 __maintainer__ = "monk-ee"
 __email__ = "magic.monkee.magic@gmail.com"
 __status__ = "Production"
