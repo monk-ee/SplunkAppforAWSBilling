@@ -137,8 +137,6 @@ class ProcessDetailedReport:
         """
         for key in self.config['accounts']:
             for month in range(-12, 0):
-                #reset positions and sets
-                self.position = {}
                 self.set_date(self.monthdelta(datetime.now(), month))
                 self.process_file(key)
 
@@ -279,6 +277,9 @@ class ProcessDetailedReport:
                 self.logger.error("ERROR - Position could not be written; this is bad because we now get \
                                   duplicates : " + str(err))
                 raise SystemExit
+        #it would probably behoove us to unset this value
+        self.position = {}
+
 
 if __name__ == "__main__":
     pdr = ProcessDetailedReport()
