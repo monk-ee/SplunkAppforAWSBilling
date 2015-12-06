@@ -1,4 +1,4 @@
-SplunkAppforAWSBilling v2.0.8
+SplunkAppforAWSBilling v2.0.9
 =============================
 
 Splunk App for AWS Billing allows you to collect Detailed Billing data from which in-depth analysis of usage patterns and spending becomes available for Amazon Web Services environment.
@@ -234,7 +234,11 @@ Special thanks to Nilesh Khetia who's module I borrowed to make this one http://
 2.0.8
 
     - clear duplicates from positional set - this a cracker - sorry about that folks
-    
+
+2.0.9
+
+    - changed the import to KV_MODE json - this is more flexible than commiting to an index at import time
+        
 ### Examples
 Here are some consolidated billing example searches, I hope you find them useful:
 
