@@ -212,7 +212,7 @@ You can enable it by navigating to Settings > Data Inputs > Scripts and clicking
 It will delete all zips and csvs older than a year.
 
 ## Logs
-The error log file system location is $SPLUNK_HOME/var/log/splunk/SplunkAppforAWSBilling.log.
+git merge 2.0.10The error log file system location is $SPLUNK_HOME/var/log/splunk/SplunkAppforAWSBilling.log.
 
 ### Contributors
 
