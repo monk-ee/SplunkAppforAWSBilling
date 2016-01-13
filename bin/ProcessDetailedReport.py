@@ -30,7 +30,7 @@
 
 __author__ = "monkee"
 __license__ = "GPLv3.0"
-__version__ = "2.0.9"
+__version__ = "2.0.10"
 __maintainer__ = "monk-ee"
 __email__ = "magic.monkee.magic@gmail.com"
 __status__ = "Production"
@@ -136,7 +136,9 @@ class ProcessDetailedReport:
         :return:
         """
         for key in self.config['accounts']:
-            for month in range(-12, 0):
+            #so here we look back at least 12 months see aws.yaml for current setting
+            #calculate now back to the history
+            for month in range(-int(self.config['history']), 0):
                 self.set_date(self.monthdelta(datetime.now(), month))
                 self.process_file(key)
 
