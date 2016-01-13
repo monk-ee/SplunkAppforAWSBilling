@@ -259,6 +259,7 @@ Special thanks to Nilesh Khetia who's module I borrowed to make this one http://
     - changed the import to KV_MODE json - this is more flexible than commiting to an index at import time
 
 2.0.10
+
     - remove deprecated files
     - add doco abput upgrading
         
