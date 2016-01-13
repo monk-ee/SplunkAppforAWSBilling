@@ -1,12 +1,14 @@
-SplunkAppforAWSBilling v2.0.9
+SplunkAppforAWSBilling v2.0.10
 =============================
 
-Splunk App for AWS Billing allows you to collect Detailed Billing data from which in-depth analysis of usage patterns and spending becomes available for Amazon Web Services environment.
+Splunk App for AWS Billing allows you to collect Detailed Billing data from which in-depth analysis of usage patterns 
+and spending becomes available for Amazon Web Services environment.
 It provides a base for you to extend and articulate your own spending and usage patterns.
 
 # Features
 
 ## Billing Analysis for:
+
 * AWS Direct Connect
 * AWS Support (Business)
 * Amazon DynamoDB
@@ -18,6 +20,7 @@ It provides a base for you to extend and articulate your own spending and usage 
 * Amazon Virtual Private Cloud
 
 ## Supports:
+
 * Custom Tags
 * Billing Projections
 * Month-over-Month Billing Comparision
@@ -26,6 +29,7 @@ It provides a base for you to extend and articulate your own spending and usage 
 * Simple YAML configuration
 
 ## Graphs
+
 * Costs by AWS Product
 * Current Spend
 * Billing items
@@ -33,21 +37,26 @@ It provides a base for you to extend and articulate your own spending and usage 
 * Costs by Availability Zone
 
 ## Includes:
+
 * Boto 2.38.0
 * PyYaml 3.10
 
 #Installation Instructions
 
-Install as you normally would by unpacking all the files in the SPLUNK_HOME/etc/apps directory or uploading using the app manager.
+Install as you normally would by unpacking all the files in the SPLUNK_HOME/etc/apps directory or uploading using the 
+app manager.
 
-You will need to fill in the following pieces of information in the local directory aws.yaml file. (an example is provided)
+You will need to fill in the following pieces of information in the local directory aws.yaml file. 
+(an example is provided)
 
 # Splunk APP for AWS billing
 
 ## Overview
-Splunk App for AWS Billing allows you to collect Detailed Billing data from which in-depth analysis of usage patterns and spending becomes available for Amazon Web Services environment.
+Splunk App for AWS Billing allows you to collect Detailed Billing data from which in-depth analysis of usage patterns 
+and spending becomes available for Amazon Web Services environment.
 
-It provides a base for you to extend and articulate your own spending and usage patterns. It converts your billing line items into JSON which is imported and can be processed in Splunk.
+It provides a base for you to extend and articulate your own spending and usage patterns. It converts your billing line 
+items into JSON which is imported and can be processed in Splunk.
 
 Any feedback, including requests for enhancement are most welcome. Email: magic.monkee.magic@gmail.com
 
@@ -60,7 +69,8 @@ Also feel fre to raise any issues here:
 [https://github.com/monk-ee/SplunkAppforAWSBilling/issues](https://github.com/monk-ee/SplunkAppforAWSBilling/issues)
 
 ## Cost Models
-The application supports the straight Cost model as well as the Blended/Unblended Cost Model. Dashboards for both are provided; use the one that suits your billing settings.
+The application supports the straight Cost model as well as the Blended/Unblended Cost Model. Dashboards for both are 
+provided; use the one that suits your billing settings.
 
 From Amazon's own documentation:
 
@@ -71,28 +81,35 @@ http://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/con-bill-blended-rat
 ### Blended and Unblended Rates:
 
 The detailed billing report enables customers to perform detailed cost analyses on their usage. 
-AWS meters usage in hourly increments; for each product resource in use, a rate is applied for operations performed by usage type in that hour, with each operation comprising a 
-line item. The detailed billing report shows both blended and unblended rates for each line item. An unblended rate is the cost per hour for a product, usage type, and the 
-operation performed. A blended rate is an average rate calculated for identical instance usage in an Availability Zone for members of a Consolidated Billing family.
+AWS meters usage in hourly increments; for each product resource in use, a rate is applied for operations performed by 
+usage type in that hour, with each operation comprising a 
+line item. The detailed billing report shows both blended and unblended rates for each line item. An unblended rate is 
+the cost per hour for a product, usage type, and the 
+operation performed. A blended rate is an average rate calculated for identical instance usage in an Availability Zone 
+for members of a Consolidated Billing family.
 
 ### A Quiet Word about the detailed Billing Reports eg Why no Cost field?
-If you have a single AWS account and you don't use Consolidated billing your report only contains the Rate and Cost Fields.
+If you have a single AWS account and you don't use Consolidated billing your report only contains the Rate and Cost 
+Fields.
 
 eg NON-CONSOLIDATED: Your search should look like this:
 
     index=aws-bill | timechart sum(Cost) as $ by ItemDescription
 
-If you have have multiple AWS accounts and use Consolidated billing  your report contains BlendedRate, BlendedCost, UnBlendedRate and UnBlendedCost fields BUT not the Cost and Rate fields.
+If you have have multiple AWS accounts and use Consolidated billing  your report contains BlendedRate, BlendedCost, 
+UnBlendedRate and UnBlendedCost fields BUT not the Cost and Rate fields.
 
 eg CONSOLIDATED: Your search should look like this:
     
     index=aws-bill | timechart sum(BlendedCost) as $ by ItemDescription
 
-This means you need different searches and dashboards for the different billing reports eg a Consolidated OR a Single billing account report.
+This means you need different searches and dashboards for the different billing reports eg a Consolidated OR a Single 
+billing account report.
 
 ## Setup Amazon detailed billing
 
-v2.0 Indexes are not compatible with earlier versions of the app, you will have to rerun all your log data and flush the older indexes - the data has changed from csv items to JSON.
+v2.0 Indexes are not compatible with earlier versions of the app, you will have to rerun all your log data and flush the
+ older indexes - the data has changed from csv items to JSON.
 
 You will need to ensure that you have set your billing preferences correctly.
 
@@ -100,7 +117,8 @@ You will need to ensure that you have set your billing preferences correctly.
 
 ![Billing Management Console](/screenshots/Billing_Management_Console.png)
 
- You will then need to make sure that you have subscribed to "Recieve Billing Reports" and have setup a valid S3 bucket for your bills.
+ You will then need to make sure that you have subscribed to "Recieve Billing Reports" and have setup a valid S3 bucket 
+ for your bills.
 
  Now make sure you have also ticked the Detailed Billing Report (with resources and tags):
 
@@ -112,7 +130,8 @@ The app is provided as an spl an can be installed using the GUI - feel free to u
 
 It's file system location is $SPLUNK_HOME/etc/apps/SplunkAppforAWSBilling.
 
-You will need to take the aws.yaml.example and put in your own configuration details then save it as aws.yaml in the $SPLUNK_HOME/etc/apps/SplunkAppforAWSBilling/local directory.
+You will need to take the aws.yaml.example and put in your own configuration details then save it as aws.yaml in the 
+$SPLUNK_HOME/etc/apps/SplunkAppforAWSBilling/local directory.
 
 For a single account use the following style of aws.yaml:
 
@@ -238,6 +257,10 @@ Special thanks to Nilesh Khetia who's module I borrowed to make this one http://
 2.0.9
 
     - changed the import to KV_MODE json - this is more flexible than commiting to an index at import time
+
+2.0.10
+    - remove deprecated files
+    - add doco abput upgrading
         
 ### Examples
 Here are some consolidated billing example searches, I hope you find them useful:
@@ -272,17 +295,20 @@ Search for Duplicate Record Id - to see if the import has gone crazy.
 ### Billing and Cost Management
 
 dashboard
+
 - spend summary - include subscriptions
 - month-to-date spend by service
 - consolidated bill charges by service charges
 - bill details by account ****
 
 cost explorer
+
 - monthly spend by service view
 - monthly spend by linked account view
 - daily spend view
 
 Pivot
+
 - API Operation
 - Availability Zone
 - Linked Account
@@ -290,15 +316,36 @@ Pivot
 - Service
 - Tag
 
+### Upgrading from older versions (especially pre 2.0.9)
+
+The scripts have changed to go back at least 12 months to fecth older reports, this means the old method for getting 
+reports and processing has been deprecated. DO NOT under any circumstances run the fetch older or process older reports 
+scripts. At best they will not work at worst they will cause data duplicates.
+
+Currently on upgrade these files will be in your bin directory, delete them for your own safety and sanity. 
+
+Versions moving forward will not have these files.
+
+It would be better if you have the time, to flush all your indexes and install the application 
+"as if for the first time", these will avoid any of the nasty import duplication bugs that were present in the 
+2.0.5 - 2.0.8 releases.
+
+If you would like older reports than just a year (it defaults to 12), you can change the history value in aws.yaml file:
+
+    history: 12
+
 ### Warning: Danger Will Robinson!!!
 
-- v2.0 Indexes are not compatible with earlier versions of the app, you will have to rerun all your log data and flush the older indexes - the data has changed from csv items to JSON.
-- GST Items are thrown away - because of the currency conversion complexity. (I am considering adding these but with exclusion flags on the reports)
+- v2.0 Indexes are not compatible with earlier versions of the app, you will have to rerun all your log data and flush 
+the older indexes - the data has changed from csv items to JSON.
+- GST Items are thrown away - because of the currency conversion complexity. (I am considering adding these but with 
+exclusion flags on the reports)
 - Any LineItem that does not have a RecordId is thrown away - because it is not charged to your bill
 
 ### Troubleshooting
 
-In the $SPLUNK_HOME/etc/apps/SplunkAppforAWSBilling/local directory are the *.p files that keep track of processed records. If you find that you have got twisted or need to 
+In the $SPLUNK_HOME/etc/apps/SplunkAppforAWSBilling/local directory are the *.p files that keep track of processed 
+records. If you find that you have got twisted or need to 
 reimport a file you may need to clear the aws-bill index or delete these files. 
 
 They are basically sets of imported RecordIds - to avoid duplicates.
