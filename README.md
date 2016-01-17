@@ -49,6 +49,25 @@ app manager.
 You will need to fill in the following pieces of information in the local directory aws.yaml file. 
 (an example is provided)
 
+## Upgrading from older versions (especially pre 2.0.9)
+
+The scripts have changed to go back at least 12 months to fecth older reports, this means the old method for getting 
+reports and processing has been deprecated. DO NOT under any circumstances run the fetch older or process older reports 
+scripts. At best they will not work at worst they will cause data duplicates.
+
+Currently on upgrade these files will be in your bin directory, delete them for your own safety and sanity. 
+
+Versions moving forward will not have these files.
+
+It would be better if you have the time, to flush all your indexes and install the application 
+"as if for the first time", these will avoid any of the nasty import duplication bugs that were present in the 
+2.0.5 - 2.0.8 releases.
+
+If you would like older reports than just a year (it defaults to 12), you can change the history value in aws.yaml file:
+
+    history: 12
+
+
 # Splunk APP for AWS billing
 
 ## Overview
@@ -317,23 +336,6 @@ Pivot
 - Service
 - Tag
 
-### Upgrading from older versions (especially pre 2.0.9)
-
-The scripts have changed to go back at least 12 months to fecth older reports, this means the old method for getting 
-reports and processing has been deprecated. DO NOT under any circumstances run the fetch older or process older reports 
-scripts. At best they will not work at worst they will cause data duplicates.
-
-Currently on upgrade these files will be in your bin directory, delete them for your own safety and sanity. 
-
-Versions moving forward will not have these files.
-
-It would be better if you have the time, to flush all your indexes and install the application 
-"as if for the first time", these will avoid any of the nasty import duplication bugs that were present in the 
-2.0.5 - 2.0.8 releases.
-
-If you would like older reports than just a year (it defaults to 12), you can change the history value in aws.yaml file:
-
-    history: 12
 
 ### Warning: Danger Will Robinson!!!
 
