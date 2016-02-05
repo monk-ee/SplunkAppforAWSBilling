@@ -67,6 +67,9 @@ If you would like older reports than just a year (it defaults to 12), you can ch
 
     history: 12
 
+If the history stanza is missing from your aws.yaml - the code will not break (since 2.0.11) - it just means you wont be
+able to change the history value.
+
 
 # Splunk APP for AWS billing
 

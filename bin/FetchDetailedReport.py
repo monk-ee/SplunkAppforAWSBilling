@@ -99,7 +99,7 @@ class FetchDetailedReport:
         try:
             history = int(self.config['history'])
         except KeyError, kerr:
-            self.logger.error("Failed to find history stanza from the configuration file aws.yaml. This is a known"
+            self.logger.error("Failed to find history stanza from the configuration file aws.yaml. This is a known "
                               "upgrade problem, see README for fix. Fudging value to 12 months for now,"
                               "Error Details: " + str(kerr))
 
@@ -156,18 +156,29 @@ class FetchDetailedReport:
             etag = None
             try:
                 #oh bugger using try catch for flow control - yuck
+                #guess how this doesnt work - if it errors because the key is non-existent you hide the problem
+                # you ideeeeot stimpy
                 file_key = bucket.get_key(s3_billing_report)
                 etag = file_key.etag
                 #the etag seems to contain quotes for some reason
                 if etag.startswith('"') and etag.endswith('"'):
                     etag = etag[1:-1]
+            except S3ResponseError, s3err:
+                #so take that - the file must not exist in the bucket - bail here
+                self.logger.error("404 - nosuchkey - because the file DOES NOT exist, nobody panic this is an ok "
+                                  "error: " + str(s3err))
+                return
             except:
+                #I think any other errors are recoverable - I could be wrong
                 pass
 
             if filemd5sum is not None and filemd5sum == etag:
                 #stop here - we already have this file we can forget continuing wasting bandwidth
                 return
             else:
+                #so this is the point it breaks from the error we failed to capture in the try/catch above
+                #ok so use the exception properly and return above ---->
+                # https://github.com/monk-ee/SplunkAppforAWSBilling/issues/11
                 FileObject = Key(bucket)
                 FileObject.key = s3_billing_report
                 FileObject.get_contents_to_filename(zipped_report)

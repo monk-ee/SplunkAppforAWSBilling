@@ -222,11 +222,13 @@ class ProcessDetailedReport:
         report_path = os.path.join(self.app_home, 'csv', report)
         try:
             ifile = open(report_path, 'rb')
-        except IOError, err:
-            self.logger.error("MERROR - Report File does not exist (IO): " + str(err))
+        except IOError,ioerr:
+            self.logger.error("Recoverable ERROR - Report File does not exist (IO) and that is totally ok"
+                              ": " + str(ioerr))
             return
-        except Exception,err:
-            self.logger.error("MERROR - Report File does not exist (General): " + str(err))
+        except Exception, generr:
+            self.logger.error("Recoverable ERROR - Report File does not exist (General) and that may be ok"
+                              ": " + str(generr))
             return
 
         #ok read the report file in
