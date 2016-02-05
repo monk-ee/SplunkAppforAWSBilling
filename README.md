@@ -1,4 +1,4 @@
-SplunkAppforAWSBilling v2.0.10
+SplunkAppforAWSBilling v2.0.11
 =============================
 
 Splunk App for AWS Billing allows you to collect Detailed Billing data from which in-depth analysis of usage patterns 
@@ -231,7 +231,7 @@ You can enable it by navigating to Settings > Data Inputs > Scripts and clicking
 It will delete all zips and csvs older than a year.
 
 ## Logs
-git merge 2.0.10The error log file system location is $SPLUNK_HOME/var/log/splunk/SplunkAppforAWSBilling.log.
+The error log file system location is $SPLUNK_HOME/var/log/splunk/SplunkAppforAWSBilling.log.
 
 ### Contributors
 
@@ -281,6 +281,11 @@ Special thanks to Nilesh Khetia who's module I borrowed to make this one http://
 
     - remove deprecated files
     - add doco abput upgrading
+    
+2.0.11
+
+    - harden up history file fetching
+    - talk about the fetching of aws reports
         
 ### Examples
 Here are some consolidated billing example searches, I hope you find them useful:
@@ -357,6 +362,7 @@ They are basically sets of imported RecordIds - to avoid duplicates.
 
 If you feel you need to rush the collection of the files from AWS you can run the following command in the CLI:
 
-    Applications/Splunk/bin/splunk cmd python FetchDetailedReport.py 
+    {SPLUNK_HOME}/bin/splunk cmd python FetchDetailedReport.py 
 
-This will also troubleshoot whether you have filled the aws.yaml file in correctly.
+This will also troubleshoot whether you have filled the aws.yaml file in correctly. If all is good you should see some
+CSV files in the csv directory.

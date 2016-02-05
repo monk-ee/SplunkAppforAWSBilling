@@ -6,7 +6,7 @@ in the amazon S3 billing bucket."""
 
 __author__ = "monkee"
 __license__ = "GPLv3.0"
-__version__ = "2.0.10"
+__version__ = "2.0.11"
 __maintainer__ = "monk-ee"
 __email__ = "magic.monkee.magic@gmail.com"
 __status__ = "Production"
@@ -93,10 +93,19 @@ class FetchDetailedReport:
         OK so here is the mod, at this point I am going to go and get 12 months worth of files
         :return:
         """
+        #set this value, then reset it from config file - saves everything going boing
+        history = 12
+        try:
+            history = int(self.config['history'])
+        except KeyError, kerr:
+            self.logger.error("Failed to find history stanza from the configuration file aws.yaml. This is a known"
+                              "upgrade problem, see README for fix. Fudging value to 12 months for now,"
+                              "Error Details: " + str(kerr))
+
         for key in self.config['accounts']:
             #so here we look back at least 12 months see aws.yaml for current setting
             #calculate now back to the history
-            for month in range(-int(self.config['history']), 0):
+            for month in range(-history, 0):
                 self.set_date(self.monthdelta(datetime.now(), month))
                 self.fetch_file(key)
 
