@@ -30,7 +30,7 @@
 
 __author__ = "monkee"
 __license__ = "GPLv3.0"
-__version__ = "2.0.10"
+__version__ = "2.0.11"
 __maintainer__ = "monk-ee"
 __email__ = "magic.monkee.magic@gmail.com"
 __status__ = "Production"
@@ -135,10 +135,19 @@ class ProcessDetailedReport:
         Adding some support for multiple files and accounts - for aggregation
         :return:
         """
+        #set this value, then reset it from config file - saves everything going boing
+        # https://github.com/monk-ee/SplunkAppforAWSBilling/issues/12
+        history = 12
+        try:
+            history = int(self.config['history'])
+        except KeyError, kerr:
+            self.logger.error("Failed to find history stanza from the configuration file aws.yaml. This is a known"
+                              "upgrade problem, see README for fix. Fudging value to 12 months for now,"
+                              "Error Details: " + str(kerr))
         for key in self.config['accounts']:
             #so here we look back at least 12 months see aws.yaml for current setting
             #calculate now back to the history
-            for month in range(-int(self.config['history']), 0):
+            for month in range(-history, 0):
                 self.set_date(self.monthdelta(datetime.now(), month))
                 self.process_file(key)
 
@@ -213,11 +222,13 @@ class ProcessDetailedReport:
         report_path = os.path.join(self.app_home, 'csv', report)
         try:
             ifile = open(report_path, 'rb')
-        except IOError, err:
-            self.logger.error("MERROR - Report File does not exist (IO): " + str(err))
+        except IOError,ioerr:
+            self.logger.error("Recoverable ERROR - Report File does not exist (IO) and that is totally ok"
+                              ": " + str(ioerr))
             return
-        except Exception,err:
-            self.logger.error("MERROR - Report File does not exist (General): " + str(err))
+        except Exception, generr:
+            self.logger.error("Recoverable ERROR - Report File does not exist (General) and that may be ok"
+                              ": " + str(generr))
             return
 
         #ok read the report file in

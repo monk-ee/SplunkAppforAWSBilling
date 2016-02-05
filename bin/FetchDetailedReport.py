@@ -6,7 +6,7 @@ in the amazon S3 billing bucket."""
 
 __author__ = "monkee"
 __license__ = "GPLv3.0"
-__version__ = "2.0.10"
+__version__ = "2.0.11"
 __maintainer__ = "monk-ee"
 __email__ = "magic.monkee.magic@gmail.com"
 __status__ = "Production"
@@ -93,10 +93,20 @@ class FetchDetailedReport:
         OK so here is the mod, at this point I am going to go and get 12 months worth of files
         :return:
         """
+        #set this value, then reset it from config file - saves everything going boing
+        # https://github.com/monk-ee/SplunkAppforAWSBilling/issues/12
+        history = 12
+        try:
+            history = int(self.config['history'])
+        except KeyError, kerr:
+            self.logger.error("Failed to find history stanza from the configuration file aws.yaml. This is a known "
+                              "upgrade problem, see README for fix. Fudging value to 12 months for now,"
+                              "Error Details: " + str(kerr))
+
         for key in self.config['accounts']:
             #so here we look back at least 12 months see aws.yaml for current setting
             #calculate now back to the history
-            for month in range(-int(self.config['history']), 0):
+            for month in range(-history, 0):
                 self.set_date(self.monthdelta(datetime.now(), month))
                 self.fetch_file(key)
 
@@ -146,18 +156,29 @@ class FetchDetailedReport:
             etag = None
             try:
                 #oh bugger using try catch for flow control - yuck
+                #guess how this doesnt work - if it errors because the key is non-existent you hide the problem
+                # you ideeeeot stimpy
                 file_key = bucket.get_key(s3_billing_report)
                 etag = file_key.etag
                 #the etag seems to contain quotes for some reason
                 if etag.startswith('"') and etag.endswith('"'):
                     etag = etag[1:-1]
+            except S3ResponseError, s3err:
+                #so take that - the file must not exist in the bucket - bail here
+                self.logger.error("404 - nosuchkey - because the file DOES NOT exist, nobody panic this is an ok "
+                                  "error: " + str(s3err))
+                return
             except:
+                #I think any other errors are recoverable - I could be wrong
                 pass
 
             if filemd5sum is not None and filemd5sum == etag:
                 #stop here - we already have this file we can forget continuing wasting bandwidth
                 return
             else:
+                #so this is the point it breaks from the error we failed to capture in the try/catch above
+                #ok so use the exception properly and return above ---->
+                # https://github.com/monk-ee/SplunkAppforAWSBilling/issues/11
                 FileObject = Key(bucket)
                 FileObject.key = s3_billing_report
                 FileObject.get_contents_to_filename(zipped_report)

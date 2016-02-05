@@ -1,4 +1,4 @@
-SplunkAppforAWSBilling v2.0.10
+SplunkAppforAWSBilling v2.0.11
 =============================
 
 Splunk App for AWS Billing allows you to collect Detailed Billing data from which in-depth analysis of usage patterns 
@@ -63,9 +63,13 @@ It would be better if you have the time, to flush all your indexes and install t
 "as if for the first time", these will avoid any of the nasty import duplication bugs that were present in the 
 2.0.5 - 2.0.8 releases.
 
-If you would like older reports than just a year (it defaults to 12), you can change the history value in aws.yaml file:
+If you would like older reports than just a year (it defaults to 12 months), you can change the history value in 
+the aws.yaml file (the value is number of months as an integer):
 
     history: 12
+
+If the history stanza is missing from your aws.yaml - the code will not break (since 2.0.11) - it just means you won't 
+be able to change the history value.
 
 
 # Splunk APP for AWS billing
@@ -231,7 +235,7 @@ You can enable it by navigating to Settings > Data Inputs > Scripts and clicking
 It will delete all zips and csvs older than a year.
 
 ## Logs
-git merge 2.0.10The error log file system location is $SPLUNK_HOME/var/log/splunk/SplunkAppforAWSBilling.log.
+The error log file system location is $SPLUNK_HOME/var/log/splunk/SplunkAppforAWSBilling.log.
 
 ### Contributors
 
@@ -281,6 +285,11 @@ Special thanks to Nilesh Khetia who's module I borrowed to make this one http://
 
     - remove deprecated files
     - add doco abput upgrading
+    
+2.0.11
+
+    - harden up history file fetching
+    - talk about the fetching of aws reports
         
 ### Examples
 Here are some consolidated billing example searches, I hope you find them useful:
@@ -353,3 +362,11 @@ reimport a file you may need to clear the aws-bill index or delete these files.
 
 They are basically sets of imported RecordIds - to avoid duplicates.
 
+#### Collection of report files from AWS
+
+If you feel you need to rush the collection of the files from AWS you can run the following command in the CLI:
+
+    {SPLUNK_HOME}/bin/splunk cmd python FetchDetailedReport.py 
+
+This will also troubleshoot whether you have filled the aws.yaml file in correctly. If all is good you should see some
+CSV files in the csv directory.

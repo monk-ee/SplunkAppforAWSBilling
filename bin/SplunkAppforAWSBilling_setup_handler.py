@@ -2,7 +2,7 @@
 __author__ = 'Monkee Magic <magic.monkee.magic@gmail.com>'
 __author__ = "monkee"
 __license__ = "GPLv3.0"
-__version__ = "2.0.10"
+__version__ = "2.0.11"
 __maintainer__ = "monk-ee"
 __email__ = "magic.monkee.magic@gmail.com"
 __status__ = "Production"
