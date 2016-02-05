@@ -353,3 +353,10 @@ reimport a file you may need to clear the aws-bill index or delete these files.
 
 They are basically sets of imported RecordIds - to avoid duplicates.
 
+#### Collection of report files from AWS
+
+If you feel you need to rush the collection of the files from AWS you can run the following command in the CLI:
+
+    Applications/Splunk/bin/splunk cmd python FetchDetailedReport.py 
+
+This will also troubleshoot whether you have filled the aws.yaml file in correctly.
