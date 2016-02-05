@@ -94,6 +94,7 @@ class FetchDetailedReport:
         :return:
         """
         #set this value, then reset it from config file - saves everything going boing
+        # https://github.com/monk-ee/SplunkAppforAWSBilling/issues/12
         history = 12
         try:
             history = int(self.config['history'])
