@@ -151,7 +151,7 @@ class FetchDetailedReport:
                                 + str(self.report_date) + ".csv.zip"
             #check the billing buckets name is actually set
             if key['billing_bucket'] == "":
-                self.logger.error("Bucket Name needs to be set in the aws.yaml local file.")
+                self.logger.error("Bucket Name needs to be set in the aws.yaml local file, it cannot be blank.")
                 raise SystemExit
             bucket = conn.get_bucket(key['billing_bucket'])
             """
@@ -195,7 +195,7 @@ class FetchDetailedReport:
                     self.logger.error("Could not unzip report archive: " + str(err))
                     raise SystemExit
         except boto.exception.S3ResponseError, emsg:
-            self.logger.error("Failed to lookup the bucket name in s3: " + str(emsg))
+            self.logger.error("Failed to lookup the bucket name in s3, bucket name set: " + str(key['billing_bucket']) + ", msg: " + str(emsg))
             raise SystemExit
         except Exception, err:
             self.logger.error("No idea why this went wrong: " + str(err))
