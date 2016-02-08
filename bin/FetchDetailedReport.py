@@ -149,6 +149,10 @@ class FetchDetailedReport:
             s3_billing_report = str(key['account_number']) \
                                 + "-aws-billing-detailed-line-items-with-resources-and-tags-" \
                                 + str(self.report_date) + ".csv.zip"
+            #check the billing buckets name is actually set
+            if key['billing_bucket'] == "":
+                self.logger.error("Bucket Name needs to be set in the aws.yaml local file.")
+                raise SystemExit
             bucket = conn.get_bucket(key['billing_bucket'])
             """
             I think it is here that I can check the md5 sum
@@ -163,7 +167,7 @@ class FetchDetailedReport:
                 #the etag seems to contain quotes for some reason
                 if etag.startswith('"') and etag.endswith('"'):
                     etag = etag[1:-1]
-            except S3ResponseError, s3err:
+            except boto.exception.S3ResponseError, s3err:
                 #so take that - the file must not exist in the bucket - bail here
                 self.logger.error("404 - nosuchkey - because the file DOES NOT exist, nobody panic this is an ok "
                                   "error: " + str(s3err))
@@ -191,7 +195,7 @@ class FetchDetailedReport:
                     self.logger.error("Could not unzip report archive: " + str(err))
                     raise SystemExit
         except boto.exception.S3ResponseError, emsg:
-            self.logger.error("Failed to get file from s3: " + str(emsg))
+            self.logger.error("Failed to lookup the bucket name in s3: " + str(emsg))
             raise SystemExit
         except Exception, err:
             self.logger.error("No idea why this went wrong: " + str(err))
